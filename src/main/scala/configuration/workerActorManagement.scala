@@ -1,0 +1,5 @@
+package configuration
+
+class workerActorManagement {
+
+}

@@ -1,0 +1,87 @@
+package akka.voldemort.voldactors
+
+import voldemort.client.DefaultStoreClient
+import voldemort.versioning.Version
+import voldemort.versioning.Versioned
+import akka.actor.Actor
+import akka.actor.Props
+import akka.routing.RoundRobinRouter
+import akka.routing.DefaultResizer
+import akka.voldemort.voldactors.actionactors.deleteActor
+import akka.voldemort.voldactors.actionactors.getActor
+import akka.actor.ActorLogging
+import messages.voldemortMessage
+import akka.voldemort.voldactors.actionactors.putActor
+import akka.util.Timeout
+import scala.concurrent.duration._
+import akka.pattern.ask
+
+//voldemort actors internal messages
+sealed trait voldEvents
+//Delete any version of the given key which equal to or less than the current versions
+case class delete(key: Object, clientStore: DefaultStoreClient[Object, Object]) extends voldEvents;
+//Delete the specified version and any prior versions of the given key
+case class deleteVersion(key: Object, version: Version, clientStore: DefaultStoreClient[Object, Object]) extends voldEvents;
+//get value only
+case class get(key: Object, clientStore: DefaultStoreClient[Object, Object]) extends voldEvents;
+//Get the versioned value associated with the given key or the defaultValue if no value is associated with the key
+case class getVersioned(key: Object, defaultValue: Versioned[Object], clientStore: DefaultStoreClient[Object, Object]) extends voldEvents;
+//put value associated with specific key
+case class put(key: Object, value: Object, clientStore: DefaultStoreClient[Object, Object]) extends voldEvents
+//Put the given Versioned value into the store for the given key if the version is greater to or concurrent with existing values.
+case class putVersion(key: Object, versioned: Versioned[Object] , clientStore: DefaultStoreClient[Object, Object]) extends voldEvents
+
+
+class voldCoordinator extends Actor with ActorLogging {
+  
+  //val voldDeleteActor: ActorRef = context.actorOf(Props[deleteActor], name = "deleteActor");
+
+  
+  
+  implicit val timeout = Timeout(5 seconds);
+
+  //creating actors
+  val resizer = new DefaultResizer(lowerBound = 2,upperBound = 10);
+  val voldDeleteActor = context.actorOf(Props[deleteActor].withRouter(RoundRobinRouter(resizer = Some(resizer))), name = "deleteActor");
+  val voldGetActor = context.actorOf(Props[getActor].withRouter(RoundRobinRouter(resizer = Some(resizer))), name = "getActor");
+  val voldPutActor = context.actorOf(Props[putActor].withRouter(RoundRobinRouter(resizer = Some(resizer))), name = "putActor");
+  
+
+  
+  def receive = {
+    case voldMessage: voldemortMessage => {
+      val operation = voldMessage.op
+      operation match {
+        case "put" => voldPutActor ! new put(voldMessage.k, voldMessage.v, voldMessage.cStore);
+        case "putver" => voldPutActor ! new putVersion(voldMessage.k, voldMessage.versionedValue, voldMessage.cStore);
+        case "delete" => voldDeleteActor ! new delete(voldMessage.k, voldMessage.cStore);
+        case "deletever" => voldDeleteActor ! new deleteVersion(voldMessage.k, voldMessage.vers, voldMessage.cStore);
+        case "get" => {
+          val future = voldGetActor ? new get(voldMessage.k, voldMessage.cStore);
+          val result = Await.result(future, timeout.duration);
+          future onSucces {
+            log.info("recieved value: " + result);
+          }
+          future onFailure{
+            log.info("failed to retrieve value");
+          }
+        }
+        case "getver" => {
+          val future = voldGetActor ? new get(voldMessage.k, voldMessage.defaultVal,voldMessage.cStore);
+          val result = Await.result(future, timeout.duration);
+          future onSucces {
+            log.info("recieved value: " + result);
+          }
+          future onFailure{
+            log.info("failed to retrieve value");
+          }
+        }
+      }
+    }
+    
+    case _=> log.info("unknown message")
+  }
+  
+  def voldOpeartion(voldMessage : voldemortMessage): Unit
+  
+}
