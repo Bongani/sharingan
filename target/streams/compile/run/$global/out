@@ -4,13 +4,38 @@
 [0m[[31merror[0m] [0mlog4j:WARN No appenders could be found for logger (voldemort.store.stats.Histogram).[0m
 [0m[[31merror[0m] [0mlog4j:WARN Please initialize the log4j system properly.[0m
 [0m[[0minfo[0m] [0mConnected to voldemort server test[0m
-[0m[[0minfo[0m] [0mvoldemort.client.DefaultStoreClient@12d19f2[0m
+[0m[[0minfo[0m] [0mvoldemort.client.DefaultStoreClient@1dc0b99[0m
 [0m[[0minfo[0m] [0mServer started[0m
-[0m[[31merror[0m] [0m[S] NPN not received for 189c7f1[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[31merror[0m] [0m[S] NPN not received for a16872[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[0minfo[0m] [0m[INFO] [06/04/2013 19:50:00.440] [VoldertTestSystem-akka.actor.default-dispatcher-2] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:17:50:00 +0000] "GET /topicmanagement HTTP/1.1" 101 0[0m
-[0m[[0minfo[0m] [0m[INFO] [06/04/2013 19:50:00.459] [VoldertTestSystem-akka.actor.default-dispatcher-2] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:17:50:00 +0000] "GET /storage HTTP/1.1" 101 0[0m
-[0m[[31merror[0m] [0m[S] NPN not received for 1c50999[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[0minfo[0m] [0m[INFO] [06/04/2013 19:50:08.319] [VoldertTestSystem-akka.actor.default-dispatcher-2] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:17:50:08 +0000] "GET /storage HTTP/1.1" 101 0[0m
-[0m[[31merror[0m] [0m[S] NPN not received for 158f8e6[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[0minfo[0m] [0m[INFO] [06/04/2013 19:50:08.340] [VoldertTestSystem-akka.actor.default-dispatcher-2] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:17:50:08 +0000] "GET /topicmanagement HTTP/1.1" 101 0[0m
+[0m[[31merror[0m] [0m[S] NPN not received for 133957e[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[31merror[0m] [0m[S] NPN not received for da163b[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 00:39:26.777] [VoldertTestSystem-akka.actor.default-dispatcher-2] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:22:39:26 +0000] "GET /storage HTTP/1.1" 101 0[0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 00:39:26.781] [VoldertTestSystem-akka.actor.default-dispatcher-2] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:22:39:26 +0000] "GET /topicmanagement HTTP/1.1" 101 0[0m
+[0m[[31merror[0m] [0m[S] NPN not received for 10933e7[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 00:39:30.949] [VoldertTestSystem-akka.actor.default-dispatcher-2] [akka://VoldertTestSystem/user/topicManagerActor] recieved JSON message for topic Management[0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 00:39:30.990] [VoldertTestSystem-akka.actor.default-dispatcher-8] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:22:39:30 +0000] "GET /storage HTTP/1.1" 101 0[0m
+[0m[[31merror[0m] [0m[S] NPN not received for af3289[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 00:39:31.061] [VoldertTestSystem-akka.actor.default-dispatcher-8] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:22:39:31 +0000] "GET /topicmanagement HTTP/1.1" 101 0[0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 00:39:31.313] [VoldertTestSystem-akka.actor.default-dispatcher-2] [akka://VoldertTestSystem/user/topicAdminActor] new topic created: chat[0m
+[0m[[31merror[0m] [0m[S] NPN not received for 64bc02[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 00:39:34.826] [VoldertTestSystem-akka.actor.default-dispatcher-9] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:22:39:34 +0000] "GET /messaging/chat HTTP/1.1" 101 0[0m
+[0m[[31merror[0m] [0m[S] NPN not received for 978e24[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[31merror[0m] [0m[S] NPN not received for 1b055b4[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 00:39:44.012] [VoldertTestSystem-akka.actor.default-dispatcher-10] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:22:39:44 +0000] "GET /messaging/chat HTTP/1.1" 101 0[0m
+[0m[[31merror[0m] [0m[S] NPN not received for 323b40[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[31merror[0m] [0m[S] NPN not received for 1c41ba8[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 00:39:54.550] [VoldertTestSystem-akka.actor.default-dispatcher-10] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:22:39:54 +0000] "GET /messaging/chat HTTP/1.1" 101 0[0m
+[0m[[31merror[0m] [0m[S] NPN not received for 1b7c8e7[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[31merror[0m] [0m[S] NPN not received for e2fbd3[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[31merror[0m] [0m[S] NPN not received for 3e95fd[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[31merror[0m] [0m[S] NPN not received for 64e673[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 00:40:32.569] [VoldertTestSystem-akka.actor.default-dispatcher-10] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:22:40:32 +0000] "GET /messaging/chat HTTP/1.1" 101 0[0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 01:07:57.779] [VoldertTestSystem-akka.actor.default-dispatcher-10] [akka://VoldertTestSystem/user/topicManagerActor] recieved JSON message for topic Management[0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 01:07:57.792] [VoldertTestSystem-akka.actor.default-dispatcher-10] [akka://VoldertTestSystem/user/topicAdminActor] new topic created: random[0m
+[0m[[31merror[0m] [0m[S] NPN not received for 13d7b4a[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[31merror[0m] [0m[S] NPN not received for d9be15[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 01:07:57.879] [VoldertTestSystem-akka.actor.default-dispatcher-14] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:23:07:57 +0000] "GET /storage HTTP/1.1" 101 0[0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 01:07:57.902] [VoldertTestSystem-akka.actor.default-dispatcher-14] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:23:07:57 +0000] "GET /topicmanagement HTTP/1.1" 101 0[0m
+[0m[[31merror[0m] [0m[S] NPN not received for 10ed661[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[31merror[0m] [0m[S] NPN not received for ded3e6[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[0minfo[0m] [0m[INFO] [06/05/2013 01:08:33.628] [VoldertTestSystem-akka.actor.default-dispatcher-10] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [04/Jun/2013:23:08:33 +0000] "GET /messaging/random HTTP/1.1" 101 0[0m
+[0m[[31merror[0m] [0m[S] NPN not received for 28a15f[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m

@@ -87,7 +87,7 @@ class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef) extends Actor
       
       //subscription handshake
       case PathSegments("messaging" :: relativePath) => {
-        //...
+        //System.out.println("\n \n Hello \n \n");
         val request = new subscriptionRequest(wsHandshake, relativePath(0));
         subsciptManager ! request;
         
@@ -109,7 +109,11 @@ class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef) extends Actor
       
       //for topicManagerActor
       case Path("/topicmanagement") => {
+        //println("\n \n \n");
+        //println("got the message");
+        //System.out.println("\n \n Hello \n \n");
        topicManagementActor ! wsFrame;
+       //log.info("recieved topic management message");
       }
       
       //broadcast message
