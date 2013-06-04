@@ -1,0 +1,46 @@
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run last *:update
+compile
+eclipse
+compile
+run
+compile
+run
+compile
+run
+compile
+run "test"
+run test
+run /single_node_cluster/config/
+compile
+run /single_node_cluster/config/
+compile
+run
+run /single_node_cluster/config/
+compile
+run /single_node_cluster/config/
+compile
+run /single_node_cluster/config/
+compile
+run /single_node_cluster/config/
+compile
+run /single_node_cluster/config/
+compile
+run /single_node_cluster/config/
