@@ -44,3 +44,7 @@ compile
 run /single_node_cluster/config/
 compile
 run /single_node_cluster/config/
+compile
+run /single_node_cluster/config/
+compile
+run /single_node_cluster/config/

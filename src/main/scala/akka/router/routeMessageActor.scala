@@ -36,9 +36,9 @@ class routeMessageActor extends Actor with ActorLogging {
       
       //create JSON message
       val webSocketObject: Object = wMessage.websocketEvent.asInstanceOf[Object];
-      val newObject: Object = null;
-      val json = ("worker" -> workerName)~("operationData" -> wMessage.dataOperation)~("websocketObject" -> newObject);
-      val messageToSend: String = compact(render(json));
+      //val newObject: Object = null;
+      //val json = ("worker" -> workerName)~("operationData" -> wMessage.dataOperation)~("websocketObject" -> newObject);
+      //val messageToSend: String = compact(render(json));
       
     } else {
       log.info("worker doesnt exist: " + workerName);

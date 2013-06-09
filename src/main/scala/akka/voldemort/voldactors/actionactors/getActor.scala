@@ -47,4 +47,13 @@ class getActor extends Actor with ActorLogging{
     }
     case _=> log.info("unknown message")
   }
+  
+  override def preStart() {
+    log.info("Starting getActor (getActor under voldCoordinator) instance hashcode # {}", this.hashCode());  
+  }
+  
+  override def postStop() {
+    log.info("Stopping getActor (getActor under voldCoordinator) instance hashcode # {}",this.hashCode());
+  }
+  
 }

@@ -31,6 +31,8 @@ import net.liftweb.json.JsonDSL._
 import configuration.storageManagement
 import configuration.storage
 import akka.actor.ActorRef
+import akka.actor.OneForOneStrategy
+import akka.actor.SupervisorStrategy._
 
 
 //voldemort actors internal messages
@@ -61,9 +63,9 @@ class voldCoordinator extends Actor with ActorLogging {
 
   //creating actors
   val resizer = new DefaultResizer(lowerBound = 2,upperBound = 10);
-  val voldDeleteActor = context.actorOf(Props[deleteActor].withRouter(RoundRobinRouter(resizer = Some(resizer))), name = "deleteActor");
-  val voldGetActor = context.actorOf(Props[getActor].withRouter(RoundRobinRouter(resizer = Some(resizer))), name = "getActor");
-  val voldPutActor = context.actorOf(Props[putActor].withRouter(RoundRobinRouter(resizer = Some(resizer))), name = "putActor");
+  var voldDeleteActor: ActorRef = null;
+  var voldGetActor: ActorRef = null;
+  var voldPutActor: ActorRef = null;
   
   //val voldDeleteActor: ActorRef = context.actorOf(Props[deleteActor].withRouter(FromConfig()), name = "deleteActor");
   //val voldGetActor: ActorRef = null;//context.actorOf(Props[getActor].withRouter(FromConfig()), name = "voldGetActor");
@@ -72,6 +74,25 @@ class voldCoordinator extends Actor with ActorLogging {
   
 
   def storeManager = storage.storageManager;
+  
+  override def preStart() {
+    log.info("Starting voldCoordinator (Voldemort Coordinator) instance hashcode # {}", this.hashCode());
+    log.info("Configuring voldCoordinator (Voldemort Coordinator) child actors hashcode # {}", this.hashCode());
+    voldDeleteActor = context.actorOf(Props[deleteActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "deleteActor");
+    voldGetActor = context.actorOf(Props[getActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "getActor");
+    voldPutActor = context.actorOf(Props[putActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "putActor");
+    
+  }
+  
+  val supervisorEscalator = OneForOneStrategy(maxNrOfRetries = 100, withinTimeRange = 10 seconds) {
+    //if a child actor fails restart it
+  	case _: Exception => Restart
+  }
+  
+  //override val supervisorStrategy = OneForOneStrategy(maxNrOfRetries = 100, withinTimeRange = 10 seconds) {
+    //if a child actor fails restart it
+  //	case _: Exception => Restart
+  //}
   
   
   def receive = {
@@ -123,6 +144,7 @@ class voldCoordinator extends Actor with ActorLogging {
     case wsEvent: WebSocketFrameEvent => {
       val vMessageStringfied = wsEvent.readText;
       val voldMessage: voldemortMessage = decodeVoldemortMessage(vMessageStringfied);
+      //check if the storage exists, if not reply with error message
       val storage: DefaultStoreClient[Object, Object] = storeManager.getStorage(voldMessage.cStoreName);
       /*println("\n \n \n \n");
       println(voldMessage.op);

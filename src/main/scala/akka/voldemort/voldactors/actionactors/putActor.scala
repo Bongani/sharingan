@@ -39,7 +39,15 @@ class putActor extends Actor with ActorLogging{
     case message: putVersion => {
       message.clientStore.put(message.key, message.versioned);
     }
-    case _ => log.info("unknown message");
+    case _ => log.info("putActor recieved an unknown message");
   }
+  
+  override def preStart() {
+    log.info("Starting putActor (putActor under voldCoordinator) instance hashcode # {}", this.hashCode());  
+  }
+  
+  override def postStop() {
+    log.info("Stopping putActor (putActor under voldCoordinator) instance hashcode # {}",this.hashCode());
+  }  
   
 }

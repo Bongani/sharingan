@@ -45,4 +45,12 @@ class deleteActor extends Actor with ActorLogging{
     
   }
   
+  override def preStart() {
+    log.info("Starting deleteActor (deleteActor under voldCoordinator) instance hashcode # {}", this.hashCode());  
+  }
+  
+  override def postStop() {
+    log.info("Stopping deleteActor (deleteActor under voldCoordinator) instance hashcode # {}",this.hashCode());
+  }
+  
 }
