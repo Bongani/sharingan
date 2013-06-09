@@ -6,18 +6,19 @@ import net.liftweb.json._
 import net.liftweb.json.JsonDSL._
 import org.mashupbots.socko.events.WebSocketFrameEvent
 import akka.actor.Props
+import akka.actor.ActorRef
 
 sealed trait workManagerEvents
 case class adminMessage(operation: String, worker: String, workerWebSocket : WebSocketFrameEvent) extends workManagerEvents;
 
 case class jsonWorkAdminMessage(operation: String, workerName: String);
 
-class workerManagerActor extends Actor with ActorLogging  {
+class workerManagerActor (adminActor : ActorRef) extends Actor with ActorLogging  {
   
   
   implicit val formats = DefaultFormats; // Brings in default date formats etc for JSON Lift
   
-  val adminActor = context.actorOf(Props[adminWorkerActor],"adminWorkerActor")
+  //val adminActor = context.actorOf(Props[adminWorkerActor],"adminWorkerActor")
 
   
   def receive = {
