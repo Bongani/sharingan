@@ -11,7 +11,6 @@ import akka.actor.actorRef2Scala
 
 class subscriptionManagerActor extends Actor with ActorLogging{
   
-  //var topicMap: Map[String, ActorRef] = new HashMap[String, ActorRef];
   
   def topicMapManager = topicMap.topicNameActorMap;
   

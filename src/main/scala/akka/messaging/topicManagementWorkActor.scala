@@ -9,7 +9,7 @@ import net.liftweb.json.JsonDSL._
 import akka.actor.Props
 import org.mashupbots.socko.handlers.WebSocketBroadcaster
 
-class topicAdminActor extends Actor with ActorLogging {
+class topicManagementWorkActor extends Actor with ActorLogging {
   
   implicit val formats = DefaultFormats; // Brings in default date formats etc for JSON Lift
   

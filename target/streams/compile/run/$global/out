@@ -1,152 +1,60 @@
 [0m[[0minfo[0m] [0mRunning voldemortTest /single_node_cluster/config/[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:01:10.781] [VoldertTestSystem-akka.actor.default-dispatcher-4] [akka://VoldertTestSystem/user/voldemorCordActor] Starting voldCoordinator (Voldemort Coordinator) instance hashcode # 18342578[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:01:10.860] [VoldertTestSystem-akka.actor.default-dispatcher-4] [akka://VoldertTestSystem/user/voldemorCordActor] Configuring voldCoordinator (Voldemort Coordinator) child actors hashcode # 18342578[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:01:10.895] [VoldertTestSystem-akka.actor.default-dispatcher-3] [akka://VoldertTestSystem/user/voldemorCordActor/deleteActor/$a] Starting deleteActor (deleteActor under voldCoordinator) instance hashcode # 7812075[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:01:10.899] [VoldertTestSystem-akka.actor.default-dispatcher-2] [akka://VoldertTestSystem/user/voldemorCordActor/deleteActor/$b] Starting deleteActor (deleteActor under voldCoordinator) instance hashcode # 9998318[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:01:11.255] [VoldertTestSystem-akka.actor.default-dispatcher-2] [akka://VoldertTestSystem/user/voldemorCordActor/getActor/$b] Starting getActor (getActor under voldCoordinator) instance hashcode # 30917883[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:01:11.255] [VoldertTestSystem-akka.actor.default-dispatcher-5] [akka://VoldertTestSystem/user/voldemorCordActor/getActor/$a] Starting getActor (getActor under voldCoordinator) instance hashcode # 10105795[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:01:11.392] [VoldertTestSystem-akka.actor.default-dispatcher-7] [akka://VoldertTestSystem/user/voldemorCordActor/putActor/$b] Starting putActor (putActor under voldCoordinator) instance hashcode # 21345913[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:01:11.404] [VoldertTestSystem-akka.actor.default-dispatcher-4] [akka://VoldertTestSystem/user/voldemorCordActor/putActor/$a] Starting putActor (putActor under voldCoordinator) instance hashcode # 20181643[0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:18:22.703] [VoldertTestSystem-akka.actor.default-dispatcher-3] [akka://VoldertTestSystem/user/voldemorCordActor] Starting voldCoordinator (Voldemort Coordinator) instance hashcode # 31710080[0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:18:22.735] [VoldertTestSystem-akka.actor.default-dispatcher-3] [akka://VoldertTestSystem/user/voldemorCordActor] Configuring voldCoordinator (Voldemort Coordinator) child actors hashcode # 31710080[0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:18:22.784] [VoldertTestSystem-akka.actor.default-dispatcher-6] [akka://VoldertTestSystem/user/voldemorCordActor/deleteActor/$a] Starting deleteActor (deleteActor under voldCoordinator) instance hashcode # 30604462[0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:18:22.786] [VoldertTestSystem-akka.actor.default-dispatcher-2] [akka://VoldertTestSystem/user/voldemorCordActor/deleteActor/$b] Starting deleteActor (deleteActor under voldCoordinator) instance hashcode # 2312568[0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:18:22.872] [VoldertTestSystem-akka.actor.default-dispatcher-4] [akka://VoldertTestSystem/user/voldemorCordActor/getActor/$a] Starting getActor (getActor under voldCoordinator) instance hashcode # 10106897[0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:18:22.873] [VoldertTestSystem-akka.actor.default-dispatcher-5] [akka://VoldertTestSystem/user/voldemorCordActor/getActor/$b] Starting getActor (getActor under voldCoordinator) instance hashcode # 23594149[0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:18:22.887] [VoldertTestSystem-akka.actor.default-dispatcher-2] [akka://VoldertTestSystem/user/voldemorCordActor/putActor/$a] Starting putActor (putActor under voldCoordinator) instance hashcode # 20182553[0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:18:22.887] [VoldertTestSystem-akka.actor.default-dispatcher-3] [akka://VoldertTestSystem/user/voldemorCordActor/putActor/$b] Starting putActor (putActor under voldCoordinator) instance hashcode # 16318233[0m
 [0m[[0minfo[0m] [0mRead XML file for: cluster.xml[0m
 [0m[[0minfo[0m] [0mRead XML file for: stores.xml[0m
 [0m[[31merror[0m] [0mlog4j:WARN No appenders could be found for logger (voldemort.store.stats.Histogram).[0m
 [0m[[31merror[0m] [0mlog4j:WARN Please initialize the log4j system properly.[0m
 [0m[[0minfo[0m] [0mConnected to voldemort server test[0m
-[0m[[0minfo[0m] [0mvoldemort.client.DefaultStoreClient@1034cc9[0m
-[0m[[0minfo[0m] [0m[ERROR] [06/09/2013 22:01:21.587] [VoldertTestSystem-akka.actor.default-dispatcher-5] [akka://VoldertTestSystem/user/workerManagerActor] error while processing Create(-1551037181)[0m
-[0m[[0minfo[0m] [0m8a6ec407-22b8-4e61-8f84-14d28703d2d1akka.actor.ActorInitializationException: exception during creation, this problem is likely to occur because the class of the Actor you tried to create is either,[0m
-[0m[[0minfo[0m] [0m               a non-static inner class (in which case make it a static inner class or use Props(new ...) or Props( new UntypedActorFactory ... )[0m
-[0m[[0minfo[0m] [0m               or is missing an appropriate, reachable no-args constructor.[0m
-[0m[[0minfo[0m] [0m              [0m
-[0m[[0minfo[0m] [0m	at akka.actor.ActorInitializationException$.apply(Actor.scala:170)[0m
-[0m[[0minfo[0m] [0m	at akka.actor.ActorCell.create(ActorCell.scala:491)[0m
-[0m[[0minfo[0m] [0m	at akka.actor.ActorCell.systemInvoke(ActorCell.scala:351)[0m
-[0m[[0minfo[0m] [0m	at akka.dispatch.Mailbox.processAllSystemMessages(Mailbox.scala:256)[0m
-[0m[[0minfo[0m] [0m	at akka.dispatch.Mailbox.run(Mailbox.scala:211)[0m
-[0m[[0minfo[0m] [0m	at akka.dispatch.ForkJoinExecutorConfigurator$MailboxExecutionTask.exec(AbstractDispatcher.scala:506)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:262)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1478)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104)[0m
-[0m[[0minfo[0m] [0m[0m
+[0m[[0minfo[0m] [0mvoldemort.client.DefaultStoreClient@1d8594c[0m
 [0m[[0minfo[0m] [0mServer started[0m
-[0m[[31merror[0m] [0m[S] NPN received for fe98b7[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[31merror[0m] [0m[S] NPN protocols [spdy/3, spdy/2, http/1.1] sent to client for fe98b7[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[31merror[0m] [0m[S] NPN selected 'spdy/3' for fe98b7[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[31merror[0m] [0m[S] NPN received for 1d5691a[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[31merror[0m] [0m[S] NPN protocols [spdy/3, spdy/2, http/1.1] sent to client for 1d5691a[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[31merror[0m] [0m[S] NPN selected 'spdy/3' for 1d5691a[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:02:17.853] [VoldertTestSystem-akka.actor.default-dispatcher-9] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [09/Jun/2013:20:02:17 +0000] "GET /html HTTP/1.1" 200 48[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:02:20.055] [VoldertTestSystem-akka.actor.default-dispatcher-9] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [09/Jun/2013:20:02:20 +0000] "GET /favicon.ico HTTP/1.1" 404 0[0m
-[0m[[31merror[0m] [0m[S] NPN not received for 2d649f[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[31merror[0m] [0m[S] NPN not received for 11ebd4f[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:03:05.522] [VoldertTestSystem-akka.actor.default-dispatcher-9] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [09/Jun/2013:20:03:05 +0000] "GET /storage HTTP/1.1" 101 0[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:03:05.522] [VoldertTestSystem-akka.actor.default-dispatcher-9] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [09/Jun/2013:20:03:05 +0000] "GET /topicmanagement HTTP/1.1" 101 0[0m
-[0m[[31merror[0m] [0m[S] NPN not received for 13622c[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:03:36.053] [VoldertTestSystem-akka.actor.default-dispatcher-13] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [09/Jun/2013:20:03:36 +0000] "GET /storage HTTP/1.1" 101 0[0m
-[0m[[31merror[0m] [0m[S] NPN not received for 1ba6481[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:03:37.013] [VoldertTestSystem-akka.actor.default-dispatcher-14] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [09/Jun/2013:20:03:37 +0000] "GET /topicmanagement HTTP/1.1" 101 0[0m
-[0m[[0minfo[0m] [0m[ERROR] [06/09/2013 22:03:37.541] [VoldertTestSystem-akka.actor.default-dispatcher-9] [akka://VoldertTestSystem/user/voldemorCordActor/putActor/$a] 1 get versionss required, but only 0 succeeded Original replication set :[0] Known failed nodes before operation :[] Estimated live nodes in preference list :[0] New failed nodes during operation :[0][0m
-[0m[[0minfo[0m] [0mvoldemort.store.InsufficientOperationalNodesException: 1 get versionss required, but only 0 succeeded Original replication set :[0] Known failed nodes before operation :[] Estimated live nodes in preference list :[0] New failed nodes during operation :[0][0m
-[0m[[0minfo[0m] [0m	at voldemort.store.routed.action.PerformSerialRequests.execute(PerformSerialRequests.java:132)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.routed.Pipeline.execute(Pipeline.java:214)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.routed.PipelineRoutedStore.getVersions(PipelineRoutedStore.java:530)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.routed.PipelineRoutedStore.getVersions(PipelineRoutedStore.java:75)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.DelegatingStore.getVersions(DelegatingStore.java:86)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.DelegatingStore.getVersions(DelegatingStore.java:86)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.serialized.SerializingStore.getVersions(SerializingStore.java:144)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.DelegatingStore.getVersions(DelegatingStore.java:86)[0m
-[0m[[0minfo[0m] [0m	at voldemort.client.DefaultStoreClient.getVersions(DefaultStoreClient.java:163)[0m
-[0m[[0minfo[0m] [0m	at voldemort.client.DefaultStoreClient.put(DefaultStoreClient.java:213)[0m
-[0m[[0minfo[0m] [0m	at akka.voldemort.voldactors.actionactors.putActor$$anonfun$receive$1.applyOrElse(putActor.scala:37)[0m
-[0m[[0minfo[0m] [0m	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:425)[0m
-[0m[[0minfo[0m] [0m	at akka.actor.ActorCell.invoke(ActorCell.scala:386)[0m
-[0m[[0minfo[0m] [0m	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:230)[0m
-[0m[[0minfo[0m] [0m	at akka.dispatch.Mailbox.run(Mailbox.scala:212)[0m
-[0m[[0minfo[0m] [0m	at akka.dispatch.ForkJoinExecutorConfigurator$MailboxExecutionTask.exec(AbstractDispatcher.scala:506)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:262)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1478)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104)[0m
-[0m[[0minfo[0m] [0mCaused by: voldemort.store.UnreachableStoreException: Client response not read/parsed, cannot determine result[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.socket.clientrequest.AbstractClientRequest.getResult(AbstractClientRequest.java:84)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.socket.clientrequest.ClientRequestExecutorPool$NonblockingStoreCallbackClientRequest.complete(ClientRequestExecutorPool.java:410)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.socket.clientrequest.ClientRequestExecutor.completeClientRequest(ClientRequestExecutor.java:294)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.socket.clientrequest.ClientRequestExecutor.close(ClientRequestExecutor.java:171)[0m
-[0m[[0minfo[0m] [0m	at voldemort.common.nio.SelectorManagerWorker.run(SelectorManagerWorker.java:117)[0m
-[0m[[0minfo[0m] [0m	at voldemort.common.nio.SelectorManager.run(SelectorManager.java:215)[0m
-[0m[[0minfo[0m] [0m	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)[0m
-[0m[[0minfo[0m] [0m	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)[0m
-[0m[[0minfo[0m] [0m	at java.lang.Thread.run(Thread.java:722)[0m
+[0m[[31merror[0m] [0m[S] NPN received for 105196a[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[31merror[0m] [0m[S] NPN protocols [spdy/3, spdy/2, http/1.1] sent to client for 105196a[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[31merror[0m] [0m[S] NPN selected 'spdy/3' for 105196a[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[31merror[0m] [0m[S] NPN received for 3fee22[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[31merror[0m] [0m[S] NPN protocols [spdy/3, spdy/2, http/1.1] sent to client for 3fee22[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[31merror[0m] [0m[S] NPN selected 'spdy/3' for 3fee22[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:19:48.771] [VoldertTestSystem-akka.actor.default-dispatcher-6] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [11/Jun/2013:21:19:48 +0000] "GET /html HTTP/1.1" 200 48[0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:19:52.101] [VoldertTestSystem-akka.actor.default-dispatcher-7] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [11/Jun/2013:21:19:52 +0000] "GET /favicon.ico HTTP/1.1" 404 0[0m
+[0m[[31merror[0m] [0m[S] NPN not received for 85f515[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[31merror[0m] [0m[S] NPN not received for 1d3cc95[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:22:21.451] [VoldertTestSystem-akka.actor.default-dispatcher-6] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [11/Jun/2013:21:22:21 +0000] "GET /storage HTTP/1.1" 101 0[0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:22:21.464] [VoldertTestSystem-akka.actor.default-dispatcher-6] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [11/Jun/2013:21:22:21 +0000] "GET /topicmanagement HTTP/1.1" 101 0[0m
+[0m[[31merror[0m] [0m[S] NPN not received for 14bbc99[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
 [0m[[0minfo[0m] [0m[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:03:37.543] [VoldertTestSystem-akka.actor.default-dispatcher-9] [akka://VoldertTestSystem/user/voldemorCordActor/putActor/$a] Stopping putActor (putActor under voldCoordinator) instance hashcode # 20181643[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:03:37.569] [VoldertTestSystem-akka.actor.default-dispatcher-9] [akka://VoldertTestSystem/user/voldemorCordActor/putActor/$a] Starting putActor (putActor under voldCoordinator) instance hashcode # 24435757[0m
-[0m[[0minfo[0m] [0m[ERROR] [06/09/2013 22:04:42.391] [VoldertTestSystem-akka.actor.default-dispatcher-14] [akka://VoldertTestSystem/user/voldemorCordActor/putActor/$b] 1 get versionss required, but only 0 succeeded Original replication set :[0] Known failed nodes before operation :[] Estimated live nodes in preference list :[0] New failed nodes during operation :[0][0m
-[0m[[0minfo[0m] [0mvoldemort.store.InsufficientOperationalNodesException: 1 get versionss required, but only 0 succeeded Original replication set :[0] Known failed nodes before operation :[] Estimated live nodes in preference list :[0] New failed nodes during operation :[0][0m
-[0m[[0minfo[0m] [0m	at voldemort.store.routed.action.PerformSerialRequests.execute(PerformSerialRequests.java:132)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.routed.Pipeline.execute(Pipeline.java:214)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.routed.PipelineRoutedStore.getVersions(PipelineRoutedStore.java:530)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.routed.PipelineRoutedStore.getVersions(PipelineRoutedStore.java:75)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.DelegatingStore.getVersions(DelegatingStore.java:86)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.DelegatingStore.getVersions(DelegatingStore.java:86)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.serialized.SerializingStore.getVersions(SerializingStore.java:144)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.DelegatingStore.getVersions(DelegatingStore.java:86)[0m
-[0m[[0minfo[0m] [0m	at voldemort.client.DefaultStoreClient.getVersions(DefaultStoreClient.java:163)[0m
-[0m[[0minfo[0m] [0m	at voldemort.client.DefaultStoreClient.put(DefaultStoreClient.java:213)[0m
-[0m[[0minfo[0m] [0m	at akka.voldemort.voldactors.actionactors.putActor$$anonfun$receive$1.applyOrElse(putActor.scala:37)[0m
-[0m[[0minfo[0m] [0m	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:425)[0m
-[0m[[0minfo[0m] [0m	at akka.actor.ActorCell.invoke(ActorCell.scala:386)[0m
-[0m[[0minfo[0m] [0m	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:230)[0m
-[0m[[0minfo[0m] [0m	at akka.dispatch.Mailbox.run(Mailbox.scala:212)[0m
-[0m[[0minfo[0m] [0m	at akka.dispatch.ForkJoinExecutorConfigurator$MailboxExecutionTask.exec(AbstractDispatcher.scala:506)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:262)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1478)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104)[0m
-[0m[[0minfo[0m] [0mCaused by: voldemort.store.UnreachableStoreException: Failure in get versions: Connection refused[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.socket.clientrequest.ClientRequestExecutorPool$AsyncSocketDestinationRequest.handleException(ClientRequestExecutorPool.java:334)[0m
-[0m[[0minfo[0m] [0m	at voldemort.utils.pool.QueuedKeyedResourcePool.registerResourceRequest(QueuedKeyedResourcePool.java:115)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.socket.clientrequest.ClientRequestExecutorPool.submitAsync(ClientRequestExecutorPool.java:250)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.socket.SocketStore.requestAsync(SocketStore.java:356)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.socket.SocketStore.submitGetVersionsRequest(SocketStore.java:146)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.routed.action.PerformParallelRequests.execute(PerformParallelRequests.java:150)[0m
-[0m[[0minfo[0m] [0m	... 19 more[0m
-[0m[[0minfo[0m] [0mCaused by: java.net.ConnectException: Connection refused[0m
-[0m[[0minfo[0m] [0m	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)[0m
-[0m[[0minfo[0m] [0m	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:692)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.socket.clientrequest.ClientRequestExecutorFactory.create(ClientRequestExecutorFactory.java:143)[0m
-[0m[[0minfo[0m] [0m	at voldemort.store.socket.clientrequest.ClientRequestExecutorFactory.create(ClientRequestExecutorFactory.java:50)[0m
-[0m[[0minfo[0m] [0m	at voldemort.utils.pool.KeyedResourcePool$Pool.attemptGrow(KeyedResourcePool.java:444)[0m
-[0m[[0minfo[0m] [0m	at voldemort.utils.pool.KeyedResourcePool.attemptNonBlockingCheckout(KeyedResourcePool.java:168)[0m
-[0m[[0minfo[0m] [0m	at voldemort.utils.pool.QueuedKeyedResourcePool.registerResourceRequest(QueuedKeyedResourcePool.java:111)[0m
-[0m[[0minfo[0m] [0m	... 23 more[0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m [0m
 [0m[[0minfo[0m] [0m[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:04:42.401] [VoldertTestSystem-akka.actor.default-dispatcher-14] [akka://VoldertTestSystem/user/voldemorCordActor/putActor/$b] Stopping putActor (putActor under voldCoordinator) instance hashcode # 21345913[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:04:42.401] [VoldertTestSystem-akka.actor.default-dispatcher-14] [akka://VoldertTestSystem/user/voldemorCordActor/putActor/$b] Starting putActor (putActor under voldCoordinator) instance hashcode # 937404[0m
-[0m[[31merror[0m] [0m[S] NPN not received for 18198c7[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:04:42.952] [VoldertTestSystem-akka.actor.default-dispatcher-15] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [09/Jun/2013:20:04:42 +0000] "GET /storage HTTP/1.1" 101 0[0m
-[0m[[31merror[0m] [0m[S] NPN not received for fd4c21[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:04:42.996] [VoldertTestSystem-akka.actor.default-dispatcher-15] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [09/Jun/2013:20:04:42 +0000] "GET /topicmanagement HTTP/1.1" 101 0[0m
-[0m[[31merror[0m] [0m[S] NPN not received for 19ef69a[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:04:56.751] [VoldertTestSystem-akka.actor.default-dispatcher-14] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [09/Jun/2013:20:04:56 +0000] "GET /storage HTTP/1.1" 101 0[0m
-[0m[[31merror[0m] [0m[S] NPN not received for 1a0784f[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:04:56.765] [VoldertTestSystem-akka.actor.default-dispatcher-14] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [09/Jun/2013:20:04:56 +0000] "GET /topicmanagement HTTP/1.1" 101 0[0m
-[0m[[0minfo[0m] [0m[ERROR] [06/09/2013 22:05:09.292] [VoldertTestSystem-akka.actor.default-dispatcher-18] [akka://VoldertTestSystem/user/voldemorCordActor/putActor/$a] null[0m
-[0m[[0minfo[0m] [0mjava.lang.NullPointerException[0m
-[0m[[0minfo[0m] [0m	at akka.voldemort.voldactors.actionactors.putActor$$anonfun$receive$1.applyOrElse(putActor.scala:37)[0m
-[0m[[0minfo[0m] [0m	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:425)[0m
-[0m[[0minfo[0m] [0m	at akka.actor.ActorCell.invoke(ActorCell.scala:386)[0m
-[0m[[0minfo[0m] [0m	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:230)[0m
-[0m[[0minfo[0m] [0m	at akka.dispatch.Mailbox.run(Mailbox.scala:212)[0m
-[0m[[0minfo[0m] [0m	at akka.dispatch.ForkJoinExecutorConfigurator$MailboxExecutionTask.exec(AbstractDispatcher.scala:506)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:262)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:975)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1478)[0m
-[0m[[0minfo[0m] [0m	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:104)[0m
+[0m[[0minfo[0m] [0mSocket channel[0m
+[0m[[0minfo[0m] [0m-1321104655[0m
 [0m[[0minfo[0m] [0m[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:05:09.299] [VoldertTestSystem-akka.actor.default-dispatcher-20] [akka://VoldertTestSystem/user/voldemorCordActor/putActor/$a] Stopping putActor (putActor under voldCoordinator) instance hashcode # 24435757[0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:05:09.304] [VoldertTestSystem-akka.actor.default-dispatcher-20] [akka://VoldertTestSystem/user/voldemorCordActor/putActor/$a] Starting putActor (putActor under voldCoordinator) instance hashcode # 289378[0m
-[0m[[31merror[0m] [0m[S] NPN not received for 676d73[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:05:09.424] [VoldertTestSystem-akka.actor.default-dispatcher-23] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [09/Jun/2013:20:05:09 +0000] "GET /storage HTTP/1.1" 101 0[0m
-[0m[[31merror[0m] [0m[S] NPN not received for 1ecff21[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
-[0m[[0minfo[0m] [0m[INFO] [06/09/2013 22:05:09.440] [VoldertTestSystem-akka.actor.default-dispatcher-23] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [09/Jun/2013:20:05:09 +0000] "GET /topicmanagement HTTP/1.1" 101 0[0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m[0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:38:54.273] [VoldertTestSystem-akka.actor.default-dispatcher-9] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [11/Jun/2013:21:38:54 +0000] "GET /storage HTTP/1.1" 101 0[0m
+[0m[[31merror[0m] [0m[S] NPN not received for 6d6f21[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:38:54.321] [VoldertTestSystem-akka.actor.default-dispatcher-9] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [11/Jun/2013:21:38:54 +0000] "GET /topicmanagement HTTP/1.1" 101 0[0m
+[0m[[0minfo[0m] [0m[0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m[0m
+[0m[[0minfo[0m] [0mSocket channel[0m
+[0m[[0minfo[0m] [0m262164453[0m
+[0m[[0minfo[0m] [0m[0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0m[0m
+[0m[[31merror[0m] [0m[S] NPN not received for 1e0fb74[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:42:25.408] [VoldertTestSystem-akka.actor.default-dispatcher-11] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [11/Jun/2013:21:42:25 +0000] "GET /storage HTTP/1.1" 101 0[0m
+[0m[[0minfo[0m] [0m[INFO] [06/11/2013 23:42:25.435] [VoldertTestSystem-akka.actor.default-dispatcher-11] [akka://VoldertTestSystem/user/$a] 0:0:0:0:0:0:0:1 - - [11/Jun/2013:21:42:25 +0000] "GET /topicmanagement HTTP/1.1" 101 0[0m
+[0m[[31merror[0m] [0m[S] NPN not received for 18c8ad2[SSLEngine[hostname=null port=-1] SSL_NULL_WITH_NULL_NULL][0m

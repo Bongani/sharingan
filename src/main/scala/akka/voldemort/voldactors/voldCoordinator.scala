@@ -81,6 +81,7 @@ class voldCoordinator extends Actor with ActorLogging {
     voldDeleteActor = context.actorOf(Props[deleteActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "deleteActor");
     voldGetActor = context.actorOf(Props[getActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "getActor");
     voldPutActor = context.actorOf(Props[putActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "putActor");
+    //voldPutActor = context.actorOf(Props[putActor].withRouter(FromConfig()), name = "voldPutActor");
     
   }
   
@@ -156,7 +157,10 @@ class voldCoordinator extends Actor with ActorLogging {
       println("\n \n");
       println(storage);
       println("\n \n \n \n");*/
-      
+      //println("\n \n \n \n");
+      //println("Socket channel");
+      //println(wsEvent.channel.getId());
+      //println("\n \n \n \n");
       
       val operation = voldMessage.op;
       operation match {

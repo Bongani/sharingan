@@ -19,10 +19,7 @@ class routeMessageActor extends Actor with ActorLogging {
   
   def receive = {
     case workMessage: workerMessage => {
-      //val workerActor: ActorRef = workerMap.get(workMessage.workerName);
-      //send message to worker 
-      //workerActor ! workMessage;
-      
+      sendMessageToWorker(workMessage);      
     }
     
     case _=> log.info("unknown message")
@@ -35,10 +32,12 @@ class routeMessageActor extends Actor with ActorLogging {
       val workerWebSocket: WebSocketFrameEvent = workerSocketFrameEventMap.getWorkerWebSocket(workerName);
       
       //create JSON message
-      val webSocketObject: Object = wMessage.websocketEvent.asInstanceOf[Object];
-      //val newObject: Object = null;
-      //val json = ("worker" -> workerName)~("operationData" -> wMessage.dataOperation)~("websocketObject" -> newObject);
-      //val messageToSend: String = compact(render(json));
+      val clientChannel : String = wMessage.websocketEvent.channel.getId().asInstanceOf[String];      
+      val json = ("worker" -> workerName)~("operationData" -> wMessage.dataOperation)~("clientChannel" -> clientChannel)~("response" -> wMessage.expectingResponse);
+      val messageToSend: String = compact(render(json));
+      
+      //write message to websocket
+      workerWebSocket.writeText(messageToSend);
       
     } else {
       log.info("worker doesnt exist: " + workerName);

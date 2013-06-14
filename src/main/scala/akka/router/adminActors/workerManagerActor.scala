@@ -1,12 +1,12 @@
-package akka.router
+package akka.router.adminActors
 
 import akka.actor.Actor
 import akka.actor.ActorLogging
 import net.liftweb.json._
 import net.liftweb.json.JsonDSL._
 import org.mashupbots.socko.events.WebSocketFrameEvent
-import akka.actor.Props
 import akka.actor.ActorRef
+import akka.actor.actorRef2Scala
 
 sealed trait workManagerEvents
 case class adminMessage(operation: String, worker: String, workerWebSocket : WebSocketFrameEvent) extends workManagerEvents;

@@ -10,9 +10,10 @@ import messages.workerMessage
 import akka.routing.DefaultResizer
 import akka.routing.RoundRobinRouter
 import akka.actor.Props
+import akka.router.routingActor.clientLogWebSocketEventFrame
 
 
-case class jsonRouteMessage(worker: String, operationData: String);
+case class jsonRouteMessage(worker: String, operationData: String, response: Boolean);
 
 //can have multiple instances of router
 class routerActor extends Actor with ActorLogging {
@@ -23,12 +24,17 @@ class routerActor extends Actor with ActorLogging {
    //creating actors
   val resizer = new DefaultResizer(lowerBound = 2,upperBound = 10);
   val messageRoutingActor = context.actorOf(Props[routeMessageActor].withRouter(RoundRobinRouter(resizer = Some(resizer))), name = "deleteActor");
+  val clientLogActor = context.actorOf(Props[clientLogWebSocketEventFrame],"clientLogWebSocketActor")
   
   
   def receive = {
     case websocketEvent: WebSocketFrameEvent => {
       val messageStringfied = websocketEvent.readText;
-      val workMessage: workerMessage = decodeRouteMessage(messageStringfied, websocketEvent); 
+      val workMessage: workerMessage = decodeRouteMessage(messageStringfied, websocketEvent);
+      //if client is expecting a response
+      if (workMessage.expectingResponse){
+        clientLogActor ! workMessage;
+      }
       messageRoutingActor ! workMessage;
     }
     
@@ -41,8 +47,9 @@ class routerActor extends Actor with ActorLogging {
     
     val workerActor = jsonData.worker;
     val taskOperation = jsonData.operationData;
+    val responseExpected = jsonData.response;
     
-    val wMessage = new workerMessage(workerActor, taskOperation, wsEvent);
+    val wMessage = new workerMessage(workerActor, taskOperation, wsEvent, responseExpected);
     return wMessage;
     
   }

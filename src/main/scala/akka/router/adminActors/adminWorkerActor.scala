@@ -1,10 +1,11 @@
-package akka.router
+package akka.router.adminActors
 
 import akka.actor.Actor
 import akka.actor.ActorLogging
 import org.mashupbots.socko.events.WebSocketFrameEvent
+import akka.router.workerMap
 
-class adminWorkerActor extends Actor with ActorLogging {
+class adminWorkerActor extends Actor with ActorLogging{
   
   def workerSocketFrameEventMap = workerMap.workSocketMap;
   

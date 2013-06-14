@@ -28,21 +28,15 @@ class broadcasterManagerActor extends Actor with ActorLogging{
     //get topic
     if ((topicMapManager.tMap.containsKey(bMessage.topicID))){
       //topic exist
-       val webSocketBroadcaster : ActorRef = topicMapManager.getActor(bMessage.topicID); //topicMap.get(subscriptionMessage.subscriptionID);
+       val webSocketBroadcaster : ActorRef = topicMapManager.getActor(bMessage.topicID); 
        val message = bMessage.websockEvent.readText
-       webSocketBroadcaster ! WebSocketBroadcastText(message);//! new WebSocketBroadcasterRegistration(subscriptionMessage.websockHandshake);       
+       webSocketBroadcaster ! WebSocketBroadcastText(message);       
       
     } else {
       
      log.info("Topic does not exist")
     }  
-    
-    
-    
-    //if topic exists send message
-    
-    //store message
-    
+       
   }
   
 }

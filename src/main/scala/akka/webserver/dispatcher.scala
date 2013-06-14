@@ -20,7 +20,7 @@ import akka.actor.actorRef2Scala
 import org.mashupbots.socko.events.WebSocketHandshakeEvent
 import org.mashupbots.socko.events.WebSocketFrameEvent
 import akka.actor.Props
-import akka.router.workerManagerActor
+import akka.router.adminActors.workerManagerActor
 import akka.messaging.subscriptionManagerActor
 import akka.messaging.topicAdminActor
 import akka.messaging.broadcasterManagerActor
@@ -42,9 +42,9 @@ class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef) extends Actor
     val topicAdminstatorActor = system.actorOf(Props[topicAdminActor], name = "topicAdminActor");
     val topicManagementActor = system.actorOf(Props(new topicManagerActor(topicAdminstatorActor)), name = "topicAdminActor");
    */
-  val workerAdminActor = actorSystem.actorOf(Props[workerManagerActor], name = "workerManagerActor");
+  val workerAdminActor : ActorRef = null;//actorSystem.actorOf(Props[workerManagerActor], name = "workerManagerActor");
   val subsciptManager = actorSystem.actorOf(Props[subscriptionManagerActor], name = "subscriptionActor");
-  val topicAdminstatorActor = actorSystem.actorOf(Props[topicAdminActor], name = "topicAdminActor");
+  val topicAdminstatorActor = actorSystem.actorOf(Props[topicManagementWorkActor], name = "topicAdminActor");
   val topicManagementActor = actorSystem.actorOf(Props(new topicManagerActor(topicAdminstatorActor)), name = "topicManagerActor");
   val broadcastActor = actorSystem.actorOf(Props[broadcasterManagerActor], name = "broadcasterManagerActor");
   
@@ -109,11 +109,7 @@ class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef) extends Actor
       
       //for topicManagerActor
       case Path("/topicmanagement") => {
-        //println("\n \n \n");
-        //println("got the message");
-        //System.out.println("\n \n Hello \n \n");
        topicManagementActor ! wsFrame;
-       //log.info("recieved topic management message");
       }
       
       //broadcast message
