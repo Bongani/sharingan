@@ -1,14 +1,12 @@
-package akka.router
+package akka.router.routingActor
 
 import akka.actor.Actor
 import akka.actor.ActorLogging
 import messages.workerMessage
-import java.util.HashMap
-import java.util.Map
-import akka.actor.ActorRef
 import org.mashupbots.socko.events.WebSocketFrameEvent
 import net.liftweb.json._
 import net.liftweb.json.JsonDSL._
+import akka.router.workerMap
 
 class routeMessageActor extends Actor with ActorLogging {
   

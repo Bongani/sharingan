@@ -22,9 +22,14 @@ import org.mashupbots.socko.events.WebSocketFrameEvent
 import akka.actor.Props
 import akka.router.adminActors.workerManagerActor
 import akka.messaging.subscriptionManagerActor
-import akka.messaging.topicAdminActor
 import akka.messaging.broadcasterManagerActor
 import akka.messaging.topicManagerActor
+import akka.router.adminActors.adminWorkerActor
+import akka.router.routerDispatcherActor
+import akka.router.routingActor.routerActor
+import akka.router.routingActor.clientLogWebSocketEventFrame
+import akka.router.routingActor.routeMessageActor
+import akka.messaging.topicManagementWorkActor
 
 //dispatcher actors internal messages
 sealed trait dispatcherEvents
@@ -42,11 +47,20 @@ class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef) extends Actor
     val topicAdminstatorActor = system.actorOf(Props[topicAdminActor], name = "topicAdminActor");
     val topicManagementActor = system.actorOf(Props(new topicManagerActor(topicAdminstatorActor)), name = "topicAdminActor");
    */
-  val workerAdminActor : ActorRef = null;//actorSystem.actorOf(Props[workerManagerActor], name = "workerManagerActor");
+ // val workerAdminActor : ActorRef = null;//actorSystem.actorOf(Props[workerManagerActor], name = "workerManagerActor");
   val subsciptManager = actorSystem.actorOf(Props[subscriptionManagerActor], name = "subscriptionActor");
   val topicAdminstatorActor = actorSystem.actorOf(Props[topicManagementWorkActor], name = "topicAdminActor");
   val topicManagementActor = actorSystem.actorOf(Props(new topicManagerActor(topicAdminstatorActor)), name = "topicManagerActor");
   val broadcastActor = actorSystem.actorOf(Props[broadcasterManagerActor], name = "broadcasterManagerActor");
+  
+  //Worker actors for router Actor
+  val messageRoutingActor = actorSystem.actorOf(Props[routeMessageActor], name = "routeMessageActor");
+  val clientLogActor = actorSystem.actorOf(Props(new clientLogWebSocketEventFrame(messageRoutingActor)),"clientLogWebSocketActor");
+  val routingActor = actorSystem.actorOf(Props(new routerActor(clientLogActor, messageRoutingActor)), name = "routerActor");
+  //Worker actors for dispatcher Actor
+  val routingAdminActor = actorSystem.actorOf(Props[adminWorkerActor], name = "adminWorkerActor");
+  val routerDispatchActor = actorSystem.actorOf(Props(new routerDispatcherActor(clientLogActor, routingAdminActor)),"routerDispatcherActor");
+  
   
   
   val routes = Routes({
@@ -70,10 +84,16 @@ class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef) extends Actor
         
       }
      
-     //for workerManagerActor
-     case Path("/workermanagement") => {
+     //for routerDispatcherActor
+     case Path("/worker") => {
         wsHandshake.authorize();
       }
+     
+     //for routerActor
+     case Path("/computation") => {
+        wsHandshake.authorize();
+      }
+     
      
      //for topicManagerActor
      case Path("/topicmanagement") => {
@@ -103,8 +123,13 @@ class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef) extends Actor
       }
       
       //for workerManagerActor
-      case Path("/workermanagement") => {
-        workerAdminActor ! wsFrame;
+      case Path("/worker") => {
+        routerDispatchActor ! wsFrame;
+      }
+      
+       //for routerActor
+      case Path("/computation") => {
+        routingActor ! wsFrame;
       }
       
       //for topicManagerActor

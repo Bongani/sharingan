@@ -58,11 +58,10 @@ class voldCoordinator extends Actor with ActorLogging {
   //val voldDeleteActor: ActorRef = context.actorOf(Props[deleteActor], name = "deleteActor");
 	implicit val formats = DefaultFormats; // Brings in default date formats etc for JSON Lift
    
-  implicit val timeout = Timeout(5 seconds);
-  
+  implicit val timeout = Timeout(5 seconds); 
 
   //creating actors
-  val resizer = new DefaultResizer(lowerBound = 2,upperBound = 10);
+  
   var voldDeleteActor: ActorRef = null;
   var voldGetActor: ActorRef = null;
   var voldPutActor: ActorRef = null;
@@ -76,6 +75,8 @@ class voldCoordinator extends Actor with ActorLogging {
   def storeManager = storage.storageManager;
   
   override def preStart() {
+    val resizer = new DefaultResizer(lowerBound = 2,upperBound = 10);
+    // Initialize children here
     log.info("Starting voldCoordinator (Voldemort Coordinator) instance hashcode # {}", this.hashCode());
     log.info("Configuring voldCoordinator (Voldemort Coordinator) child actors hashcode # {}", this.hashCode());
     voldDeleteActor = context.actorOf(Props[deleteActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "deleteActor");
@@ -84,6 +85,18 @@ class voldCoordinator extends Actor with ActorLogging {
     //voldPutActor = context.actorOf(Props[putActor].withRouter(FromConfig()), name = "voldPutActor");
     
   }
+  
+  /* Overriding postRestart to disable the call to preStart()
+   * after restarts*/
+  override def postRestart(reason: Throwable): Unit = ()  
+  
+  /* The default implementation of preRestart() stops all the children
+   * of the actor. To opt-out from stopping the children, we
+   * have to override preRestart()*/
+  override def preRestart(reason: Throwable, message: Option[Any]): Unit = {
+    // Keep the call to postStop(), but no stopping of children
+    postStop();
+    }
   
   val supervisorEscalator = OneForOneStrategy(maxNrOfRetries = 100, withinTimeRange = 10 seconds) {
     //if a child actor fails restart it

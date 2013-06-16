@@ -1,31 +1,31 @@
-package akka.router
+package akka.router.routingActor
 
 import akka.actor.ActorLogging
 import akka.actor.Actor
-import akka.actor.ActorRef
 import org.mashupbots.socko.events.WebSocketFrameEvent
 import net.liftweb.json._
 import net.liftweb.json.JsonDSL._
 import messages.workerMessage
 import akka.routing.DefaultResizer
 import akka.routing.RoundRobinRouter
+import akka.router.routingActor.routeMessageActor
 import akka.actor.Props
-import akka.router.routingActor.clientLogWebSocketEventFrame
+import akka.actor.ActorRef
 
 
 case class jsonRouteMessage(worker: String, operationData: String, response: Boolean);
 
 //can have multiple instances of router
-class routerActor extends Actor with ActorLogging {
+class routerActor(clientLogActor : ActorRef, messageRoutingActor : ActorRef) extends Actor with ActorLogging {
   
   implicit val formats = DefaultFormats; // Brings in default date formats etc for JSON Lift
   
   
    //creating actors
   val resizer = new DefaultResizer(lowerBound = 2,upperBound = 10);
-  val messageRoutingActor = context.actorOf(Props[routeMessageActor].withRouter(RoundRobinRouter(resizer = Some(resizer))), name = "deleteActor");
-  val clientLogActor = context.actorOf(Props[clientLogWebSocketEventFrame],"clientLogWebSocketActor")
-  
+  //val messageRoutingActor = context.actorOf(Props[routeMessageActor].withRouter(RoundRobinRouter(resizer = Some(resizer))), name = "routeMessageActor");
+  //val clientLogActor = context.actorOf(Props(new clientLogWebSocketEventFrame(messageRoutingActor)),"clientLogWebSocketActor")
+  //Props(new topicManagerActor(topicAdminstatorActor))
   
   def receive = {
     case websocketEvent: WebSocketFrameEvent => {
@@ -34,8 +34,10 @@ class routerActor extends Actor with ActorLogging {
       //if client is expecting a response
       if (workMessage.expectingResponse){
         clientLogActor ! workMessage;
+      } else {
+        messageRoutingActor ! workMessage;
       }
-      messageRoutingActor ! workMessage;
+      
     }
     
     case _=> log.info("unknown message")

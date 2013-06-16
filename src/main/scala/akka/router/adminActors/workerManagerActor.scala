@@ -7,6 +7,7 @@ import net.liftweb.json.JsonDSL._
 import org.mashupbots.socko.events.WebSocketFrameEvent
 import akka.actor.ActorRef
 import akka.actor.actorRef2Scala
+import akka.router.dipatcherMessage
 
 sealed trait workManagerEvents
 case class adminMessage(operation: String, worker: String, workerWebSocket : WebSocketFrameEvent) extends workManagerEvents;
@@ -22,9 +23,8 @@ class workerManagerActor (adminActor : ActorRef) extends Actor with ActorLogging
 
   
   def receive = {
-    case websocketEvent: WebSocketFrameEvent => {
-      val messageStringfied = websocketEvent.readText;
-      val workerAdminMessage: adminMessage = decodeAdminMessage(messageStringfied, websocketEvent); 
+    case message: dipatcherMessage => {
+      val workerAdminMessage: adminMessage = decodeAdminMessage(message.dataMessage, message.webSocket); 
       adminActor ! workerAdminMessage;
     }
     
