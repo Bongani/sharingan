@@ -6,11 +6,11 @@ import akka.actor.ActorRef
 
 object topicMap {
   
-  val topicNameActorMap = new map;
+  val topicNameActorMap = new topicMapClass;
 
 }
 
-class map {
+class topicMapClass {
   var tMap: Map[String, ActorRef] = new HashMap[String, ActorRef];
   
   def getActor(topicName : String): ActorRef = {

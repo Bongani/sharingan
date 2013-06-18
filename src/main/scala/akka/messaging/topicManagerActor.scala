@@ -42,5 +42,13 @@ class topicManagerActor ( tAdminActor: ActorRef) extends Actor with ActorLogging
     return tMessage;
     
   }
+  
+  override def preStart() {
+    log.info("Starting topicManagerActor (topicManagerActor under masterMessagingActor) instance hashcode # {}", this.hashCode());  
+  }
+  
+  override def postStop() {
+    log.info("Stopping topicManagerActor (topicManagerActor under masterMessagingActor) instance hashcode # {}",this.hashCode());
+  }
 
 }

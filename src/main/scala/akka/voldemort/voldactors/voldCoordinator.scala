@@ -88,7 +88,13 @@ class voldCoordinator extends Actor with ActorLogging {
   
   /* Overriding postRestart to disable the call to preStart()
    * after restarts*/
-  override def postRestart(reason: Throwable): Unit = ()  
+  override def postRestart(reason: Throwable): Unit = {
+    //voldGetActor = context.child("voldGet").get
+    //Reassign the ActorRefs, since the after the ActorRefs are now null
+    voldDeleteActor = context.child("deleteActor").get;
+    voldGetActor = context.child("getActor").get;
+    voldPutActor = context.child("putActor").get;
+  } 
   
   /* The default implementation of preRestart() stops all the children
    * of the actor. To opt-out from stopping the children, we

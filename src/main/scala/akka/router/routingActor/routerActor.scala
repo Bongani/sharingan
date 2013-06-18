@@ -6,8 +6,6 @@ import org.mashupbots.socko.events.WebSocketFrameEvent
 import net.liftweb.json._
 import net.liftweb.json.JsonDSL._
 import messages.workerMessage
-import akka.routing.DefaultResizer
-import akka.routing.RoundRobinRouter
 import akka.router.routingActor.routeMessageActor
 import akka.actor.Props
 import akka.actor.ActorRef
@@ -22,7 +20,7 @@ class routerActor(clientLogActor : ActorRef, messageRoutingActor : ActorRef) ext
   
   
    //creating actors
-  val resizer = new DefaultResizer(lowerBound = 2,upperBound = 10);
+  //val resizer = new DefaultResizer(lowerBound = 2,upperBound = 10);
   //val messageRoutingActor = context.actorOf(Props[routeMessageActor].withRouter(RoundRobinRouter(resizer = Some(resizer))), name = "routeMessageActor");
   //val clientLogActor = context.actorOf(Props(new clientLogWebSocketEventFrame(messageRoutingActor)),"clientLogWebSocketActor")
   //Props(new topicManagerActor(topicAdminstatorActor))

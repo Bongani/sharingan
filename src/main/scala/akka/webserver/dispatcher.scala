@@ -30,6 +30,8 @@ import akka.router.routingActor.routerActor
 import akka.router.routingActor.clientLogWebSocketEventFrame
 import akka.router.routingActor.routeMessageActor
 import akka.messaging.topicManagementWorkActor
+import akka.messaging.messagingActorMap
+import akka.router.routerActorMap
 
 //dispatcher actors internal messages
 sealed trait dispatcherEvents
@@ -38,28 +40,18 @@ case class subscriptionRequest(websockHandshake: WebSocketHandshakeEvent, subscr
 case class broadcastMessage(websockEvent: WebSocketFrameEvent, topicID: String) extends dispatcherEvents;
 
 class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef) extends Actor with ActorLogging {
-  //extends Logger
-  // workerAdminActor: ActorRef, subsciptManager: ActorRef, topicManagementActor : ActorRef, broadcastActor : ActorRef
-  /*
-   * val voldActor = system.actorOf(Props[voldCoordinator], name = "voldemorCordActor");
-    val workActor = system.actorOf(Props[workerManagerActor], name = "workerManagerActor");
-    val subscriptActor = system.actorOf(Props[subscriptionManagerActor], name = "subscriptionActor");
-    val topicAdminstatorActor = system.actorOf(Props[topicAdminActor], name = "topicAdminActor");
-    val topicManagementActor = system.actorOf(Props(new topicManagerActor(topicAdminstatorActor)), name = "topicAdminActor");
-   */
- // val workerAdminActor : ActorRef = null;//actorSystem.actorOf(Props[workerManagerActor], name = "workerManagerActor");
-  val subsciptManager = actorSystem.actorOf(Props[subscriptionManagerActor], name = "subscriptionActor");
-  val topicAdminstatorActor = actorSystem.actorOf(Props[topicManagementWorkActor], name = "topicAdminActor");
-  val topicManagementActor = actorSystem.actorOf(Props(new topicManagerActor(topicAdminstatorActor)), name = "topicManagerActor");
-  val broadcastActor = actorSystem.actorOf(Props[broadcasterManagerActor], name = "broadcasterManagerActor");
+  
+  def mapForMessagingActorRef = messagingActorMap.messagingActorRefMap;
+  def mapForRoutingActorRef = routerActorMap.routerActorRefMap;
+  
+  var subsrciptManager: ActorRef = null;
+  var topicManagementActor: ActorRef = null;
+  var broadcastActor: ActorRef = null;
   
   //Worker actors for router Actor
-  val messageRoutingActor = actorSystem.actorOf(Props[routeMessageActor], name = "routeMessageActor");
-  val clientLogActor = actorSystem.actorOf(Props(new clientLogWebSocketEventFrame(messageRoutingActor)),"clientLogWebSocketActor");
-  val routingActor = actorSystem.actorOf(Props(new routerActor(clientLogActor, messageRoutingActor)), name = "routerActor");
-  //Worker actors for dispatcher Actor
-  val routingAdminActor = actorSystem.actorOf(Props[adminWorkerActor], name = "adminWorkerActor");
-  val routerDispatchActor = actorSystem.actorOf(Props(new routerDispatcherActor(clientLogActor, routingAdminActor)),"routerDispatcherActor");
+  var routingActor: ActorRef = null;//actorSystem.actorOf(Props(new routerActor(clientLogActor, messageRoutingActor)), name = "routerActor");
+  //Worker actors for dispatcher Actor  
+  var routerDispatchActor: ActorRef = null;//actorSystem.actorOf(Props(new routerDispatcherActor(clientLogActor, routingAdminActor)),"routerDispatcherActor");
   
   
   
@@ -109,7 +101,7 @@ class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef) extends Actor
       case PathSegments("messaging" :: relativePath) => {
         //System.out.println("\n \n Hello \n \n");
         val request = new subscriptionRequest(wsHandshake, relativePath(0));
-        subsciptManager ! request;
+        subsrciptManager ! request;
         
       }
       
@@ -169,7 +161,15 @@ class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef) extends Actor
   webServer.start();
   println("Server started");
     
-    
+  
+  //get ActorRef Actors
+  //message Actors
+  subsrciptManager = mapForMessagingActorRef.getActor("subscriptionActor");
+  topicManagementActor = mapForMessagingActorRef.getActor("topicManagerActor");
+  broadcastActor = mapForMessagingActorRef.getActor("broadcasterManagerActor");
+  //routing Actors
+  routingActor = mapForRoutingActorRef.getActor("routerActor");
+  routerDispatchActor = mapForRoutingActorRef.getActor("routerDispatcherActor");
     
   }
   

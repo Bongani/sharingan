@@ -74,5 +74,13 @@ class topicManagementWorkActor extends Actor with ActorLogging {
     val returnMessage: String = compact(render(json));
     event.writeText(returnMessage);
   }
+  
+  override def preStart() {
+    log.info("Starting topicManagementWorkActor (topicManagementWorkActor under masterMessagingActor) instance hashcode # {}", this.hashCode());  
+  }
+  
+  override def postStop() {
+    log.info("Stopping topicManagementWorkActor (topicManagementWorkActor under masterMessagingActor) instance hashcode # {}",this.hashCode());
+  }
 
 }

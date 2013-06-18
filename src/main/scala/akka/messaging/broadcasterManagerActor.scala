@@ -39,4 +39,12 @@ class broadcasterManagerActor extends Actor with ActorLogging{
        
   }
   
+  override def preStart() {
+    log.info("Starting broadcasterManagerActor (broadcasterManagerActor under masterMessagingActor) instance hashcode # {}", this.hashCode());  
+  }
+  
+  override def postStop() {
+    log.info("Stopping broadcasterManagerActor (broadcasterManagerActor under masterMessagingActor) instance hashcode # {}",this.hashCode());
+  }
+  
 }

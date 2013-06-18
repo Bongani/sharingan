@@ -19,8 +19,6 @@ class workerManagerActor (adminActor : ActorRef) extends Actor with ActorLogging
   
   implicit val formats = DefaultFormats; // Brings in default date formats etc for JSON Lift
   
-  //val adminActor = context.actorOf(Props[adminWorkerActor],"adminWorkerActor")
-
   
   def receive = {
     case message: dipatcherMessage => {
@@ -42,6 +40,14 @@ class workerManagerActor (adminActor : ActorRef) extends Actor with ActorLogging
     val adminMessage = new adminMessage(taskOperation, workerName, wsEvent);
     return adminMessage;
     
+  }
+  
+  override def preStart() {
+    log.info("Starting workerManagerActor (workerManagerActor under routerDispatcherActor) instance hashcode # {}", this.hashCode());  
+  }
+  
+  override def postStop() {
+    log.info("Stopping workerManagerActor (workerManagerActor under routerDispatcherActor) instance hashcode # {}",this.hashCode());
   }
    
 

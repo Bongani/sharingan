@@ -35,5 +35,13 @@ class adminWorkerActor extends Actor with ActorLogging{
     workerSocketFrameEventMap.removeWorkerWebSocket(workerName);
     //need to fire back that worker was deleted
   }
+  
+  override def preStart() {
+    log.info("Starting adminWorkerActor (adminWorkerActor under masterRouterActor) instance hashcode # {}", this.hashCode());  
+  }
+  
+  override def postStop() {
+    log.info("Stopping adminWorkerActor (adminWorkerActor under masterRouterActor) instance hashcode # {}",this.hashCode());
+  }
 
 }
