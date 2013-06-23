@@ -30,10 +30,12 @@ class routeMessageActor extends Actor with ActorLogging {
       val workerWebSocket: WebSocketFrameEvent = workerSocketFrameEventMap.getWorkerWebSocket(workerName);
       
       //create JSON message
-      val clientChannel : String = wMessage.websocketEvent.channel.getId().asInstanceOf[String];      
+     // println("\n \n Failure  here \n \n");
+      val clientChannel : Int = wMessage.websocketEvent.channel.getId();
+      //println()
       val json = ("worker" -> workerName)~("operationData" -> wMessage.dataOperation)~("clientChannel" -> clientChannel)~("response" -> wMessage.expectingResponse);
       val messageToSend: String = compact(render(json));
-      
+      println(messageToSend);
       //write message to websocket
       workerWebSocket.writeText(messageToSend);
       

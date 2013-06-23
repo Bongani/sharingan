@@ -27,9 +27,12 @@ class routerActor(clientLogActor : ActorRef, messageRoutingActor : ActorRef) ext
   
   def receive = {
     case websocketEvent: WebSocketFrameEvent => {
+      
       val messageStringfied = websocketEvent.readText;
       val workMessage: workerMessage = decodeRouteMessage(messageStringfied, websocketEvent);
+      
       //if client is expecting a response
+      println("work message: " + workMessage);
       if (workMessage.expectingResponse){
         clientLogActor ! workMessage;
       } else {
@@ -42,8 +45,9 @@ class routerActor(clientLogActor : ActorRef, messageRoutingActor : ActorRef) ext
   }
   
   def decodeRouteMessage(message : String, wsEvent: WebSocketFrameEvent): workerMessage = {
-    val json = parse(message);      
+    val json = parse(message);
     val jsonData = json.extract[jsonRouteMessage];
+    
     
     val workerActor = jsonData.worker;
     val taskOperation = jsonData.operationData;
@@ -52,6 +56,14 @@ class routerActor(clientLogActor : ActorRef, messageRoutingActor : ActorRef) ext
     val wMessage = new workerMessage(workerActor, taskOperation, wsEvent, responseExpected);
     return wMessage;
     
+  }
+  
+  override def preStart() {
+    log.info("Starting routerActor (routerActor under masterRouterActor) instance hashcode # {}", this.hashCode());  
+  }
+  
+  override def postStop() {
+    log.info("Stopping routerActor (routerActor under masterRouterActor) instance hashcode # {}",this.hashCode());
   }
 
 }

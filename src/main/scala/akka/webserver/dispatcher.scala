@@ -122,6 +122,7 @@ class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef) extends Actor
        //for routerActor
       case Path("/computation") => {
         routingActor ! wsFrame;
+        println("\n Sending to router to find worker \n");
       }
       
       //for topicManagerActor

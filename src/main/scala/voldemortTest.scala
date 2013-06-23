@@ -14,6 +14,8 @@ import configuration.storage
 import com.typesafe.config.ConfigFactory
 import akka.routing.FromConfig
 import akka.voldemort.voldactors.actionactors.deleteActor
+import akka.messaging.masterMessagingActor
+import akka.router.masterRouterActor
 
 
 object voldemortTest {

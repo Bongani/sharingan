@@ -15,11 +15,13 @@ class adminWorkerActor extends Actor with ActorLogging{
       operation match {
         case "add" => {
           addWorker(message.worker, message.workerWebSocket);
+          log.info("Worker added: " + message.worker);
         }
         case "delete" => {
           deleteWorker(message.worker);
         }
         case _=> log.info("Recieved unknown direct operation message for adminWorkerActor");
+        log.info("Worker deleted: " + message.worker);
       }
     }
     case _=> log.info("unknown message")
