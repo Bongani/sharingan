@@ -4,7 +4,7 @@
 		module="default-5902d3"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20130523005629"
+		publication="20130630141214"
 		e:scalaVersion="2.9.2" e:sbtVersion="0.12"
 	>
 		<description>
@@ -35,6 +35,7 @@
 		<dependency org="org.scala-sbt" name="sbt" rev="0.12.1" conf="provided->default(compile)"/>
 		<dependency org="org.scala-lang" name="scala-library" rev="2.9.2" conf="provided->default(compile)"/>
 		<dependency org="com.typesafe.sbteclipse" name="sbteclipse-plugin" rev="2.1.0" conf="compile->default(compile)" e:scalaVersion="2.9.2" e:sbtVersion="0.12"/>
+		<dependency org="com.typesafe.akka" name="akka-sbt-plugin" rev="2.1.0" conf="compile->default(compile)" e:scalaVersion="2.9.2" e:sbtVersion="0.12"/>
 		<exclude org="org.scala-lang" module="scala-library" artifact="*" type="jar" ext="*" matcher="exact"/>
 		<exclude org="org.scala-lang" module="scala-compiler" artifact="*" type="jar" ext="*" matcher="exact"/>
 		<override org="org.scala-lang" module="scala-library" matcher="exact" rev="2.9.2"/>

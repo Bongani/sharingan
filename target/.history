@@ -56,3 +56,8 @@ compile
 run /single_node_cluster/config/
 compile
 run /single_node_cluster/config/
+run /myconfig/config/
+run /single_node_cluster/config/
+compile
+run /single_node_cluster/config/
+compile

@@ -26,7 +26,7 @@ object voldemortTest {
   def main(args: Array[String]): Unit = {
     
     val system = ActorSystem.create("VoldertTestSystem", ConfigFactory.load().getConfig("AkkaConfig")); //ActorSystem("VoldertTestSystem");
-    val voldActor = system.actorOf(Props[voldCoordinator], name = "voldemorCordActor");
+    val voldActor = system.actorOf(Props[voldCoordinator], name = "voldemorCordAtor");
     
     storeManager.startupSetup(args(0));
 

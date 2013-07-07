@@ -14,7 +14,6 @@ import akka.actor.ActorSystem
 import org.mashupbots.socko.webserver.SslConfig
 import org.mashupbots.socko.events.HttpResponseStatus
 import java.util.Date
-import org.mashupbots.socko.routes._
 import java.io.File
 import akka.actor.actorRef2Scala
 import org.mashupbots.socko.events.WebSocketHandshakeEvent

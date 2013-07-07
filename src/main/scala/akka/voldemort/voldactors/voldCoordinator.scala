@@ -33,6 +33,8 @@ import configuration.storage
 import akka.actor.ActorRef
 import akka.actor.OneForOneStrategy
 import akka.actor.SupervisorStrategy._
+import java.io.File
+import scala.xml.XML
 
 
 //voldemort actors internal messages
@@ -58,7 +60,9 @@ class voldCoordinator extends Actor with ActorLogging {
   //val voldDeleteActor: ActorRef = context.actorOf(Props[deleteActor], name = "deleteActor");
 	implicit val formats = DefaultFormats; // Brings in default date formats etc for JSON Lift
    
-  implicit val timeout = Timeout(5 seconds); 
+  implicit var timeout = Timeout(5 seconds);
+  var actorLower : Int = 2;
+  var actorUpper : Int = 15;
 
   //creating actors
   
@@ -75,10 +79,14 @@ class voldCoordinator extends Actor with ActorLogging {
   def storeManager = storage.storageManager;
   
   override def preStart() {
-    val resizer = new DefaultResizer(lowerBound = 2,upperBound = 10);
+    
     // Initialize children here
     log.info("Starting voldCoordinator (Voldemort Coordinator) instance hashcode # {}", this.hashCode());
     log.info("Configuring voldCoordinator (Voldemort Coordinator) child actors hashcode # {}", this.hashCode());
+    
+   
+    actorConfig();
+    val resizer = new DefaultResizer(lowerBound = actorLower, upperBound = actorUpper);
     voldDeleteActor = context.actorOf(Props[deleteActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "deleteActor");
     voldGetActor = context.actorOf(Props[getActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "getActor");
     voldPutActor = context.actorOf(Props[putActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "putActor");
@@ -221,36 +229,7 @@ class voldCoordinator extends Actor with ActorLogging {
       
     }
     
-    //external messages from HTTP event
-    /*case httpEvent: HttpRequestEvent => {
-      //extract Voldemort message
-      val voldMessage: voldemortMessage = httpEvent.request.content.asInstanceOf[voldemortMessage];
-      //
-      
-      val operation = voldMessage.op
-      operation match {
-        case "put" => voldPutActor ! new put(voldMessage.k, voldMessage.v, voldMessage.cStore);
-        case "putver" => voldPutActor ! new putVersion(voldMessage.k, voldMessage.versionedValue, voldMessage.cStore);
-        case "delete" => voldDeleteActor ! new delete(voldMessage.k, voldMessage.cStore);
-    val json = parse(vMessageStringfy);      
-      val result = json.extract[jsonMessage];     case "deletever" => voldDeleteActor ! new deleteVersion(voldMessage.k, voldMessage.vers, voldMessage.cStore);
-        case "get" => {
-          val msg = new get(voldMessage.k, voldMessage.cStore)
-          voldGetActor ? msg onComplete {
-            case Success(result: Versioned[Object]) => log.info("recieved value: " + result.getValue);
-            case Failure(e: TimeoutException) => log.info("failed to retrieve value");
-          }
-        }
-        case "getver" => {
-          val msg = new getVersioned(voldMessage.k, voldMessage.cStore);
-          voldGetActor ? msg onComplete {
-            case Success(result) => log.info("recieved value: " + result);
-            case Failure(e: TimeoutException) => log.info("failed to retrieve value");
-          }
-        }
-      }
-      
-    }*/
+    
     
     case _=> log.info("unknown message")
   }
@@ -266,6 +245,51 @@ class voldCoordinator extends Actor with ActorLogging {
     
     val vMessage = new voldemortMessage(operation, storeName, key, value);
     return vMessage;
+    
+  }
+  
+  def actorConfig() : Unit = {
+    var workingDirectory = new java.io.File(".").getCanonicalPath();
+    var folderPath: String = workingDirectory + "/config/Actors/";
+    var configFolder = new File(folderPath);
+    
+    if (configFolder.exists()){
+      //store actor information
+      var storageXML : scala.xml.Elem = readXMLFile(folderPath, "storage.xml");
+      //readStoreContent(storageXML);
+      
+      if (storageXML != null){
+              
+        val actorLowerBound = (storageXML \"actionActor"\ "lowerBound").text;
+        val actorUpperBound = (storageXML \"actionActor"\ "upperBound").text;
+        val actorTimeOut = (storageXML \"actionActor"\ "timeout").text;
+        actorLower = actorLowerBound.toInt;
+        actorUpper = actorUpperBound.toInt;
+        val getActorTimeOutInt: Int = actorTimeOut.toInt;
+        timeout = Timeout(getActorTimeOutInt seconds); 
+        
+      }
+      
+      
+    } else {
+      println(" \n \n" + "Error: The folder for storage sctors could not be found. Path given: " + configFolder + " \n \n");
+      println("Will use generic settings")
+     
+    }
+  }
+  
+  
+  def readXMLFile(path: String, fileName: String): scala.xml.Elem ={
+    
+    var xmlFile = new File(path, fileName); 
+    if (xmlFile.exists()){
+      var xmlContent = XML.loadFile(xmlFile);
+      println("Read XML file for: " + fileName);
+      return xmlContent;
+    } else {
+      println("File not found for XML reading: " + fileName);
+      return null;
+    }
     
   }
   

@@ -8,8 +8,11 @@ resolvers ++= Seq("Typesafe Repository" at "http://repo.typesafe.com/typesafe/re
 		  "releases" at "http://oss.sonatype.org/content/repositories/releases")
  
 libraryDependencies ++= Seq("com.typesafe.akka" %% "akka-actor" % "2.1.0",
+				"com.typesafe.akka" % "akka-kernel_2.10" % "2.1.0",
 				"org.mashupbots.socko" %% "socko-webserver" % "0.3.0",
 				 "net.liftweb" %% "lift-json" % "2.5-RC6")
+
+
 
 fork := true
 

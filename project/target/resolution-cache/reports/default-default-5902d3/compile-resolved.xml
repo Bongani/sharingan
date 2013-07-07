@@ -9,8 +9,19 @@
 		extra-scalaVersion="2.9.2"
 		conf="compile"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom"
-		date="20130523005629"/>
+		date="20130630141214"/>
 	<dependencies>
+		<module organisation="com.typesafe.akka" name="akka-sbt-plugin">
+			<revision name="2.1.0" status="release" pubdate="20121221173138" resolver="sbt-plugin-releases" artresolver="sbt-plugin-releases" extra-sbtVersion="0.12" extra-scalaVersion="2.9.2" downloaded="false" searched="false" default="false" conf="default(compile), compile" position="4">
+				<metadata-artifact status="no" details="" size="1821" time="0" location="/home/bongani/.ivy2/cache/scala_2.9.2/sbt_0.12/com.typesafe.akka/akka-sbt-plugin/ivy-2.1.0.xml" searched="false" origin-is-local="false" origin-location="http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/com.typesafe.akka/akka-sbt-plugin/scala_2.9.2/sbt_0.12/2.1.0/ivys/ivy.xml"/>
+				<caller organisation="default" name="default-5902d3" conf="compile" rev="2.1.0" rev-constraint-default="2.1.0" rev-constraint-dynamic="2.1.0" callerrev="0.1-SNAPSHOT" extra-sbtVersion="0.12" extra-scalaVersion="2.9.2"/>
+				<artifacts>
+					<artifact name="akka-sbt-plugin" type="jar" ext="jar" status="no" details="" size="66844" time="0" location="/home/bongani/.ivy2/cache/scala_2.9.2/sbt_0.12/com.typesafe.akka/akka-sbt-plugin/jars/akka-sbt-plugin-2.1.0.jar">
+						<origin-location is-local="false" location="http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/com.typesafe.akka/akka-sbt-plugin/scala_2.9.2/sbt_0.12/2.1.0/jars/akka-sbt-plugin.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
 		<module organisation="com.typesafe.sbteclipse" name="sbteclipse-plugin">
 			<revision name="2.1.0" status="release" pubdate="20120716181819" resolver="typesafe-ivy-releases" artresolver="typesafe-ivy-releases" extra-sbtVersion="0.12" extra-scalaVersion="2.9.2" downloaded="false" searched="false" default="false" conf="default(compile), compile" position="0">
 				<metadata-artifact status="no" details="" size="1830" time="0" location="/home/bongani/.ivy2/cache/scala_2.9.2/sbt_0.12/com.typesafe.sbteclipse/sbteclipse-plugin/ivy-2.1.0.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/ivy-releases/com.typesafe.sbteclipse/sbteclipse-plugin/scala_2.9.2/sbt_0.12/2.1.0/ivys/ivy.xml"/>
