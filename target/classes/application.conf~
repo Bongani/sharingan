@@ -1,0 +1,22 @@
+AkkaConfig {
+ akka {
+ 
+  # Event handlers to register at boot time (Logging$DefaultLogger logs to STDOUT)
+  event-handlers = ["akka.event.Logging$DefaultLogger"]
+  # Options: ERROR, WARNING, INFO, DEBUG
+  stdout-loglevel = "OFF"
+  loglevel = "DEBUG"
+
+  actor {
+    debug {
+      # enable DEBUG logging of all AutoReceiveMessages (Kill, PoisonPill et.c.)
+      autoreceive = on
+      # enable DEBUG logging of actor lifecycle changes
+      lifecycle = on
+      # enable DEBUG logging of all LoggingFSMs for events, transitions and timers
+      fsm = on
+    }
+  }
+ 
+ }
+}

@@ -1,0 +1,26 @@
+<workRoutingActors>
+	<routerActor>
+		<lowerBound>1</lowerBound>
+		<upperBound>10</upperBound>
+	</routerActor>
+	<routeMessageActor>
+		<lowerBound>1</lowerBound>
+		<upperBound>10</upperBound>
+	</routeMessageActor>
+	<routerDispatcherActor>
+		<lowerBound>1</lowerBound>
+		<upperBound>10</upperBound>
+	</routerDispatcherActor>
+	<workerManagerActor>
+		<lowerBound>1</lowerBound>
+		<upperBound>4</upperBound>
+	</workerManagerActor>
+	<forwardDecoderActor>
+		<lowerBound>1</lowerBound>
+		<upperBound>4</upperBound>
+	</forwardDecoderActor>
+	<forwardResultActor>
+		<lowerBound>1</lowerBound>
+		<upperBound>4</upperBound>
+	</forwardResultActor>	
+</workRoutingActors>

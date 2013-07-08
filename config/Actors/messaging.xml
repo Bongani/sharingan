@@ -1,0 +1,6 @@
+<messaging>
+	<messagingActor>
+		<lowerBound>1</lowerBound>
+		<upperBound>10</upperBound>
+	</messagingActor>
+</messaging>

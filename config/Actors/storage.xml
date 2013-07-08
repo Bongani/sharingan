@@ -1,0 +1,7 @@
+<storage>
+	<actionActor>
+		<lowerBound>2</lowerBound>
+		<upperBound>15</upperBound>
+		<timeout>5</timeout>
+	</actionActor>
+</storage>

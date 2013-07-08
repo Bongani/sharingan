@@ -1,0 +1,28 @@
+2013-07-04 14:33:27 INFO  Slf4jEventHandler:78 - Slf4jEventHandler started
+2013-07-04 14:33:28 INFO  voldCoordinator:72 - Starting voldCoordinator (Voldemort Coordinator) instance hashcode # 11573833
+2013-07-04 14:33:28 INFO  voldCoordinator:72 - Configuring voldCoordinator (Voldemort Coordinator) child actors hashcode # 11573833
+2013-07-04 14:33:28 INFO  deleteActor:72 - Starting deleteActor (deleteActor under voldCoordinator) instance hashcode # 8193198
+2013-07-04 14:33:28 INFO  deleteActor:72 - Starting deleteActor (deleteActor under voldCoordinator) instance hashcode # 16824628
+2013-07-04 14:33:28 INFO  getActor:72 - Starting getActor (getActor under voldCoordinator) instance hashcode # 731482
+2013-07-04 14:33:28 INFO  getActor:72 - Starting getActor (getActor under voldCoordinator) instance hashcode # 19991353
+2013-07-04 14:33:28 INFO  putActor:72 - Starting putActor (putActor under voldCoordinator) instance hashcode # 3902106
+2013-07-04 14:33:28 INFO  putActor:72 - Starting putActor (putActor under voldCoordinator) instance hashcode # 4534563
+2013-07-04 14:33:29 INFO  DefaultStoreClient:89 - Bootstrapping metadata for store test
+2013-07-04 14:33:29 INFO  AbstractStoreClientFactory:197 - Client zone-id [0] Attempting to obtain metadata for store [test] 
+2013-07-04 14:33:29 INFO  AbstractStoreClientFactory:362 - Failure detector is null. Creating a new FD.
+2013-07-04 14:33:30 INFO  masterMessagingActor:72 - Starting masterMessagingActor (Message Master) instance hashcode # 31146062
+2013-07-04 14:33:30 INFO  masterMessagingActor:72 - Configuring masterMessagingActor (Message Master) child actors hashcode # 31146062
+2013-07-04 14:33:30 INFO  subscriptionManagerActor:72 - Starting subscriptionManagerActor (subscriptionManagerActor under masterMessagingActor) instance hashcode # 18795539
+2013-07-04 14:33:30 INFO  masterRouterActor:72 - Starting masterMessagingActor (Message Master) instance hashcode # 6404459
+2013-07-04 14:33:30 INFO  masterRouterActor:72 - Configuring masterMessagingActor (Message Master) child actors hashcode # 6404459
+2013-07-04 14:33:30 INFO  broadcasterManagerActor:72 - Starting broadcasterManagerActor (broadcasterManagerActor under masterMessagingActor) instance hashcode # 23603756
+2013-07-04 14:33:30 INFO  topicManagerActor:72 - Starting topicManagerActor (topicManagerActor under masterMessagingActor) instance hashcode # 20872377
+2013-07-04 14:33:30 INFO  topicManagementWorkActor:72 - Starting topicManagementWorkActor (topicManagementWorkActor under masterMessagingActor) instance hashcode # 15982597
+2013-07-04 14:33:30 INFO  adminWorkerActor:72 - Starting adminWorkerActor (adminWorkerActor under masterRouterActor) instance hashcode # 16698332
+2013-07-04 14:33:30 INFO  routerActor:72 - Starting routerActor (routerActor under masterRouterActor) instance hashcode # 1843936
+2013-07-04 14:33:30 INFO  routerDispatcherActor:72 - Starting routerDispatcherActor (routerDispatcherActor under masterRouterActor) instance hashcode # 16853168
+2013-07-04 14:33:30 INFO  routerDispatcherActor:72 - Initialising routerDispatcherActor child actors: forwardDecoderActor & workerManagerActor. Hashcode # 16853168
+2013-07-04 14:33:30 INFO  forwardDecoderActor:72 - Starting forwardDecoderActor (forwardDecoderActor under routerDispatcherActor) instance hashcode # 32902036
+2013-07-04 14:33:30 INFO  forwardResultActor:72 - Starting forwardResultActor (forwardResultActor under forwardDecoderActor) instance hashcode # 27539372
+2013-07-04 14:33:30 INFO  workerManagerActor:72 - Starting workerManagerActor (workerManagerActor under routerDispatcherActor) instance hashcode # 3144460
+2013-07-04 14:33:31 INFO  WebServer:139 - Socko server 'WebServer' started on 0.0.0.0:8888

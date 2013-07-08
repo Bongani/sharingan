@@ -1,0 +1,14 @@
+<routing>
+	<routerActor>
+		<lowerBound>1</lowerBound>
+		<upperBound>5</upperBound>
+	</routerActor>
+	<workerManagerActor>
+		<lowerBound>1</lowerBound>
+		<upperBound>3</upperBound>
+	</workerManagerActor>
+	<forwardResultActor>
+		<lowerBound>1</lowerBound>
+		<upperBound>2</upperBound>
+	</forwardResultActor>	
+</routing>

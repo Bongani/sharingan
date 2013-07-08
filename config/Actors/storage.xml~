@@ -1,0 +1,15 @@
+<storage>
+	<putActor>
+		<lowerBound>2</lowerBound>
+		<upperBound>15</upperBound>
+	</putActor>
+	<deleteActor>
+		<lowerBound>2</lowerBound>
+		<upperBound>15</upperBound>
+	</deleteActor>
+	<getActor>
+		<lowerBound>2</lowerBound>
+		<upperBound>15</upperBound>
+		<timeout>5</timeout>
+	</getActor>
+</storage>
