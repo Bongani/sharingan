@@ -13,7 +13,7 @@ class topicManagementWorkActor extends Actor with ActorLogging {
   
   implicit val formats = DefaultFormats; // Brings in default date formats etc for JSON Lift
   
-  //def topicMapManager = topicMap.topicNameActorMap;
+  def topicMapManager = topicMap.topicNameActorMap;
   
   def receive = {
     case message: topicMessage => {
