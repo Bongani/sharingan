@@ -4,7 +4,7 @@ import java.util.HashMap
 import java.util.Map
 import akka.actor.ActorRef
 
-object topicMap {
+/*object topicMap {
   
   val topicNameActorMap = new topicMapClass;
 
@@ -24,4 +24,4 @@ class topicMapClass {
   def removeActor(topicName : String): Unit ={
     tMap.remove(topicName);
   }
-}
+}*/
