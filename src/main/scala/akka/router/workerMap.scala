@@ -1,4 +1,4 @@
-package akka.router
+/*package akka.router
 
 import org.mashupbots.socko.events.WebSocketFrameEvent
 import java.util.HashMap
@@ -24,4 +24,4 @@ class wMap {
   def removeWorkerWebSocket(workerName : String): Unit ={
     workerSocketMap.remove(workerName);
   }
-}
+}*/

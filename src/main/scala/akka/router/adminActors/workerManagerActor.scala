@@ -8,6 +8,7 @@ import org.mashupbots.socko.events.WebSocketFrameEvent
 import akka.actor.ActorRef
 import akka.actor.actorRef2Scala
 import akka.router.dipatcherMessage
+import org.eligosource.eventsourced.core._
 
 sealed trait workManagerEvents
 case class adminMessage(operation: String, worker: String, workerWebSocket : WebSocketFrameEvent) extends workManagerEvents;
@@ -23,7 +24,7 @@ class workerManagerActor (adminActor : ActorRef) extends Actor with ActorLogging
   def receive = {
     case message: dipatcherMessage => {
       val workerAdminMessage: adminMessage = decodeAdminMessage(message.dataMessage, message.webSocket); 
-      adminActor ! workerAdminMessage;
+      adminActor ! Message(workerAdminMessage);
     }
     
     case _=> log.info("unknown message")

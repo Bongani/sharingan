@@ -8,15 +8,23 @@ import net.liftweb.json._
 import net.liftweb.json.JsonDSL._
 import akka.actor.Props
 import org.mashupbots.socko.handlers.WebSocketBroadcaster
+import org.eligosource.eventsourced.core._
+import java.util.HashMap
+import java.util.Map
+import akka.actor.ActorRef
+import messages.requestTopicBroadcastcActor
 
-class topicManagementWorkActor extends Actor with ActorLogging {
+class topicManagementWorkActor(extension : EventsourcingExtension, processorID : Int) extends Actor with ActorLogging {
   
   implicit val formats = DefaultFormats; // Brings in default date formats etc for JSON Lift
   
-  def topicMapManager = topicMap.topicNameActorMap;
+  //def topicMapManager = topicMap.topicNameActorMap;
+  var topicMapManager: Map[String, ActorRef] = new HashMap[String, ActorRef];
   
   def receive = {
-    case message: topicMessage => {
+    case evtSourcedMessage: Message => {
+      //topicMessage
+      val message: topicMessage = evtSourcedMessage.event.asInstanceOf[topicMessage];
       val operation = message.messageTask;
       operation match {
         case "create" => {
@@ -32,6 +40,21 @@ class topicManagementWorkActor extends Actor with ActorLogging {
           }
       }      
     }
+    
+    case topicActorRequest: requestTopicBroadcastcActor => {
+      val webSocketBroadcasterActor : ActorRef = topicMapManager.get(topicActorRequest.name);
+      sender ! webSocketBroadcasterActor;
+    }
+    
+    case sr @ SnapshotRequest(pid, snr, _) => {
+        sr.process(topicMapManager)
+        println(s"processed snapshot request for (snr = ${snr})")
+
+      }
+    case so @ SnapshotOffer(Snapshot(_, snr, time, tMap: Map[String, ActorRef])) => {
+        topicMapManager = tMap
+        println(s"accepted snapshot offer for (snr = ${snr} time = ${time}})")
+      }
         
     case _=> log.info("unknown message")
   }
@@ -40,7 +63,7 @@ class topicManagementWorkActor extends Actor with ActorLogging {
   def newTopic(message: topicMessage): Unit ={
     
     //check if topic exists
-    if (!(topicMapManager.tMap.containsKey(message.name))){
+    if (!(topicMapManager.containsKey(message.name))){
       //topic does not exist
       createTopic(message.name, message.webSocketEvent);
       log.info("new topic created: " + message.name);
@@ -67,7 +90,7 @@ class topicManagementWorkActor extends Actor with ActorLogging {
     val webSocketBroadcaster = context.actorOf(Props[WebSocketBroadcaster], actorBroadcasterName);
     
     //topicMap.put(topicName, webSocketBroadcaster);
-    topicMapManager.putActor(topicName, webSocketBroadcaster);
+    topicMapManager.put(topicName, webSocketBroadcaster);
     
     //Fire back succesful creation of topic
     val json = ("topicName" -> topicName)~("task" -> "success");
@@ -81,6 +104,15 @@ class topicManagementWorkActor extends Actor with ActorLogging {
   
   override def postStop() {
     log.info("Stopping topicManagementWorkActor (topicManagementWorkActor under masterMessagingActor) instance hashcode # {}",this.hashCode());
+  }
+  
+  override def preRestart(reason: Throwable, message: Option[Any]): Unit = {
+//need to overide with empty method so eventsourced recovery works
+    }
+  
+  override def postRestart(reason: Throwable): Unit = {
+    println("\n recovering messages for actor crashing\n")
+    extension.recover(Seq(ReplayParams(processorID, snapshot = true)))
   }
 
 }

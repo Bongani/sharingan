@@ -1,4 +1,4 @@
-package akka.router
+/*package akka.router
 
 import java.util.HashMap
 import java.util.Map
@@ -22,4 +22,4 @@ class cMap {
   def removeClientWebSocket(channelInt : Int): Unit ={
     channelClientMap.remove(channelInt);
   }
-}
+}*/

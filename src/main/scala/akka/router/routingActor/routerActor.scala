@@ -9,6 +9,7 @@ import messages.workerMessage
 import akka.router.routingActor.routeMessageActor
 import akka.actor.Props
 import akka.actor.ActorRef
+import org.eligosource.eventsourced.core._
 
 
 case class jsonRouteMessage(worker: String, operationData: String, response: Boolean);
@@ -34,7 +35,7 @@ class routerActor(clientLogActor : ActorRef, messageRoutingActor : ActorRef) ext
       //if client is expecting a response
       println("work message: " + workMessage);
       if (workMessage.expectingResponse){
-        clientLogActor ! workMessage;
+        clientLogActor ! Message(workMessage);
       } else {
         messageRoutingActor ! workMessage;
       }

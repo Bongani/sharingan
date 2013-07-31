@@ -29,19 +29,32 @@ import akka.router.routingActor.routerActor
 import akka.router.routingActor.clientLogWebSocketEventFrame
 import akka.router.routingActor.routeMessageActor
 import akka.messaging.topicManagementWorkActor
-import akka.messaging.messagingActorMap
-import akka.router.routerActorMap
+//import akka.messaging.messagingActorMap
+//import akka.router.routerActorMap
+import akka.util.Timeout
+import scala.concurrent.duration._
+import akka.pattern.ask
+import scala.concurrent.Await
+import scala.util.{Success, Failure}
+import scala.concurrent.TimeoutException
+import akka.dispatch.Futures
+import akka.dispatch.OnComplete
+import scala.concurrent.ExecutionContext.Implicits.global
 
 //dispatcher actors internal messages
 sealed trait dispatcherEvents
 //message to send to subscription manager when a node wishes to subscribe to a topic val webSocketBroadcaste
 case class subscriptionRequest(websockHandshake: WebSocketHandshakeEvent, subscriptionID: String) extends dispatcherEvents;
 case class broadcastMessage(websockEvent: WebSocketFrameEvent, topicID: String) extends dispatcherEvents;
+//messages to request actors from router master & message master
+case class actorRequest(actorName : String) extends dispatcherEvents;
 
-class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef) extends Actor with ActorLogging {
+class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef, messagingMaster: ActorRef, routingMaster: ActorRef) extends Actor with ActorLogging {
   
-  def mapForMessagingActorRef = messagingActorMap.messagingActorRefMap;
-  def mapForRoutingActorRef = routerActorMap.routerActorRefMap;
+  implicit var timeout = Timeout(5 seconds);
+  
+//  def mapForMessagingActorRef = messagingActorMap.messagingActorRefMap;
+// def mapForRoutingActorRef = routerActorMap.routerActorRefMap;
   
   var subsrciptManager: ActorRef = null;
   var topicManagementActor: ActorRef = null;
@@ -161,16 +174,9 @@ class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef) extends Actor
   webServer.start();
   println("Server started");
     
+  registerActors;
   
-  //get ActorRef Actors
-  //message Actors
-  subsrciptManager = mapForMessagingActorRef.getActor("subscriptionActor");
-  topicManagementActor = mapForMessagingActorRef.getActor("topicManagerActor");
-  broadcastActor = mapForMessagingActorRef.getActor("broadcasterManagerActor");
-  //routing Actors
-  routingActor = mapForRoutingActorRef.getActor("routerActor");
-  routerDispatchActor = mapForRoutingActorRef.getActor("routerDispatcherActor");
-    
+  
   }
   
   override def postStop(){
@@ -180,6 +186,103 @@ class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef) extends Actor
   
   def receive ={
     case _=> log.info("unknown message");
+  }
+  
+  def registerActors(): Unit = {
+    //get ActorRef Actors
+    
+    //message Actors
+    
+  //subsrciptManager = mapForMessagingActorRef.getActor("subscriptionActor");
+    val subsMsg = new actorRequest("subscriptionActor");
+    messagingMaster ? subsMsg onComplete {
+      case Success(smActor : ActorRef) => {
+        if (smActor != null){
+          subsrciptManager = smActor
+                
+              } else {
+                log.info("Actor does not exist");
+              }           
+            }
+            case Failure(e: TimeoutException) => {
+              log.info("failed to retrieve actor");
+
+            }
+          }
+    
+  //topicManagementActor = mapForMessagingActorRef.getActor("topicManagerActor");
+    val topMsg = new actorRequest("topicManagerActor");
+    messagingMaster ? topMsg onComplete {
+      case Success(topManActor : ActorRef) => {
+        if (topManActor != null){
+          topicManagementActor = topManActor;
+                
+              } else {
+                log.info("Actor does not exist");
+              }           
+            }
+            case Failure(e: TimeoutException) => {
+              log.info("failed to retrieve actor");
+
+            }
+          }
+    
+  //broadcastActor = mapForMessagingActorRef.getActor("broadcasterManagerActor");
+    val broadcastMsg = new actorRequest("broadcasterManagerActor");
+    messagingMaster ? broadcastMsg onComplete {
+      case Success(broadActor : ActorRef) => {
+        if (broadActor != null){
+          broadcastActor = broadActor;
+                
+              } else {
+                log.info("Actor does not exist");
+              }           
+            }
+            case Failure(e: TimeoutException) => {
+              log.info("failed to retrieve actor");
+
+            }
+          }
+    
+    
+    
+  //routing Actors
+    
+  //routingActor = mapForRoutingActorRef.getActor("routerActor");
+    val routingMsg = new actorRequest("routerActor");
+    routingMaster ? routingMsg onComplete {
+      case Success(routeActor : ActorRef) => {
+        if (routeActor != null){
+          routingActor = routeActor;
+                
+              } else {
+                log.info("Actor does not exist");
+              }           
+            }
+            case Failure(e: TimeoutException) => {
+              log.info("failed to retrieve actor");
+
+            }
+          }
+    
+  //routerDispatchActor = mapForRoutingActorRef.getActor("routerDispatcherActor");
+    val routeDispatchMsg = new actorRequest("routerDispatcherActor");
+    routingMaster ? routeDispatchMsg onComplete {
+      case Success(rdActor : ActorRef) => {
+        if (rdActor != null){
+          routerDispatchActor = rdActor;
+                
+              } else {
+                log.info("Actor does not exist");
+              }           
+            }
+            case Failure(e: TimeoutException) => {
+              log.info("failed to retrieve actor");
+
+            }
+          }
+    
+        
   }
   
 

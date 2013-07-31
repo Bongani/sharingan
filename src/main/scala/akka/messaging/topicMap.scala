@@ -1,4 +1,4 @@
-package akka.messaging
+/*package akka.messaging
 
 import java.util.HashMap
 import java.util.Map
@@ -24,4 +24,4 @@ class topicMapClass {
   def removeActor(topicName : String): Unit ={
     tMap.remove(topicName);
   }
-}
+}*/

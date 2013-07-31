@@ -14,11 +14,17 @@ import akka.router.routingActor.clientLogWebSocketEventFrame
 import akka.router.routingActor.routerActor
 import java.io.File
 import scala.xml.XML
+import org.eligosource.eventsourced.core._
+import akka.actor.ActorRef
+import java.util.HashMap
+import java.util.Map
+import akka.webserver.actorRequest
 
 
-class masterRouterActor extends Actor with ActorLogging{
+class masterRouterActor(extension : EventsourcingExtension, subSystemID: Int) extends Actor with ActorLogging{
   
-  def mapForActorRefRouter = routerActorMap.routerActorRefMap;
+  //def mapForActorRefRouter = routerActorMap.routerActorRefMap;
+  var mapForActorRefRouter: Map[String, ActorRef] = new HashMap[String, ActorRef];
   
   var actorLower : Int = 1;
   var actorUpper : Int = 10;
@@ -33,25 +39,38 @@ class masterRouterActor extends Actor with ActorLogging{
     actorConfig();
     val resizer = new DefaultResizer(lowerBound = actorLower, upperBound = actorUpper);
     
-    //Worker actors for router Actor
-    //multiple instances
-    val messageRoutingActor = context.actorOf(Props[routeMessageActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "routeMessageActor");
-    mapForActorRefRouter.putActor("routeMessageActor", messageRoutingActor);
-    //single instance
-    val clientLogActor = context.actorOf(Props(new clientLogWebSocketEventFrame(messageRoutingActor)),"clientLogWebSocketActor");
-    mapForActorRefRouter.putActor("clientLogWebSocketActor", clientLogActor);
-    //multiple instances
-    val routingActor = context.actorOf(Props(new routerActor(clientLogActor, messageRoutingActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "routerActor");
-    mapForActorRefRouter.putActor("routerActor", routingActor);
     
     
     //Worker actors for dispatcher Actor
     //single instance
-    val routingAdminActor = context.actorOf(Props[adminWorkerActor], name = "adminWorkerActor");
-    mapForActorRefRouter.putActor("adminWorkerActor", routingAdminActor);
+    val routingAdmin: Int =subSystemID + 3;
+    val routingAdminActor = extension.processorOf(Props(new adminWorkerActor(extension, routingAdmin) with Eventsourced { val id = routingAdmin} ))
+    //recover actor process
+    extension.recover(Seq(ReplayParams(routingAdmin, snapshot = true)));
+    //val routingAdminActor = context.actorOf(Props[adminWorkerActor], name = "adminWorkerActor");
+    
+    
+    //Worker actors for router Actor
+    //multiple instances
+    val messageRoutingActor = context.actorOf(Props(new routeMessageActor(routingAdminActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "routeMessageActor");
+    mapForActorRefRouter.put("routeMessageActor", messageRoutingActor);
+    //single instance
+    val clientLogID: Int =subSystemID + 2;
+    val clientLogActor = extension.processorOf(Props(new clientLogWebSocketEventFrame(messageRoutingActor, extension, clientLogID) with Eventsourced { val id = clientLogID} ));
+      //context.actorOf(Props(new clientLogWebSocketEventFrame(messageRoutingActor)),"clientLogWebSocketActor");
+    //recover actor process
+    extension.recover(Seq(ReplayParams(clientLogID, snapshot = true)));
+    
+    mapForActorRefRouter.put("clientLogWebSocketActor", clientLogActor);
+    //multiple instances
+    val routingActor = context.actorOf(Props(new routerActor(clientLogActor, messageRoutingActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "routerActor");
+    mapForActorRefRouter.put("routerActor", routingActor);
+    
+    
+    mapForActorRefRouter.put("adminWorkerActor", routingAdminActor);
     //multiple instances
     val routerDispatchActor = context.actorOf(Props(new routerDispatcherActor(clientLogActor, routingAdminActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)),"routerDispatcherActor");
-    mapForActorRefRouter.putActor("routerDispatcherActor", routerDispatchActor);
+    mapForActorRefRouter.put("routerDispatcherActor", routerDispatchActor);
     
   }
   
@@ -79,6 +98,10 @@ class masterRouterActor extends Actor with ActorLogging{
   
   
   def receive ={
+    case request: actorRequest =>{
+      val requestedActor: ActorRef = mapForActorRefRouter.get(request.actorName);
+      sender ! requestedActor
+    } 
     case _=> log.info("unknown message");
   }
   

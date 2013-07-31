@@ -1,0 +1,517 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0xab75dd37, pid=4974, tid=3077835584
+#
+# JRE version: 7.0_10-b18
+# Java VM: Java HotSpot(TM) Server VM (23.6-b04 mixed mode linux-x86 )
+# Problematic frame:
+# J  scala.tools.nsc.symtab.Types$TypeMap.mapOver(Lscala/tools/nsc/symtab/Types$Type;)Lscala/tools/nsc/symtab/Types$Type;
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0xb7506400):  JavaThread "main" [_thread_in_Java, id=4980, stack(0xb76f0000,0xb7741000)]
+
+siginfo:si_signo=SIGSEGV: si_errno=0, si_code=128 (), si_addr=0x00000000
+
+Registers:
+EAX=0x8c3cfe40, EBX=0x00000001, ECX=0xa10fa668, EDX=0x8c3cfe40
+ESP=0xb773bf80, EBP=0xa10f6bc8, ESI=0xa10fa8b8, EDI=0xb7506400
+EIP=0xab75dd37, EFLAGS=0x00010246, CR2=0xb775a000
+
+Top of Stack: (sp=0xb773bf80)
+0xb773bf80:   a10f6aa0 a10f6aa0 a10fa668 34683b30
+0xb773bf90:   34c666f4 8c3cfe40 a10fa7b8 b7506400
+0xb773bfa0:   a10fa6a0 a10fa668 a10f6c68 ab4fb487
+0xb773bfb0:   a10fa6a0 00000001 8c1def08 b773bfbc
+0xb773bfc0:   34681cc6 b773bff0 346826b8 34c66364
+0xb773bfd0:   34681d08 00000000 a10fa668 ab6ccc88
+0xb773bfe0:   ab4fb487 a10fa668 9dc66838 98ca8408
+0xb773bff0:   a10fa668 b773bff4 3496d72e b773c028 
+
+Instructions: (pc=0xab75dd37)
+0xab75dd17:   ff 89 44 24 18 85 ed 0f 84 d1 15 00 00 8b cd 90
+0xab75dd27:   e8 c0 58 ef ff 89 44 24 14 8b 4c 24 24 8b d0 90
+0xab75dd37:   e8 e6 24 00 00 8b 4c 24 24 89 4c 24 30 8b 51 10
+0xab75dd47:   8b c8 3b 44 24 14 0f 84 c2 09 00 00 8b 5c 24 1c 
+
+Register to memory mapping:
+
+EAX=0x8c3cfe40 is an oop
+scala.collection.immutable.Nil$ 
+ - klass: 'scala/collection/immutable/Nil$'
+EBX=0x00000001 is an unknown value
+ECX=0xa10fa668 is an oop
+scala.tools.nsc.symtab.Types$SubstTypeMap 
+ - klass: 'scala/tools/nsc/symtab/Types$SubstTypeMap'
+EDX=0x8c3cfe40 is an oop
+scala.collection.immutable.Nil$ 
+ - klass: 'scala/collection/immutable/Nil$'
+ESP=0xb773bf80 is pointing into the stack for thread: 0xb7506400
+EBP=0xa10f6bc8 is an oop
+scala.tools.nsc.symtab.Scopes$Scope 
+ - klass: 'scala/tools/nsc/symtab/Scopes$Scope'
+ESI=0xa10fa8b8 is an oop
+scala.collection.immutable.$colon$colon 
+ - klass: 'scala/collection/immutable/$colon$colon'
+EDI=0xb7506400 is a thread
+
+
+Stack: [0xb76f0000,0xb7741000],  sp=0xb773bf80,  free space=303k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+J  scala.tools.nsc.symtab.Types$TypeMap.mapOver(Lscala/tools/nsc/symtab/Types$Type;)Lscala/tools/nsc/symtab/Types$Type;
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x2ce9e400 JavaThread "process reaper" daemon [_thread_blocked, id=4993, stack(0x2d13f000,0x2d150000)]
+  0x32977c00 JavaThread "Service Thread" daemon [_thread_blocked, id=4989, stack(0x2d272000,0x2d2c3000)]
+  0x32976000 JavaThread "C2 CompilerThread1" daemon [_thread_in_native, id=4988, stack(0x2d2c3000,0x2d344000)]
+  0x32974000 JavaThread "C2 CompilerThread0" daemon [_thread_in_vm, id=4987, stack(0x2d344000,0x2d3c5000)]
+  0x32972400 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=4986, stack(0x2d3c5000,0x2d416000)]
+  0x32937c00 JavaThread "Finalizer" daemon [_thread_blocked, id=4985, stack(0x2d616000,0x2d667000)]
+  0x32936000 JavaThread "Reference Handler" daemon [_thread_blocked, id=4984, stack(0x2d667000,0x2d6b8000)]
+=>0xb7506400 JavaThread "main" [_thread_in_Java, id=4980, stack(0xb76f0000,0xb7741000)]
+
+Other Threads:
+  0x32930800 VMThread [stack: 0x2d6b8000,0x2d739000] [id=4983]
+  0x32979800 WatcherThread [stack: 0x2d1f1000,0x2d272000] [id=4990]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 458752K, used 361976K [0x8b1f0000, 0xab1f0000, 0xab1f0000)
+  eden space 393216K, 92% used [0x8b1f0000,0xa136e1a0,0xa31f0000)
+  from space 65536K, 0% used [0xa71f0000,0xa71f0000,0xab1f0000)
+  to   space 65536K, 0% used [0xa31f0000,0xa31f0000,0xa71f0000)
+ ParOldGen       total 1048576K, used 0K [0x4b1f0000, 0x8b1f0000, 0x8b1f0000)
+  object space 1048576K, 0% used [0x4b1f0000,0x4b1f0000,0x8b1f0000)
+ PSPermGen       total 27520K, used 27406K [0x331f0000, 0x34cd0000, 0x4b1f0000)
+  object space 27520K, 99% used [0x331f0000,0x34cb3b48,0x34cd0000)
+
+Card table byte_map: [0x32e2f000,0x331f0000] byte_map_base: 0x32c96080
+
+Polling page: 0xb775a000
+
+Code Cache  [0xab4f8000, 0xab778000, 0xb74f8000)
+ total_blobs=1337 nmethods=1182 adapters=106 free_code_cache=194176Kb largest_free_block=198707904
+
+Compilation events (10 events):
+Event: 12.500 Thread 0x32976000 nmethod 1261 0xab5fa648 code [0xab5fa720, 0xab5fa750]
+Event: 12.500 Thread 0x32976000 1262             scala.tools.nsc.symtab.SymbolTable::copyTypeRef (10 bytes)
+Event: 12.550 Thread 0x32976000 nmethod 1262 0xab751dc8 code [0xab752140, 0xab752ef4]
+Event: 12.550 Thread 0x32976000 1263             scala.tools.nsc.symtab.Types$Type::termSymbol (10 bytes)
+Event: 12.551 Thread 0x32976000 nmethod 1263 0xab5aab08 code [0xab5aac00, 0xab5aac70]
+Event: 12.551 Thread 0x32976000 1264             scala.tools.nsc.symtab.Types$Type::isError (26 bytes)
+Event: 12.587 Thread 0x32974000 nmethod 1249 0xab75b548 code [0xab75bf20, 0xab7602c8]
+Event: 12.588 Thread 0x32974000 1265             scala.tools.nsc.symtab.SymbolTable::normalizePlus (6 bytes)
+Event: 12.591 Thread 0x32976000 nmethod 1264 0xab7591c8 code [0xab7594c0, 0xab759d98]
+Event: 12.592 Thread 0x32976000 1266             scala.tools.nsc.symtab.Types$class::normalizePlus (28 bytes)
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (10 events):
+Event: 12.394 Thread 0xb7506400 Uncommon trap -58 fr.pc 0xab5f8de0
+Event: 12.394 Thread 0xb7506400 Uncommon trap -58 fr.pc 0xab5f8de0
+Event: 12.410 Thread 0xb7506400 Uncommon trap -34 fr.pc 0xab630f00
+Event: 12.410 Thread 0xb7506400 Uncommon trap -34 fr.pc 0xab6d4cd0
+Event: 12.417 Thread 0xb7506400 Uncommon trap -34 fr.pc 0xab630f00
+Event: 12.559 Thread 0xb7506400 Uncommon trap -34 fr.pc 0xab633934
+Event: 12.560 Thread 0xb7506400 Uncommon trap -34 fr.pc 0xab559254
+Event: 12.560 Thread 0xb7506400 Uncommon trap -34 fr.pc 0xab559254
+Event: 12.561 Thread 0xb7506400 Uncommon trap -34 fr.pc 0xab559254
+Event: 12.561 Thread 0xb7506400 Uncommon trap -34 fr.pc 0xab559254
+
+Internal exceptions (10 events):
+Event: 12.349 Thread 0xb7506400 Threw 0xa0ed52b0 at /HUDSON/workspace/jdk7u10-2-build-linux-i586-product/jdk7u10/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 12.350 Thread 0xb7506400 Threw 0xa0ed9b88 at /HUDSON/workspace/jdk7u10-2-build-linux-i586-product/jdk7u10/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 12.351 Thread 0xb7506400 Threw 0xa0eddfd0 at /HUDSON/workspace/jdk7u10-2-build-linux-i586-product/jdk7u10/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 12.352 Thread 0xb7506400 Threw 0xa0ee1e38 at /HUDSON/workspace/jdk7u10-2-build-linux-i586-product/jdk7u10/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 12.362 Thread 0xb7506400 Threw 0xa0ee96a8 at /HUDSON/workspace/jdk7u10-2-build-linux-i586-product/jdk7u10/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 12.363 Thread 0xb7506400 Threw 0xa0eed958 at /HUDSON/workspace/jdk7u10-2-build-linux-i586-product/jdk7u10/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 12.364 Thread 0xb7506400 Threw 0xa0ef1fb8 at /HUDSON/workspace/jdk7u10-2-build-linux-i586-product/jdk7u10/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 12.372 Thread 0xb7506400 Threw 0xa0f03788 at /HUDSON/workspace/jdk7u10-2-build-linux-i586-product/jdk7u10/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 12.385 Thread 0xb7506400 Threw 0xa0f07bc8 at /HUDSON/workspace/jdk7u10-2-build-linux-i586-product/jdk7u10/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 12.587 Thread 0xb7506400 Implicit null exception at 0xab75dd37 to 0x00000000
+
+Events (10 events):
+Event: 12.560 Thread 0xb7506400 DEOPT UNPACKING pc=0xab525efc sp=0xb773c374 mode 2
+Event: 12.561 Thread 0xb7506400 DEOPT PACKING pc=0xab559254 sp=0xb773c380
+Event: 12.561 Thread 0xb7506400 DEOPT UNPACKING pc=0xab525efc sp=0xb773c374 mode 2
+Event: 12.561 Thread 0xb7506400 DEOPT PACKING pc=0xab559254 sp=0xb773c380
+Event: 12.561 Thread 0xb7506400 DEOPT UNPACKING pc=0xab525efc sp=0xb773c374 mode 2
+Event: 12.587 Thread 0x32974000 flushing nmethod 0xab5dd248
+Event: 12.587 Thread 0x32974000 flushing nmethod 0xab5e7d08
+Event: 12.587 Thread 0x32974000 flushing nmethod 0xab5e9788
+Event: 12.587 Thread 0x32974000 flushing nmethod 0xab5eca48
+Event: 12.587 Thread 0x32974000 flushing nmethod 0xab5f0708
+
+
+Dynamic libraries:
+00110000-00123000 r-xp 00000000 07:00 804296     /usr/lib/jvm/jdk1.7.0/jre/lib/i386/jli/libjli.so
+00123000-00124000 rw-p 00012000 07:00 804296     /usr/lib/jvm/jdk1.7.0/jre/lib/i386/jli/libjli.so
+0020f000-00239000 r-xp 00000000 07:00 1337695    /lib/i386-linux-gnu/libm-2.15.so
+00239000-0023a000 r--p 00029000 07:00 1337695    /lib/i386-linux-gnu/libm-2.15.so
+0023a000-0023b000 rw-p 0002a000 07:00 1337695    /lib/i386-linux-gnu/libm-2.15.so
+0025b000-0025c000 r-xp 00000000 00:00 0          [vdso]
+00359000-00379000 r-xp 00000000 07:00 1337696    /lib/i386-linux-gnu/ld-2.15.so
+00379000-0037a000 r--p 0001f000 07:00 1337696    /lib/i386-linux-gnu/ld-2.15.so
+0037a000-0037b000 rw-p 00020000 07:00 1337696    /lib/i386-linux-gnu/ld-2.15.so
+003e2000-003f9000 r-xp 00000000 07:00 1337693    /lib/i386-linux-gnu/libpthread-2.15.so
+003f9000-003fa000 r--p 00016000 07:00 1337693    /lib/i386-linux-gnu/libpthread-2.15.so
+003fa000-003fb000 rw-p 00017000 07:00 1337693    /lib/i386-linux-gnu/libpthread-2.15.so
+003fb000-003fd000 rw-p 00000000 00:00 0 
+0053a000-00541000 r-xp 00000000 07:00 1337691    /lib/i386-linux-gnu/librt-2.15.so
+00541000-00542000 r--p 00006000 07:00 1337691    /lib/i386-linux-gnu/librt-2.15.so
+00542000-00543000 rw-p 00007000 07:00 1337691    /lib/i386-linux-gnu/librt-2.15.so
+005c6000-005dd000 r-xp 00000000 07:00 804330     /usr/lib/jvm/jdk1.7.0/jre/lib/i386/libzip.so
+005dd000-005de000 rw-p 00017000 07:00 804330     /usr/lib/jvm/jdk1.7.0/jre/lib/i386/libzip.so
+006b4000-006be000 r-xp 00000000 07:00 1337692    /lib/i386-linux-gnu/libnss_nis-2.15.so
+006be000-006bf000 r--p 00009000 07:00 1337692    /lib/i386-linux-gnu/libnss_nis-2.15.so
+006bf000-006c0000 rw-p 0000a000 07:00 1337692    /lib/i386-linux-gnu/libnss_nis-2.15.so
+00828000-0083e000 r-xp 00000000 07:00 1337704    /lib/i386-linux-gnu/libnsl-2.15.so
+0083e000-0083f000 r--p 00015000 07:00 1337704    /lib/i386-linux-gnu/libnsl-2.15.so
+0083f000-00840000 rw-p 00016000 07:00 1337704    /lib/i386-linux-gnu/libnsl-2.15.so
+00840000-00842000 rw-p 00000000 00:00 0 
+008a0000-008ab000 r-xp 00000000 07:00 804274     /usr/lib/jvm/jdk1.7.0/jre/lib/i386/libverify.so
+008ab000-008ac000 rw-p 0000b000 07:00 804274     /usr/lib/jvm/jdk1.7.0/jre/lib/i386/libverify.so
+008e3000-008ee000 r-xp 00000000 07:00 1337688    /lib/i386-linux-gnu/libnss_files-2.15.so
+008ee000-008ef000 r--p 0000a000 07:00 1337688    /lib/i386-linux-gnu/libnss_files-2.15.so
+008ef000-008f0000 rw-p 0000b000 07:00 1337688    /lib/i386-linux-gnu/libnss_files-2.15.so
+0090d000-00914000 r-xp 00000000 07:00 1312080    /lib/i386-linux-gnu/libnss_compat-2.15.so
+00914000-00915000 r--p 00006000 07:00 1312080    /lib/i386-linux-gnu/libnss_compat-2.15.so
+00915000-00916000 rw-p 00007000 07:00 1312080    /lib/i386-linux-gnu/libnss_compat-2.15.so
+00972000-00995000 r-xp 00000000 07:00 804292     /usr/lib/jvm/jdk1.7.0/jre/lib/i386/libjava.so
+00995000-00996000 rw-p 00023000 07:00 804292     /usr/lib/jvm/jdk1.7.0/jre/lib/i386/libjava.so
+00ae3000-00af1000 r-xp 00000000 07:00 804316     /usr/lib/jvm/jdk1.7.0/jre/lib/i386/libnio.so
+00af1000-00af2000 rw-p 0000e000 07:00 804316     /usr/lib/jvm/jdk1.7.0/jre/lib/i386/libnio.so
+00b7d000-00b91000 r-xp 00000000 07:00 804307     /usr/lib/jvm/jdk1.7.0/jre/lib/i386/libnet.so
+00b91000-00b92000 rw-p 00014000 07:00 804307     /usr/lib/jvm/jdk1.7.0/jre/lib/i386/libnet.so
+00d05000-00ea8000 r-xp 00000000 07:00 1312076    /lib/i386-linux-gnu/libc-2.15.so
+00ea8000-00eaa000 r--p 001a3000 07:00 1312076    /lib/i386-linux-gnu/libc-2.15.so
+00eaa000-00eab000 rw-p 001a5000 07:00 1312076    /lib/i386-linux-gnu/libc-2.15.so
+00eab000-00eae000 rw-p 00000000 00:00 0 
+00ff6000-00ff9000 r-xp 00000000 07:00 1337699    /lib/i386-linux-gnu/libdl-2.15.so
+00ff9000-00ffa000 r--p 00002000 07:00 1337699    /lib/i386-linux-gnu/libdl-2.15.so
+00ffa000-00ffb000 rw-p 00003000 07:00 1337699    /lib/i386-linux-gnu/libdl-2.15.so
+00ffb000-017b4000 r-xp 00000000 07:00 804329     /usr/lib/jvm/jdk1.7.0/jre/lib/i386/server/libjvm.so
+017b4000-01806000 rw-p 007b9000 07:00 804329     /usr/lib/jvm/jdk1.7.0/jre/lib/i386/server/libjvm.so
+01806000-01c28000 rw-p 00000000 00:00 0 
+08048000-08049000 r-xp 00000000 07:00 680441     /usr/lib/jvm/jdk1.7.0/bin/java
+08049000-0804a000 rw-p 00000000 07:00 680441     /usr/lib/jvm/jdk1.7.0/bin/java
+0989a000-0a195000 rw-p 00000000 00:00 0          [heap]
+2b900000-2b9e1000 rw-p 00000000 00:00 0 
+2b9e1000-2ba00000 ---p 00000000 00:00 0 
+2ba00000-2bacc000 rw-p 00000000 00:00 0 
+2bacc000-2bb00000 ---p 00000000 00:00 0 
+2bb00000-2bbff000 rw-p 00000000 00:00 0 
+2bbff000-2bc00000 ---p 00000000 00:00 0 
+2bd00000-2bdfb000 rw-p 00000000 00:00 0 
+2bdfb000-2be00000 ---p 00000000 00:00 0 
+2be00000-2bef9000 rw-p 00000000 00:00 0 
+2bef9000-2bf00000 ---p 00000000 00:00 0 
+2bf00000-2bff9000 rw-p 00000000 00:00 0 
+2bff9000-2c000000 ---p 00000000 00:00 0 
+2c000000-2c0f9000 rw-p 00000000 00:00 0 
+2c0f9000-2c100000 ---p 00000000 00:00 0 
+2c100000-2c2d7000 rw-p 00000000 00:00 0 
+2c2d7000-2c300000 ---p 00000000 00:00 0 
+2c300000-2c400000 rw-p 00000000 00:00 0 
+2c4f8000-2c55e000 r--s 003df000 07:00 1707814    /home/bongani/.ivy2/cache/org.scalaz/scalaz-core_2.9.2/jars/scalaz-core_2.9.2-6.0.4.jar
+2c55e000-2c561000 ---p 00000000 00:00 0 
+2c561000-2c5af000 rw-p 00000000 00:00 0 
+2c5af000-2c5b2000 ---p 00000000 00:00 0 
+2c5b2000-2c600000 rw-p 00000000 00:00 0 
+2c600000-2c6fe000 rw-p 00000000 00:00 0 
+2c6fe000-2c700000 ---p 00000000 00:00 0 
+2c70d000-2c710000 ---p 00000000 00:00 0 
+2c710000-2c75e000 rw-p 00000000 00:00 0 
+2c75e000-2c761000 ---p 00000000 00:00 0 
+2c761000-2c7af000 rw-p 00000000 00:00 0 
+2c7af000-2c7b2000 ---p 00000000 00:00 0 
+2c7b2000-2c800000 rw-p 00000000 00:00 0 
+2c800000-2c9fb000 rw-p 00000000 00:00 0 
+2c9fb000-2ca00000 ---p 00000000 00:00 0 
+2ca00000-2cafe000 rw-p 00000000 00:00 0 
+2cafe000-2cb00000 ---p 00000000 00:00 0 
+2cb00000-2cbf2000 rw-p 00000000 00:00 0 
+2cbf2000-2cc00000 ---p 00000000 00:00 0 
+2cc00000-2ccff000 rw-p 00000000 00:00 0 
+2ccff000-2cd00000 ---p 00000000 00:00 0 
+2cd00000-2ce00000 rw-p 00000000 00:00 0 
+2ce00000-2cef6000 rw-p 00000000 00:00 0 
+2cef6000-2cf00000 ---p 00000000 00:00 0 
+2cf0c000-2cf0d000 r--s 00003000 07:00 804261     /usr/lib/jvm/jdk1.7.0/jre/lib/ext/sunec.jar
+2cf0d000-2cf0e000 r--s 00010000 07:00 804262     /usr/lib/jvm/jdk1.7.0/jre/lib/ext/zipfs.jar
+2cf0e000-2cf10000 r--s 00001000 07:00 804258     /usr/lib/jvm/jdk1.7.0/jre/lib/ext/dnsns.jar
+2cf10000-2cf13000 r--s 000f7000 07:00 804260     /usr/lib/jvm/jdk1.7.0/jre/lib/ext/localedata.jar
+2cf13000-2cf17000 r--s 00037000 07:00 804263     /usr/lib/jvm/jdk1.7.0/jre/lib/ext/sunpkcs11.jar
+2cf17000-2cf1b000 r--s 0002d000 07:00 804259     /usr/lib/jvm/jdk1.7.0/jre/lib/ext/sunjce_provider.jar
+2cf1b000-2cf1f000 r--s 0006d000 07:00 804394     /usr/lib/jvm/jdk1.7.0/jre/lib/jfr.jar
+2cf1f000-2cf29000 r--s 00371000 07:00 804363     /usr/lib/jvm/jdk1.7.0/jre/lib/charsets.jar
+2cf29000-2cf2b000 r--s 00019000 07:00 804395     /usr/lib/jvm/jdk1.7.0/jre/lib/jce.jar
+2cf2b000-2cf35000 r--s 00254000 07:00 804253     /usr/lib/jvm/jdk1.7.0/jre/lib/resources.jar
+2cf35000-2cf39000 r--s 00089000 07:00 804337     /usr/lib/jvm/jdk1.7.0/jre/lib/jsse.jar
+2cf39000-2d000000 r--s 00a25000 07:00 1321404    /home/bongani/.sbt/boot/scala-2.9.2/lib/scala-compiler.jar
+2d000000-2d100000 rw-p 00000000 00:00 0 
+2d101000-2d103000 r--s 0000f000 07:00 1570825    /home/bongani/.ivy2/cache/scala_2.9.2/sbt_0.12/com.typesafe.akka/akka-sbt-plugin/jars/akka-sbt-plugin-2.1.0.jar
+2d103000-2d109000 r--s 00030000 07:00 1707812    /home/bongani/.ivy2/cache/scala_2.9.2/sbt_0.12/com.typesafe.sbteclipse/sbteclipse-core/jars/sbteclipse-core-2.1.0.jar
+2d109000-2d10c000 r--s 00008000 07:00 1320171    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/xsbti/interface-0.12.1.jar
+2d10c000-2d10f000 r--s 00019000 07:00 1322492    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/cache-0.12.1.jar
+2d10f000-2d124000 r--s 00114000 07:00 1320165    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/ivy-2.3.0-rc1.jar
+2d124000-2d125000 r--s 00004000 07:00 1320169    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/sbt-0.12.1.jar
+2d125000-2d127000 r--s 00015000 07:00 1320188    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/jline-1.0.jar
+2d127000-2d12a000 r--s 00014000 07:00 1320178    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/run-0.12.1.jar
+2d12a000-2d12e000 r--s 0001c000 07:00 1322491    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/persist-0.12.1.jar
+2d12e000-2d135000 r--s 0004d000 07:00 1322490    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/completion-0.12.1.jar
+2d135000-2d137000 r--s 0000a000 07:00 1320168    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/compiler-integration-0.12.1.jar
+2d137000-2d13d000 r--s 00045000 07:00 1322499    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/commons-httpclient-3.1.jar
+2d13d000-2d13f000 r--s 00006000 07:00 1322489    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/commons-codec-1.2.jar
+2d13f000-2d142000 ---p 00000000 00:00 0 
+2d142000-2d150000 rw-p 00000000 00:00 0 
+2d150000-2d173000 r--s 001cc000 07:00 1322498    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/main-0.12.1.jar
+2d173000-2d1f1000 r--s 007f5000 07:00 1321402    /home/bongani/.sbt/boot/scala-2.9.2/lib/scala-library.jar
+2d1f1000-2d1f2000 ---p 00000000 00:00 0 
+2d1f2000-2d272000 rw-p 00000000 00:00 0 
+2d272000-2d275000 ---p 00000000 00:00 0 
+2d275000-2d2c3000 rw-p 00000000 00:00 0 
+2d2c3000-2d2c6000 ---p 00000000 00:00 0 
+2d2c6000-2d344000 rw-p 00000000 00:00 0 
+2d344000-2d347000 ---p 00000000 00:00 0 
+2d347000-2d3c5000 rw-p 00000000 00:00 0 
+2d3c5000-2d3c8000 ---p 00000000 00:00 0 
+2d3c8000-2d416000 rw-p 00000000 00:00 0 
+2d416000-2d616000 r--p 00000000 07:00 269872     /usr/lib/locale/locale-archive
+2d616000-2d619000 ---p 00000000 00:00 0 
+2d619000-2d667000 rw-p 00000000 00:00 0 
+2d667000-2d66a000 ---p 00000000 00:00 0 
+2d66a000-2d6b8000 rw-p 00000000 00:00 0 
+2d6b8000-2d6b9000 ---p 00000000 00:00 0 
+2d6b9000-2d784000 rw-p 00000000 00:00 0 
+2d784000-2d940000 r--s 039dc000 07:00 803631     /usr/lib/jvm/jdk1.7.0/jre/lib/rt.jar
+2d940000-32800000 rw-p 00000000 00:00 0 
+32800000-328fe000 rw-p 00000000 00:00 0 
+328fe000-32900000 ---p 00000000 00:00 0 
+32900000-329fb000 rw-p 00000000 00:00 0 
+329fb000-32a00000 ---p 00000000 00:00 0 
+32a00000-32a25000 rw-p 00000000 00:00 0 
+32a25000-32b00000 ---p 00000000 00:00 0 
+32b00000-32b06000 r--s 0003b000 07:00 1320182    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/io-0.12.1.jar
+32b06000-32b09000 r--s 00011000 07:00 1322493    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/classfile-0.12.1.jar
+32b09000-32b0b000 r--s 00001000 07:00 1320179    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/launcher-interface-0.12.1.jar
+32b0b000-32b0d000 r--s 00001000 07:00 1322381    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/compiler-ivy-integration-0.12.1.jar
+32b0d000-32b10000 r--s 0001e000 07:00 1320183    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/compile-0.12.1.jar
+32b10000-32b12000 r--s 00002000 07:00 1322485    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/control-0.12.1.jar
+32b12000-32b16000 r--s 00034000 07:00 1320180    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/jsch-0.1.46.jar
+32b16000-32b1c000 r--s 00040000 07:00 1320186    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/actions-0.12.1.jar
+32b1c000-32b1f000 r--s 0001a000 07:00 1320177    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/process-0.12.1.jar
+32b1f000-32b23000 r--s 0002d000 07:00 1320191    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/command-0.12.1.jar
+32b23000-32b2d000 r--s 0008f000 07:00 1322488    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/ivy-0.12.1.jar
+32b2d000-32b2e000 ---p 00000000 00:00 0 
+32b2e000-32bae000 rw-p 00000000 00:00 0 
+32bae000-32baf000 ---p 00000000 00:00 0 
+32baf000-32e3d000 rw-p 00000000 00:00 0 
+32e3d000-32eef000 rw-p 00000000 00:00 0 
+32eef000-34cd0000 rw-p 00000000 00:00 0 
+34cd0000-4b1f0000 rw-p 00000000 00:00 0 
+4b1f0000-ab1f0000 rw-p 00000000 00:00 0 
+ab1f1000-ab1f3000 r--s 00000000 07:00 1320192    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/test-interface-0.5.jar
+ab1f3000-ab1f8000 r--s 00028000 07:00 1320164    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/incremental-compiler-0.12.1.jar
+ab1f8000-ab202000 rw-p 00000000 00:00 0 
+ab202000-ab4f8000 rw-p 00000000 00:00 0 
+ab4f8000-ab778000 rwxp 00000000 00:00 0 
+ab778000-b74f8000 rw-p 00000000 00:00 0 
+b74f8000-b7500000 rw-s 00000000 07:00 791923     /tmp/hsperfdata_bongani/4974
+b7500000-b75f7000 rw-p 00000000 00:00 0 
+b75f7000-b7600000 ---p 00000000 00:00 0 
+b7600000-b7601000 r--s 00001000 07:00 1707808    /home/bongani/.ivy2/cache/scala_2.9.2/sbt_0.12/com.typesafe.sbteclipse/sbteclipse-plugin/jars/sbteclipse-plugin-2.1.0.jar
+b7601000-b7604000 r--s 0001c000 07:00 1322496    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/task-system-0.12.1.jar
+b7604000-b7607000 r--s 00022000 07:00 1322487    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/sbinary_2.9.0-0.4.0.jar
+b7607000-b760f000 r--s 0004d000 07:00 1320163    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/api-0.12.1.jar
+b760f000-b7611000 r--s 00013000 07:00 1322497    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/classpath-0.12.1.jar
+b7611000-b7613000 r--s 00009000 07:00 1320189    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/tracking-0.12.1.jar
+b7613000-b7619000 r--s 00044000 07:00 1320172    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/collections-0.12.1.jar
+b7619000-b7630000 r--s 000f7000 07:00 284285     /usr/lib/sbt/sbt-launch.jar
+b7630000-b763e000 rw-p 00000000 00:00 0 
+b763e000-b76f0000 rw-p 00000000 00:00 0 
+b76f0000-b76f3000 ---p 00000000 00:00 0 
+b76f3000-b7743000 rw-p 00000000 00:00 0 
+b7743000-b7745000 r--s 00001000 07:00 1322502    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/test-agent-0.12.1.jar
+b7745000-b7748000 r--s 0001b000 07:00 1320190    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/tasks-0.12.1.jar
+b7748000-b774a000 r--s 00008000 07:00 1322486    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/commons-logging-1.0.4.jar
+b774a000-b774c000 r--s 00012000 07:00 1320187    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/testing-0.12.1.jar
+b774c000-b774f000 r--s 00017000 07:00 1320181    /home/bongani/.sbt/boot/scala-2.9.2/org.scala-sbt/sbt/0.12.1/logging-0.12.1.jar
+b774f000-b7752000 r--s 00018000 07:00 1321401    /home/bongani/.sbt/boot/scala-2.9.2/lib/jansi.jar
+b7752000-b7755000 r--s 00024000 07:00 1321403    /home/bongani/.sbt/boot/scala-2.9.2/lib/jline.jar
+b7755000-b7758000 r--s 000cf000 07:00 1707505    /home/bongani/.sbt/boot/other/net.java.dev.jna/jna/3.2.3/jna-3.2.3.jar
+b7758000-b7759000 r--p 002c5000 07:00 269872     /usr/lib/locale/locale-archive
+b7759000-b775a000 rw-p 00000000 00:00 0 
+b775a000-b775b000 r--p 00000000 00:00 0 
+b775b000-b775d000 rw-p 00000000 00:00 0 
+bfca6000-bfcc7000 rw-p 00000000 00:00 0          [stack]
+
+VM Arguments:
+jvm_args: -Xms1536m -Xmx1536m -XX:MaxPermSize=384m -XX:ReservedCodeCacheSize=192m 
+java_command: /usr/lib/sbt/sbt-launch.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/home/bongani/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/bongani/.rvm/bin
+SHELL=/bin/bash
+DISPLAY=:0.0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x720eb0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x720eb0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x5d9d00], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x5d9d00], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x5d9d00], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x5d9d00], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x5d95e0], sa_mask[0]=0x00000000, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x5dbbd0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x5dbbd0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x5dbbd0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x5dbbd0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:wheezy/sid
+
+uname:Linux 3.2.0-49-generic #75-Ubuntu SMP Tue Jun 18 17:40:13 UTC 2013 i686
+libc:glibc 2.15 NPTL 2.15 
+rlimit: STACK 8192k, CORE 0k, NPROC 15875, NOFILE 4096, AS infinity
+load average:0.72 0.47 0.48
+
+/proc/meminfo:
+MemTotal:        2052136 kB
+MemFree:          183636 kB
+Buffers:          359424 kB
+Cached:           411240 kB
+SwapCached:         4568 kB
+Active:           928240 kB
+Inactive:         867684 kB
+Active(anon):     687312 kB
+Inactive(anon):   429604 kB
+Active(file):     240928 kB
+Inactive(file):   438080 kB
+Unevictable:        2752 kB
+Mlocked:             168 kB
+HighTotal:       1178044 kB
+HighFree:          14924 kB
+LowTotal:         874092 kB
+LowFree:          168712 kB
+SwapTotal:       4455416 kB
+SwapFree:        4303904 kB
+Dirty:               292 kB
+Writeback:             0 kB
+AnonPages:       1024012 kB
+Mapped:            42328 kB
+Shmem:             88996 kB
+Slab:              40944 kB
+SReclaimable:      25436 kB
+SUnreclaim:        15508 kB
+KernelStack:        3696 kB
+PageTables:         7848 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     5481484 kB
+Committed_AS:    4340172 kB
+VmallocTotal:     122880 kB
+VmallocUsed:       14368 kB
+VmallocChunk:     105652 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       4096 kB
+DirectMap4k:       16376 kB
+DirectMap4M:      892928 kB
+
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 15 stepping 13, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, tsc
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 15
+model name	: Intel(R) Core(TM)2 Duo CPU     T5800  @ 2.00GHz
+stepping	: 13
+microcode	: 0xa3
+cpu MHz		: 2000.000
+cache size	: 2048 KB
+physical id	: 0
+siblings	: 2
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fdiv_bug	: no
+hlt_bug		: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 10
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe nx lm constant_tsc arch_perfmon pebs bts aperfmperf pni dtes64 monitor ds_cpl est tm2 ssse3 cx16 xtpr pdcm lahf_lm dtherm
+bogomips	: 3990.31
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 15
+model name	: Intel(R) Core(TM)2 Duo CPU     T5800  @ 2.00GHz
+stepping	: 13
+microcode	: 0xa3
+cpu MHz		: 2000.000
+cache size	: 2048 KB
+physical id	: 0
+siblings	: 2
+core id		: 1
+cpu cores	: 2
+apicid		: 1
+initial apicid	: 1
+fdiv_bug	: no
+hlt_bug		: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 10
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe nx lm constant_tsc arch_perfmon pebs bts aperfmperf pni dtes64 monitor ds_cpl est tm2 ssse3 cx16 xtpr pdcm lahf_lm dtherm
+bogomips	: 3989.97
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 2052136k(183636k free), swap 4455416k(4303904k free)
+
+vm_info: Java HotSpot(TM) Server VM (23.6-b04) for linux-x86 JRE (1.7.0_10-b18), built on Nov 28 2012 04:28:35 by "java_re" with gcc 4.3.0 20080428 (Red Hat 4.3.0-8)
+
+time: Tue Jul 30 22:27:35 2013
+elapsed time: 12 seconds
+

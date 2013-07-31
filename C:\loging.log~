@@ -1,0 +1,162 @@
+2013-07-31 04:03:25 INFO  Slf4jEventHandler:78 - Slf4jEventHandler started
+2013-07-31 04:03:27 INFO  voldCoordinator:72 - Starting voldCoordinator (Voldemort Coordinator) instance hashcode # 30570762
+2013-07-31 04:03:27 INFO  voldCoordinator:72 - Configuring voldCoordinator (Voldemort Coordinator) child actors hashcode # 30570762
+2013-07-31 04:03:28 INFO  deleteActor:72 - Starting deleteActor (deleteActor under voldCoordinator) instance hashcode # 9178775
+2013-07-31 04:03:28 INFO  deleteActor:72 - Starting deleteActor (deleteActor under voldCoordinator) instance hashcode # 31420243
+2013-07-31 04:03:28 INFO  getActor:72 - Starting getActor (getActor under voldCoordinator) instance hashcode # 30142219
+2013-07-31 04:03:28 INFO  getActor:72 - Starting getActor (getActor under voldCoordinator) instance hashcode # 9251213
+2013-07-31 04:03:28 INFO  putActor:72 - Starting putActor (putActor under voldCoordinator) instance hashcode # 30063547
+2013-07-31 04:03:28 INFO  putActor:72 - Starting putActor (putActor under voldCoordinator) instance hashcode # 13871247
+2013-07-31 04:03:29 INFO  DefaultStoreClient:89 - Bootstrapping metadata for store test
+2013-07-31 04:03:29 INFO  AbstractStoreClientFactory:197 - Client zone-id [0] Attempting to obtain metadata for store [test] 
+2013-07-31 04:03:29 WARN  AbstractStoreClientFactory:424 - Failed to bootstrap from tcp://localhost:6666
+voldemort.VoldemortException: voldemort.store.UnreachableStoreException: Failure while checking out socket for localhost:6666(vp3): 
+	at voldemort.client.SocketStoreClientFactory.getRemoteMetadata(SocketStoreClientFactory.java:105)
+	at voldemort.client.AbstractStoreClientFactory.bootstrapMetadata(AbstractStoreClientFactory.java:420)
+	at voldemort.client.AbstractStoreClientFactory.bootstrapMetadataWithRetries(AbstractStoreClientFactory.java:395)
+	at voldemort.client.AbstractStoreClientFactory.getRawStore(AbstractStoreClientFactory.java:209)
+	at voldemort.client.AbstractStoreClientFactory.getRawStore(AbstractStoreClientFactory.java:187)
+	at voldemort.client.DefaultStoreClient.bootStrap(DefaultStoreClient.java:90)
+	at voldemort.client.DefaultStoreClient.<init>(DefaultStoreClient.java:81)
+	at voldemort.client.AbstractStoreClientFactory.getStoreClient(AbstractStoreClientFactory.java:160)
+	at voldemort.client.SocketStoreClientFactory.getParentStoreClient(SocketStoreClientFactory.java:91)
+	at voldemort.client.SocketStoreClientFactory.getStoreClient(SocketStoreClientFactory.java:86)
+	at voldemort.client.AbstractStoreClientFactory.getStoreClient(AbstractStoreClientFactory.java:152)
+	at configuration.storageManagement$$anonfun$connectAllStores$1$$anonfun$apply$1$$anonfun$apply$mcV$sp$1.apply(storageManagement.scala:110)
+	at configuration.storageManagement$$anonfun$connectAllStores$1$$anonfun$apply$1$$anonfun$apply$mcV$sp$1.apply(storageManagement.scala:102)
+	at scala.collection.Iterator$class.foreach(Iterator.scala:727)
+	at scala.collection.AbstractIterator.foreach(Iterator.scala:1157)
+	at scala.collection.IterableLike$class.foreach(IterableLike.scala:72)
+	at scala.collection.AbstractIterable.foreach(Iterable.scala:54)
+	at configuration.storageManagement$$anonfun$connectAllStores$1$$anonfun$apply$1.apply$mcV$sp(storageManagement.scala:102)
+	at scala.util.control.Breaks.breakable(Breaks.scala:37)
+	at configuration.storageManagement$$anonfun$connectAllStores$1.apply(storageManagement.scala:101)
+	at configuration.storageManagement$$anonfun$connectAllStores$1.apply(storageManagement.scala:96)
+	at scala.collection.Iterator$class.foreach(Iterator.scala:727)
+	at scala.collection.AbstractIterator.foreach(Iterator.scala:1157)
+	at scala.collection.IterableLike$class.foreach(IterableLike.scala:72)
+	at scala.collection.AbstractIterable.foreach(Iterable.scala:54)
+	at configuration.storageManagement.connectAllStores(storageManagement.scala:96)
+	at configuration.storageManagement.startupSetup(storageManagement.scala:142)
+	at voldemortTest$.main(voldemortTest.scala:43)
+	at voldemortTest.main(voldemortTest.scala)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at scala.tools.nsc.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala:71)
+	at scala.tools.nsc.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala:31)
+	at scala.tools.nsc.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala:139)
+	at scala.tools.nsc.util.ScalaClassLoader$class.run(ScalaClassLoader.scala:71)
+	at scala.tools.nsc.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala:139)
+	at scala.tools.nsc.CommonRunner$class.run(ObjectRunner.scala:28)
+	at scala.tools.nsc.ObjectRunner$.run(ObjectRunner.scala:45)
+	at scala.tools.nsc.CommonRunner$class.runAndCatch(ObjectRunner.scala:35)
+	at scala.tools.nsc.ObjectRunner$.runAndCatch(ObjectRunner.scala:45)
+	at scala.tools.nsc.MainGenericRunner.runTarget$1(MainGenericRunner.scala:74)
+	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala:96)
+	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala:105)
+	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+Caused by: voldemort.store.UnreachableStoreException: Failure while checking out socket for localhost:6666(vp3): 
+	at voldemort.store.socket.clientrequest.ClientRequestExecutorPool.checkout(ClientRequestExecutorPool.java:175)
+	at voldemort.store.socket.SocketStore.request(SocketStore.java:274)
+	at voldemort.store.socket.SocketStore.get(SocketStore.java:190)
+	at voldemort.store.socket.SocketStore.get(SocketStore.java:62)
+	at voldemort.store.serialized.SerializingStore.get(SerializingStore.java:103)
+	at voldemort.client.AbstractStoreClientFactory.getRemoteMetadata(AbstractStoreClientFactory.java:439)
+	at voldemort.client.SocketStoreClientFactory.getRemoteMetadata(SocketStoreClientFactory.java:97)
+	... 45 more
+Caused by: java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:692)
+	at voldemort.store.socket.clientrequest.ClientRequestExecutorFactory.create(ClientRequestExecutorFactory.java:143)
+	at voldemort.store.socket.clientrequest.ClientRequestExecutorFactory.create(ClientRequestExecutorFactory.java:50)
+	at voldemort.utils.pool.KeyedResourcePool$Pool.attemptGrow(KeyedResourcePool.java:444)
+	at voldemort.utils.pool.KeyedResourcePool.attemptNonBlockingCheckout(KeyedResourcePool.java:168)
+	at voldemort.utils.pool.KeyedResourcePool.checkout(KeyedResourcePool.java:132)
+	at voldemort.store.socket.clientrequest.ClientRequestExecutorPool.checkout(ClientRequestExecutorPool.java:166)
+	... 51 more
+2013-07-31 04:03:29 WARN  AbstractStoreClientFactory:399 - Failed to bootstrap will try again after 5 seconds.
+2013-07-31 04:03:34 WARN  AbstractStoreClientFactory:424 - Failed to bootstrap from tcp://localhost:6666
+voldemort.VoldemortException: voldemort.store.UnreachableStoreException: Failure while checking out socket for localhost:6666(vp3): 
+	at voldemort.client.SocketStoreClientFactory.getRemoteMetadata(SocketStoreClientFactory.java:105)
+	at voldemort.client.AbstractStoreClientFactory.bootstrapMetadata(AbstractStoreClientFactory.java:420)
+	at voldemort.client.AbstractStoreClientFactory.bootstrapMetadataWithRetries(AbstractStoreClientFactory.java:395)
+	at voldemort.client.AbstractStoreClientFactory.getRawStore(AbstractStoreClientFactory.java:209)
+	at voldemort.client.AbstractStoreClientFactory.getRawStore(AbstractStoreClientFactory.java:187)
+	at voldemort.client.DefaultStoreClient.bootStrap(DefaultStoreClient.java:90)
+	at voldemort.client.DefaultStoreClient.<init>(DefaultStoreClient.java:81)
+	at voldemort.client.AbstractStoreClientFactory.getStoreClient(AbstractStoreClientFactory.java:160)
+	at voldemort.client.SocketStoreClientFactory.getParentStoreClient(SocketStoreClientFactory.java:91)
+	at voldemort.client.SocketStoreClientFactory.getStoreClient(SocketStoreClientFactory.java:86)
+	at voldemort.client.AbstractStoreClientFactory.getStoreClient(AbstractStoreClientFactory.java:152)
+	at configuration.storageManagement$$anonfun$connectAllStores$1$$anonfun$apply$1$$anonfun$apply$mcV$sp$1.apply(storageManagement.scala:110)
+	at configuration.storageManagement$$anonfun$connectAllStores$1$$anonfun$apply$1$$anonfun$apply$mcV$sp$1.apply(storageManagement.scala:102)
+	at scala.collection.Iterator$class.foreach(Iterator.scala:727)
+	at scala.collection.AbstractIterator.foreach(Iterator.scala:1157)
+	at scala.collection.IterableLike$class.foreach(IterableLike.scala:72)
+	at scala.collection.AbstractIterable.foreach(Iterable.scala:54)
+	at configuration.storageManagement$$anonfun$connectAllStores$1$$anonfun$apply$1.apply$mcV$sp(storageManagement.scala:102)
+	at scala.util.control.Breaks.breakable(Breaks.scala:37)
+	at configuration.storageManagement$$anonfun$connectAllStores$1.apply(storageManagement.scala:101)
+	at configuration.storageManagement$$anonfun$connectAllStores$1.apply(storageManagement.scala:96)
+	at scala.collection.Iterator$class.foreach(Iterator.scala:727)
+	at scala.collection.AbstractIterator.foreach(Iterator.scala:1157)
+	at scala.collection.IterableLike$class.foreach(IterableLike.scala:72)
+	at scala.collection.AbstractIterable.foreach(Iterable.scala:54)
+	at configuration.storageManagement.connectAllStores(storageManagement.scala:96)
+	at configuration.storageManagement.startupSetup(storageManagement.scala:142)
+	at voldemortTest$.main(voldemortTest.scala:43)
+	at voldemortTest.main(voldemortTest.scala)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at scala.tools.nsc.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala:71)
+	at scala.tools.nsc.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala:31)
+	at scala.tools.nsc.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala:139)
+	at scala.tools.nsc.util.ScalaClassLoader$class.run(ScalaClassLoader.scala:71)
+	at scala.tools.nsc.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala:139)
+	at scala.tools.nsc.CommonRunner$class.run(ObjectRunner.scala:28)
+	at scala.tools.nsc.ObjectRunner$.run(ObjectRunner.scala:45)
+	at scala.tools.nsc.CommonRunner$class.runAndCatch(ObjectRunner.scala:35)
+	at scala.tools.nsc.ObjectRunner$.runAndCatch(ObjectRunner.scala:45)
+	at scala.tools.nsc.MainGenericRunner.runTarget$1(MainGenericRunner.scala:74)
+	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala:96)
+	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala:105)
+	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+Caused by: voldemort.store.UnreachableStoreException: Failure while checking out socket for localhost:6666(vp3): 
+	at voldemort.store.socket.clientrequest.ClientRequestExecutorPool.checkout(ClientRequestExecutorPool.java:175)
+	at voldemort.store.socket.SocketStore.request(SocketStore.java:274)
+	at voldemort.store.socket.SocketStore.get(SocketStore.java:190)
+	at voldemort.store.socket.SocketStore.get(SocketStore.java:62)
+	at voldemort.store.serialized.SerializingStore.get(SerializingStore.java:103)
+	at voldemort.client.AbstractStoreClientFactory.getRemoteMetadata(AbstractStoreClientFactory.java:439)
+	at voldemort.client.SocketStoreClientFactory.getRemoteMetadata(SocketStoreClientFactory.java:97)
+	... 45 more
+Caused by: java.net.ConnectException: Connection refused
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:692)
+	at voldemort.store.socket.clientrequest.ClientRequestExecutorFactory.create(ClientRequestExecutorFactory.java:143)
+	at voldemort.store.socket.clientrequest.ClientRequestExecutorFactory.create(ClientRequestExecutorFactory.java:50)
+	at voldemort.utils.pool.KeyedResourcePool$Pool.attemptGrow(KeyedResourcePool.java:444)
+	at voldemort.utils.pool.KeyedResourcePool.attemptNonBlockingCheckout(KeyedResourcePool.java:168)
+	at voldemort.utils.pool.KeyedResourcePool.checkout(KeyedResourcePool.java:132)
+	at voldemort.store.socket.clientrequest.ClientRequestExecutorPool.checkout(ClientRequestExecutorPool.java:166)
+	... 51 more
+2013-07-31 04:03:34 INFO  masterMessagingActor:72 - Starting masterMessagingActor (Message Master) instance hashcode # 17411258
+2013-07-31 04:03:34 INFO  masterMessagingActor:72 - Configuring masterMessagingActor (Message Master) child actors hashcode # 17411258
+2013-07-31 04:03:34 INFO  masterRouterActor:72 - Starting masterMessagingActor (Message Master) instance hashcode # 11583700
+2013-07-31 04:03:34 INFO  masterRouterActor:72 - Configuring masterMessagingActor (Message Master) child actors hashcode # 11583700
+2013-07-31 04:03:35 INFO  masterMessagingActor$$anonfun$3$$anon$1:72 - Starting topicManagementWorkActor (topicManagementWorkActor under masterMessagingActor) instance hashcode # 28626859
+2013-07-31 04:03:35 INFO  masterRouterActor$$anonfun$3$$anon$1:72 - Starting adminWorkerActor (adminWorkerActor under masterRouterActor) instance hashcode # 32481174
+2013-07-31 04:03:35 INFO  broadcasterManagerActor:72 - Starting broadcasterManagerActor (broadcasterManagerActor under masterMessagingActor) instance hashcode # 28651674
+2013-07-31 04:03:35 INFO  subscriptionManagerActor:72 - Starting subscriptionManagerActor (subscriptionManagerActor under masterMessagingActor) instance hashcode # 2827940
+2013-07-31 04:03:35 INFO  topicManagerActor:72 - Starting topicManagerActor (topicManagerActor under masterMessagingActor) instance hashcode # 16722509
+2013-07-31 04:03:35 INFO  routerActor:72 - Starting routerActor (routerActor under masterRouterActor) instance hashcode # 29904692
+2013-07-31 04:03:35 INFO  routerDispatcherActor:72 - Starting routerDispatcherActor (routerDispatcherActor under masterRouterActor) instance hashcode # 19984884
+2013-07-31 04:03:35 INFO  routerDispatcherActor:72 - Initialising routerDispatcherActor child actors: forwardDecoderActor & workerManagerActor. Hashcode # 19984884
+2013-07-31 04:03:35 INFO  forwardDecoderActor:72 - Starting forwardDecoderActor (forwardDecoderActor under routerDispatcherActor) instance hashcode # 30794001
+2013-07-31 04:03:35 INFO  workerManagerActor:72 - Starting workerManagerActor (workerManagerActor under routerDispatcherActor) instance hashcode # 9417023
+2013-07-31 04:03:35 INFO  forwardResultActor:72 - Starting forwardResultActor (forwardResultActor under forwardDecoderActor) instance hashcode # 16655857
+2013-07-31 04:03:36 INFO  WebServer:139 - Socko server 'WebServer' started on 0.0.0.0:8888

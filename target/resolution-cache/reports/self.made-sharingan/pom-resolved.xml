@@ -4,10 +4,10 @@
 	<info
 		organisation="self.made"
 		module="sharingan"
-		revision="1.0"
+		revision="1.1"
 		conf="pom"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom"
-		date="20130630141303"/>
+		date="20130730223525"/>
 	<dependencies>
 	</dependencies>
 </ivy-report>

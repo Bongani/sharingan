@@ -1,4 +1,4 @@
-package akka.messaging
+/*package akka.messaging
 
 import akka.actor.ActorRef
 import java.util.HashMap
@@ -23,4 +23,4 @@ class maMap {
     actorMap.remove(actorName);
   }
   
-}
+}*/

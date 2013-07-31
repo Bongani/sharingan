@@ -10,10 +10,17 @@ import scala.concurrent.duration._
 import akka.actor.Props
 import java.io.File
 import scala.xml.XML
+import org.eligosource.eventsourced.core._
+import akka.actor.ActorRef
+import java.util.HashMap
+import java.util.Map
+import akka.webserver.actorRequest
 
-class masterMessagingActor extends Actor with ActorLogging {
+
+class masterMessagingActor(extension : EventsourcingExtension, subSystemID: Int) extends Actor with ActorLogging {
   
-   def mapForActorRef = messagingActorMap.messagingActorRefMap;
+   //def mapForActorRef = messagingActorMap.messagingActorRefMap;
+  var mapForActorRef: Map[String, ActorRef] = new HashMap[String, ActorRef];
    
    var actorLower : Int = 1;
    var actorUpper : Int = 10;
@@ -30,18 +37,28 @@ class masterMessagingActor extends Actor with ActorLogging {
     actorConfig();
     val resizer = new DefaultResizer(lowerBound = actorLower, upperBound = actorUpper);
     
-    //multiple instances
-    val subsciptManager = context.actorOf(Props[subscriptionManagerActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "subscriptionActor");
-    mapForActorRef.putActor("subscriptionActor", subsciptManager);
-    //multiple instances
-    val broadcastActor = context.actorOf(Props[broadcasterManagerActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "broadcasterManagerActor");
-    mapForActorRef.putActor("broadcasterManagerActor", broadcastActor);
+    
+    
     //single instance
-    val topicAdminstatorActor = context.actorOf(Props[topicManagementWorkActor], name = "topicAdminActor");
-    mapForActorRef.putActor("topicAdminActor", topicAdminstatorActor);
+    //val processor: ActorRef = extension.processorOf(Props(new Processor with Eventsourced { val id = 1 } ))
+    val topicAdminID: Int =subSystemID + 1;
+    val topicAdminstatorActor = extension.processorOf(Props(new topicManagementWorkActor(extension, topicAdminID) with Eventsourced { val id = topicAdminID} ))
+    //recover actor process
+    extension.recover(Seq(ReplayParams(topicAdminID, snapshot = true)));
+      //context.actorOf(Props[topicManagementWorkActor], name = "topicAdminActor");
+    mapForActorRef.put("topicAdminActor", topicAdminstatorActor);
+    
+    //multiple instances
+    val subsciptManager = context.actorOf(Props(new subscriptionManagerActor(topicAdminstatorActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "subscriptionActor");
+    mapForActorRef.put("subscriptionActor", subsciptManager);    
+    
+    //multiple instances
+    val broadcastActor = context.actorOf(Props(new broadcasterManagerActor(topicAdminstatorActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "broadcasterManagerActor");
+    mapForActorRef.put("broadcasterManagerActor", broadcastActor);    
+    
     //multiple instances
     val topicManagementActor = context.actorOf(Props(new topicManagerActor(topicAdminstatorActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "topicManagerActor");
-    mapForActorRef.putActor("topicManagerActor", topicManagementActor);
+    mapForActorRef.put("topicManagerActor", topicManagementActor);
     
   }
   
@@ -68,6 +85,10 @@ class masterMessagingActor extends Actor with ActorLogging {
   
   
   def receive ={
+    case request: actorRequest =>{
+      val requestedActor: ActorRef = mapForActorRef.get(request.actorName);
+      sender ! requestedActor
+    } 
     case _=> log.info("unknown message");
   }
   

@@ -7,7 +7,8 @@ import org.mashupbots.socko.events.WebSocketFrameEvent
 import messages.topicMessage
 import net.liftweb.json._
 import net.liftweb.json.JsonDSL._
-import akka.messaging.topicMap
+//import akka.messaging.topicMap
+import org.eligosource.eventsourced.core._
 
 case class jsonTopicMessage(topicName: String, task: String);
 
@@ -24,7 +25,9 @@ class topicManagerActor ( tAdminActor: ActorRef) extends Actor with ActorLogging
       log.info("recieved JSON message for topic Management")
       val vMessageStringfied = websocketEvent.readText;
       val tMessage: topicMessage = decodeTopicMessage(vMessageStringfied, websocketEvent); 
-      tAdminActor ! tMessage;
+      tAdminActor ! Message(tMessage);
+      //need to tell admin actor to take a snapshot
+      tAdminActor ! SnapshotRequest;
     }
     
     case _=> log.info("unknown message")

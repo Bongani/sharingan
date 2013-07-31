@@ -1,4 +1,4 @@
-package akka.router
+/*package akka.router
 
 import akka.actor.ActorRef
 import java.util.HashMap
@@ -23,4 +23,4 @@ class raMap {
     actorMap.remove(actorName);
   }
   
-}
+}*/
