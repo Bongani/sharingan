@@ -6,12 +6,13 @@ import org.mashupbots.socko.events.WebSocketFrameEvent
 import net.liftweb.json._
 import net.liftweb.json.JsonDSL._
 import akka.actor.ActorRef
+import org.eligosource.eventsourced.core._
 
 sealed trait adminNodeEvent
-case class nodeManagerMessage(operation: String, nodeID: String) extends adminNodeEvent;
+case class nodeManagerMessage(operation: String, nodeName: String, nodeID: Int) extends adminNodeEvent;
 
 
-case class jsonNodeManagerMessage(operation: String, nodeID: String);
+case class jsonNodeManagerMessage(operation: String, nodeName: String, nodeID: Int);
 
 class jsonDecoder(nodeManager : ActorRef) extends Actor with ActorLogging {
   
@@ -22,7 +23,9 @@ class jsonDecoder(nodeManager : ActorRef) extends Actor with ActorLogging {
       log.info("recieved JSON message for Node Admin")
       val jMessageStringfied = websocketEvent.readText;
       val managerMessage : nodeManagerMessage = decodeJSONMessage(jMessageStringfied);
-      nodeManager ! managerMessage;
+      nodeManager ! Message(managerMessage)
+      //need to tell actor to take a snapshot
+      nodeManager ! SnapshotRequest;;
     }
     
     case _=> log.info("unknown message")
@@ -34,8 +37,9 @@ class jsonDecoder(nodeManager : ActorRef) extends Actor with ActorLogging {
     
     val adminOperation = jsonData.operation;
     val nodeIdentifier = jsonData.nodeID;
+    val nodeUniqueName = jsonData.nodeName;
     
-    val adminMessage = new nodeManagerMessage(adminOperation, nodeIdentifier);
+    val adminMessage = new nodeManagerMessage(adminOperation, nodeUniqueName,nodeIdentifier);
     return adminMessage;
     
   }

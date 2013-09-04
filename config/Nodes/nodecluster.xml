@@ -1,8 +1,10 @@
 <nodecluster>
 	<node>
-		<id>"test1"</id>
+		<id>0</id>
+		<name>"test0"</name>
 	</node>
 	<node>
-		<id>"test2"</id>
+		<id>1</id>
+		<name>"test1"</name>
 	</node>
 </nodecluster>

@@ -1,7 +1,7 @@
 [0m[[0mdebug[0m] [0mOther repositories:[0m
 [0m[[0mdebug[0m] [0mDefault repositories:[0m
 [0m[[0mdebug[0m] [0m	Raw(ProjectResolver(inter-project, mapped: ))[0m
-[0m[[0mdebug[0m] [0m	FileRepository(local,FileConfiguration(true,None),sbt.Patterns@1a20baa)[0m
+[0m[[0mdebug[0m] [0m	FileRepository(local,FileConfiguration(true,None),sbt.Patterns@9e26c0)[0m
 [0m[[0mdebug[0m] [0m	Typesafe Repo: http://repo.typesafe.com/typesafe/releases/[0m
 [0m[[0mdebug[0m] [0m	Typesafe Repository: http://repo.typesafe.com/typesafe/releases/[0m
 [0m[[0mdebug[0m] [0m	releases: http://oss.sonatype.org/content/repositories/releases[0m

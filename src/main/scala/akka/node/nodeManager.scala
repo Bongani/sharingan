@@ -8,13 +8,17 @@ import java.util.Map
 import akka.actor.PoisonPill
 import java.io.File
 import scala.xml.XML
+import org.eligosource.eventsourced.core._
+import akka.webserver.nodeRequest
 
-class nodeManager (actorSystem : ActorSystem) extends Actor with ActorLogging{
+
+
+class nodeManager (actorSystem : ActorSystem, extension : EventsourcingExtension) extends Actor with ActorLogging{
   
   var nodeMap: Map[String, systemNode] = new HashMap[String, systemNode];
   
   def receive ={
-    case message: nodeManagerMessage => {
+    /*case message: nodeManagerMessage => {
       val operation = message.operation;
       
       operation match {
@@ -23,13 +27,45 @@ class nodeManager (actorSystem : ActorSystem) extends Actor with ActorLogging{
         case _ => log.info("Recieved unknown operation message for the  node manager: nodeManager");
       }     
       
+    }*/
+    case "configNodes" => {
+      println("Configuring nodes");
+      nodeConfig;
     }
+    
+    case evtSourcedMessage: Message => {
+      //topicMessage
+      val message: nodeManagerMessage = evtSourcedMessage.event.asInstanceOf[nodeManagerMessage];
+     
+      val operation = message.operation;
+      
+      operation match {
+        case "create" => createNewNode(message.nodeName, message.nodeID);
+        case "delete" => deleteNode(message.nodeName);
+        case _ => log.info("Recieved unknown operation message for the  node manager: nodeManager");
+      } 
+    }
+    
+    case nodeRequestMessage: nodeRequest => {
+      val node : systemNode = nodeMap.get(nodeRequestMessage.nodeName);
+      sender ! node;
+    }
+    
+    case sr @ SnapshotRequest(pid, snr, _) => {
+        sr.process(nodeMap)
+        println(s"processed snapshot request for (snr = ${snr})")
+
+      }
+    case so @ SnapshotOffer(Snapshot(_, snr, time, nMap: Map[String,systemNode])) => {
+        nodeMap = nMap.asInstanceOf[Map[String, akka.node.systemNode]];
+        println(s"accepted snapshot offer for (snr = ${snr} time = ${time}})")
+      }
     
     case _=> log.info("unknown message");
   }
   
-  def createNewNode(nodeName : String): Unit ={
-    val node = new systemNode(nodeName, actorSystem);
+  def createNewNode(nodeName : String, nodeID : Int): Unit ={
+    val node = new systemNode(nodeName, nodeID,actorSystem, extension);
     nodeMap.put(nodeName, node);
     
   }
@@ -57,8 +93,12 @@ class nodeManager (actorSystem : ActorSystem) extends Actor with ActorLogging{
         print("no contents in the nodecluster.xml file");        
       } else {
         for (server <- nodeXML \ "node"){
-        var nodeID = (server \ "id").text;
-        createNewNode(nodeID);
+        var id = (server \ "id").text;
+        var nodeID = id.toInt;
+        var nodeName = (server \ "name").text;
+        var configurationID : Int = 10 * nodeID;
+        
+        createNewNode(nodeName, configurationID);
         }
         
       }

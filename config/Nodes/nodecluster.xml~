@@ -1,2 +1,10 @@
 <nodecluster>
+	<node>
+		<id>0</id>
+		<name>"test1"</name>
+	</node>
+	<node>
+		<id>1</id>
+		<name>"test2"</name>
+	</node>
 </nodecluster>

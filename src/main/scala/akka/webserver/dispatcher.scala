@@ -14,7 +14,6 @@ import akka.actor.ActorSystem
 import org.mashupbots.socko.webserver.SslConfig
 import org.mashupbots.socko.events.HttpResponseStatus
 import java.util.Date
-import java.io.File
 import akka.actor.actorRef2Scala
 import org.mashupbots.socko.events.WebSocketHandshakeEvent
 import org.mashupbots.socko.events.WebSocketFrameEvent
@@ -49,7 +48,7 @@ case class broadcastMessage(websockEvent: WebSocketFrameEvent, topicID: String) 
 //messages to request actors from router master & message master
 case class actorRequest(actorName : String) extends dispatcherEvents;
 
-class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef, messagingMaster: ActorRef, routingMaster: ActorRef) extends Actor with ActorLogging {
+class dispatcher(dipatcherChoice : Int, actorSystem: ActorSystem, storageActor: ActorRef, messagingMaster: ActorRef, routingMaster: ActorRef) extends Actor with ActorLogging {
   
   implicit var timeout = Timeout(5 seconds);
   
@@ -84,6 +83,7 @@ class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef, messagingMast
       //To start Web Socket processing we first have to authorize the handshake
       //This is a security measure to make sure that web sockets can only be established at your specified end points
      case Path("/storage") => {
+       //println("Testing if this works")
         wsHandshake.authorize();
         
       }
@@ -157,25 +157,35 @@ class dispatcher(actorSystem: ActorSystem, storageActor: ActorRef, messagingMast
   
   
   override def preStart(){
-    //SPDY setup
+    
+    if (dipatcherChoice == 1){
+      //SPDY setup
   
-  val keyStoreFile = new File("/home/bongani/Documents/server.jks");  
-  val keyStoreFilePassword = "password";
-  val sslConfig = SslConfig(keyStoreFile, keyStoreFilePassword, None, None);
-  val httpConfig = HttpConfig(spdyEnabled = true);
-  val webServerConfig = WebServerConfig(hostname="0.0.0.0", webLog = Some(WebLogConfig()), ssl = Some(sslConfig), http = httpConfig)
+     val keyStoreFile = new File("/home/bongani/Documents/server.jks");  
+     val keyStoreFilePassword = "password";
+     val sslConfig = SslConfig(keyStoreFile, keyStoreFilePassword, None, None);
+     val httpConfig = HttpConfig(spdyEnabled = true);
+     val webServerConfig = WebServerConfig(hostname="0.0.0.0", webLog = Some(WebLogConfig()), ssl = Some(sslConfig), http = httpConfig)
   
   
-  val webServer = new WebServer(webServerConfig, routes, actorSystem);
+    		 val webServer = new WebServer(webServerConfig, routes, actorSystem);
   
   //val webServer = new WebServer(WebServerConfig(), routes, actorSystem);
     
      
-  webServer.start();
-  println("Server started");
+     webServer.start();
+     println("Server started");    
+     registerActors;
+     println("Connect to https://hostname:8888/html to establish connection")
+    }
     
-  registerActors;
-  
+    if (dipatcherChoice == 2){
+      val webServer = new WebServer(WebServerConfig(), routes, actorSystem);
+      webServer.start();
+      println("Server started");
+      registerActors;
+      println("Connect to http://hostname:8888/html to establish connection")
+    }   
   
   }
   

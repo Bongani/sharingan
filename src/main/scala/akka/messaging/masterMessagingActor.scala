@@ -41,7 +41,7 @@ class masterMessagingActor(extension : EventsourcingExtension, subSystemID: Int)
     
     //single instance
     //val processor: ActorRef = extension.processorOf(Props(new Processor with Eventsourced { val id = 1 } ))
-    val topicAdminID: Int =subSystemID + 1;
+    val topicAdminID: Int =subSystemID + 5;
     val topicAdminstatorActor = extension.processorOf(Props(new topicManagementWorkActor(extension, topicAdminID) with Eventsourced { val id = topicAdminID} ))
     //recover actor process
     extension.recover(Seq(ReplayParams(topicAdminID, snapshot = true)));

@@ -30,7 +30,9 @@ class topicManagementWorkActor(extension : EventsourcingExtension, processorID :
         case "create" => {
           newTopic(message);
           }
-        case "remove" => {}
+        case "remove" => {
+          removeTopic(message);
+        }
         case _=> {
           log.info("Recieved unknown operation message for topic admin actor");
           //Fire back succesful creation of topic
@@ -79,6 +81,38 @@ class topicManagementWorkActor(extension : EventsourcingExtension, processorID :
      
     }
     
+  }
+  
+  def removeTopic(message: topicMessage): Unit ={
+    
+    //check if topic exists
+    if (!(topicMapManager.containsKey(message.name))){
+      //topic does not exist
+      createTopic(message.name, message.webSocketEvent);
+      log.info("new topic created: " + message.name);
+      //need to fire back that topic has been created
+    } else {
+      //topic exists
+      log.info("Topic is already removed: " + message.name);
+      //need to fire back that topic has been created
+      //Fire back succesful creation of topic
+      val json = ("topicName" -> message.name)~("task" -> "removed");
+      val returnMessage: String = compact(render(json));
+      message.webSocketEvent.writeText(returnMessage);
+     
+    }
+    
+  }
+  
+  def deleteTopic(topicName: String, event: WebSocketFrameEvent): Unit ={
+
+    
+    topicMapManager.remove(topicName);
+    
+    //Fire back succesful creation of topic
+    val json = ("topicName" -> topicName)~("task" -> "removed");
+    val returnMessage: String = compact(render(json));
+    event.writeText(returnMessage);
   }
   
   

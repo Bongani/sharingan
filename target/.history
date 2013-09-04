@@ -90,3 +90,26 @@ compile
 run /single_node_cluster/config/
 compile
 run /single_node_cluster/config/
+compile
+run /single_node_cluster/config/
+compile
+run /single_node_cluster/config/
+test
+test latency.transport
+compile
+run /single_node_cluster/config/
+compile
+run /single_node_cluster/config/
+compile
+assembly
+compile
+run /single_node_cluster/config/
+compile
+run /single_node_cluster/config/
+run
+run /single_node_cluster/config/
+run
+run 3 /single_node_cluster/config/
+assembly
+run
+run 2 /single_node_cluster/config/
