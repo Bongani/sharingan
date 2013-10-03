@@ -1,0 +1,49 @@
+Manifest-Version: 1.0
+Export-Package: org.codehaus.jackson.schema;uses:="org.codehaus.jackso
+ n.node,org.codehaus.jackson.map,org.codehaus.jackson.annotate,org.cod
+ ehaus.jackson";version="1.4.0",org.codehaus.jackson.node;uses:="org.c
+ odehaus.jackson.io,org.codehaus.jackson.map,org.codehaus.jackson.util
+ ,org.codehaus.jackson";version="1.4.0",org.codehaus.jackson.map.deser
+ ;uses:="org.codehaus.jackson.map.annotate,org.codehaus.jackson.map.ty
+ pe,org.codehaus.jackson.type,org.codehaus.jackson.node,org.codehaus.j
+ ackson.map,org.codehaus.jackson.util,org.codehaus.jackson.map.introsp
+ ect,org.codehaus.jackson";version="1.4.0",org.codehaus.jackson.map.an
+ notate;uses:="org.codehaus.jackson.map,org.codehaus.jackson.annotate"
+ ;version="1.4.0",org.codehaus.jackson.map;uses:="org.codehaus.jackson
+ .schema,org.codehaus.jackson.map.annotate,org.codehaus.jackson.map.ty
+ pe,org.codehaus.jackson.type,org.codehaus.jackson.node,org.codehaus.j
+ ackson.io,org.codehaus.jackson.map.deser,org.codehaus.jackson.util,or
+ g.codehaus.jackson.map.introspect,org.codehaus.jackson,org.codehaus.j
+ ackson.map.ser";version="1.4.0",org.codehaus.jackson.map.type;uses:="
+ org.codehaus.jackson.type";version="1.4.0",org.codehaus.jackson.map.i
+ ntrospect;uses:="org.codehaus.jackson.map.annotate,org.codehaus.jacks
+ on.map,org.codehaus.jackson.annotate,org.codehaus.jackson.map.type,or
+ g.codehaus.jackson.type";version="1.4.0",org.codehaus.jackson.map.ser
+ ;uses:="org.codehaus.jackson.schema,org.codehaus.jackson.map.annotate
+ ,org.codehaus.jackson.map.type,org.codehaus.jackson.type,org.codehaus
+ .jackson.node,org.codehaus.jackson.map,org.codehaus.jackson.map.intro
+ spect,org.codehaus.jackson";version="1.4.0"
+Private-Package: org.codehaus.jackson.map.ext,org.codehaus.jackson.map
+ .util
+Implementation-Title: Data mapper for Jackson JSON processor
+Implementation-Version: 1.4.0
+Built-By: tatu
+Tool: Bnd-unknown version
+Bundle-Name: Data mapper for Jackson JSON processor
+Created-By: 1.6.0_17 (Sun Microsystems Inc.)
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+DynamicImport-Package: org.joda.time, org.w3c.dom.ls, org.w3c.dom.boot
+ strap
+Bundle-Vendor: http://fasterxml.com
+Implementation-Vendor: http://fasterxml.com
+Bundle-Version: 1.4.0
+Bnd-LastModified: 1261271543470
+Bundle-ManifestVersion: 2
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Import-Package: javax.xml.datatype,javax.xml.namespace,javax.xml.parse
+ rs,org.codehaus.jackson;version="1.4.0",org.codehaus.jackson.annotate
+ ;version="1.4.0",org.codehaus.jackson.io;version="1.4.0",org.codehaus
+ .jackson.type;version="1.4.0",org.codehaus.jackson.util;version="1.4.
+ 0",org.w3c.dom,org.xml.sax
+Bundle-SymbolicName: jackson-mapper-asl
+

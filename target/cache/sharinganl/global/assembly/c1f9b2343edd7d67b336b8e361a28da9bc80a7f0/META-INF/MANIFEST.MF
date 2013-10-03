@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: chirino
+Build-Jdk: 1.6.0_33
+Specification-Title: HawtJNI Runtime
+Specification-Version: 1.6
+Specification-Vendor: FuseSource, Corp.
+Implementation-Title: HawtJNI Runtime
+Implementation-Version: 1.6
+Implementation-Vendor-Id: org.fusesource.hawtjni
+Implementation-Vendor: FuseSource, Corp.
+

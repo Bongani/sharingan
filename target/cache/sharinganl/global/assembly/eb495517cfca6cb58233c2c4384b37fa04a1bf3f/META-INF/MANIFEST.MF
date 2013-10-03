@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Vendor: org.eligosource
+Implementation-Title: eventsourced-journal-inmem
+Implementation-Version: 0.6-SNAPSHOT
+Implementation-Vendor-Id: org.eligosource
+Specification-Vendor: org.eligosource
+Specification-Title: eventsourced-journal-inmem
+Specification-Version: 0.6-SNAPSHOT
+

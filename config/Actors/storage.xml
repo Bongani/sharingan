@@ -1,7 +1,7 @@
 <storage>
 	<actionActor>
-		<lowerBound>2</lowerBound>
-		<upperBound>15</upperBound>
+		<lowerBound>500</lowerBound>
+		<upperBound>10000</upperBound>
 		<timeout>5</timeout>
 	</actionActor>
 </storage>

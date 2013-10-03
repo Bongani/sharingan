@@ -1,0 +1,47 @@
+Manifest-Version: 1.0
+Bundle-Name: Mockito Mock Library for Java. Hamcrest-core & Objenesis 
+ included in the bundle.
+Created-By: 1.5.0_22 (Sun Microsystems Inc.)
+Import-Package: COM.jrockit.reflect;resolution:=optional,jrockit.vm;re
+ solution:=optional,junit.framework;resolution:=optional,org.apache.to
+ ols.ant;resolution:=optional,org.apache.tools.ant.types;resolution:=o
+ ptional,org.hamcrest;version="[1.0,2.0)",org.junit;resolution:=option
+ al,org.junit.internal.runners;resolution:=optional,org.junit.runner;r
+ esolution:=optional,org.junit.runner.manipulation;resolution:=optiona
+ l,org.junit.runner.notification;resolution:=optional,org.junit.runner
+ s;resolution:=optional,org.junit.runners.model;resolution:=optional,o
+ rg.mockito;version="[1.8,2)",org.mockito.configuration;version="[1.8,
+ 2)",org.mockito.exceptions;version="[1.8,2)",org.mockito.exceptions.b
+ ase;version="[1.8,2)",org.mockito.exceptions.misusing;version="[1.8,2
+ )",org.mockito.exceptions.verification;version="[1.8,2)",org.mockito.
+ exceptions.verification.junit;version="[1.8,2)",org.mockito.invocatio
+ n;version="[1.8,2)",org.mockito.runners;version="[1.8,2)",org.mockito
+ .stubbing;version="[1.8,2)",org.mockito.stubbing.answers;version="[1.
+ 8,2)",org.mockito.verification;version="[1.8,2)",org.objenesis;versio
+ n="[1.0,2.0)",sun.reflect;resolution:=optional
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.mockito.mockito-all
+Tool: Bnd-0.0.313
+Bnd-LastModified: 1274735010697
+Export-Package: org.mockito.exceptions.base;version="1.8.5",org.mockit
+ o.stubbing;uses:="org.mockito.invocation";version="1.8.5",org.mockito
+ .exceptions.verification.junit;uses:="junit.framework,org.mockito.exc
+ eptions.verification";version="1.8.5",org.mockito.exceptions.misusing
+ ;uses:="org.mockito.exceptions.base";version="1.8.5",org.mockito.invo
+ cation;version="1.8.5",org.mockito.runners;uses:="org.junit.runner,or
+ g.junit.runner.notification,org.junit.runner.manipulation";version="1
+ .8.5",org.mockito.verification;version="1.8.5",org.mockito;uses:="org
+ .hamcrest,org.mockito.stubbing,org.mockito.verification,org.mockito.e
+ xceptions.base,org.mockito.exceptions,org.mockito.configuration,org.m
+ ockito.invocation";version="1.8.5",org.mockito.exceptions;uses:="org.
+ mockito.exceptions.verification.junit,org.mockito.exceptions.base,org
+ .mockito.exceptions.verification,org.mockito.exceptions.misusing";ver
+ sion="1.8.5",org.mockito.configuration;uses:="org.mockito,org.mockito
+ .stubbing";version="1.8.5",org.mockito.stubbing.answers;uses:="org.mo
+ ckito.exceptions.base,org.mockito.stubbing,org.mockito.invocation";ve
+ rsion="1.8.5",org.mockito.exceptions.verification;uses:="org.mockito.
+ exceptions.base";version="1.8.5",org.hamcrest;uses:="org.hamcrest.cor
+ e";version="1.1",org.hamcrest.core;uses:="org.hamcrest";version="1.1"
+ ,org.objenesis;version="1.0"
+Bundle-Version: 1.8.5
+

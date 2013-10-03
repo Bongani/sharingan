@@ -2,7 +2,7 @@ AkkaConfig {
  akka {
  
   # Event handlers to register at boot time (Logging$DefaultLogger logs to STDOUT)
-  event-handlers = ["akka.event.Logging$DefaultLogger"]
+  event-handlers = ["akka.event.slf4j.Slf4jEventHandler"]
   # Options: ERROR, WARNING, INFO, DEBUG
   stdout-loglevel = "OFF"
   loglevel = "DEBUG"

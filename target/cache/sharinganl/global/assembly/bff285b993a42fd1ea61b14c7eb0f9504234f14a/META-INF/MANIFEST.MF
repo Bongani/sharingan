@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: 1.6.0_07 (Apple Inc.)
+Built-By: philsteitz
+Build-Jdk: 1.6.0_07
+Implementation-Title: Commons Pool
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Vendor-Id: org.apache
+Implementation-Version: 1.5.2
+Specification-Title: Commons Pool
+Specification-Vendor: The Apache Software Foundation
+Specification-Version: 1.5.2
+X-Compile-Source-JDK: 1.3
+X-Compile-Target-JDK: 1.3
+Export-Package: org.apache.commons.pool.impl;version="1.5.2",org.apach
+ e.commons.pool;version="1.5.2"
+Tool: Bnd-0.0.238
+Bundle-Name: Commons Pool
+Bundle-Vendor: The Apache Software Foundation
+Bundle-Version: 1.5.2
+Bnd-LastModified: 1247071924940
+Bundle-ManifestVersion: 2
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-Description: Commons Object Pooling Library
+Import-Package: org.apache.commons.pool;version="1.5.2",org.apache.com
+ mons.pool.impl;version="1.5.2"
+Bundle-SymbolicName: org.apache.commons.pool
+Bundle-DocURL: http://commons.apache.org/pool/
+

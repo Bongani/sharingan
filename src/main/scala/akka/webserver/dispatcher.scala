@@ -48,7 +48,7 @@ case class broadcastMessage(websockEvent: WebSocketFrameEvent, topicID: String) 
 //messages to request actors from router master & message master
 case class actorRequest(actorName : String) extends dispatcherEvents;
 
-class dispatcher(dipatcherChoice : Int, actorSystem: ActorSystem, storageActor: ActorRef, messagingMaster: ActorRef, routingMaster: ActorRef) extends Actor with ActorLogging {
+class dispatcher(dipatcherChoice : Int, systemPort: Int, actorSystem: ActorSystem, storageActor: ActorRef, messagingMaster: ActorRef, routingMaster: ActorRef) extends Actor with ActorLogging {
   
   implicit var timeout = Timeout(5 seconds);
   
@@ -160,12 +160,14 @@ class dispatcher(dipatcherChoice : Int, actorSystem: ActorSystem, storageActor: 
     
     if (dipatcherChoice == 1){
       //SPDY setup
+      val workingDirectory = new java.io.File(".").getCanonicalPath();
+      var folderPath: String = workingDirectory + "/keystore/server.jks";
   
-     val keyStoreFile = new File("/home/bongani/Documents/server.jks");  
+     val keyStoreFile = new File(folderPath);  
      val keyStoreFilePassword = "password";
      val sslConfig = SslConfig(keyStoreFile, keyStoreFilePassword, None, None);
      val httpConfig = HttpConfig(spdyEnabled = true);
-     val webServerConfig = WebServerConfig(hostname="0.0.0.0", webLog = Some(WebLogConfig()), ssl = Some(sslConfig), http = httpConfig)
+     val webServerConfig = WebServerConfig(hostname="0.0.0.0",port= systemPort,webLog = Some(WebLogConfig()), ssl = Some(sslConfig), http = httpConfig)
   
   
     		 val webServer = new WebServer(webServerConfig, routes, actorSystem);
@@ -176,16 +178,35 @@ class dispatcher(dipatcherChoice : Int, actorSystem: ActorSystem, storageActor: 
      webServer.start();
      println("Server started");    
      registerActors;
-     println("Connect to https://hostname:8888/html to establish connection")
+     println("Connect to https://hostname:+"+ systemPort + "/html to establish connection")
     }
     
     if (dipatcherChoice == 2){
-      val webServer = new WebServer(WebServerConfig(), routes, actorSystem);
+      //secure
+      val workingDirectory = new java.io.File(".").getCanonicalPath();
+      var folderPath: String = workingDirectory + "/keystore/server.jks";  
+     val keyStoreFile = new File(folderPath);  
+     val keyStoreFilePassword = "password";
+      
+     val sslConfig = SslConfig(keyStoreFile, keyStoreFilePassword, None, None)
+      val webServer = new WebServer(WebServerConfig(hostname="0.0.0.0",port=systemPort,ssl = Some(sslConfig)), routes, actorSystem)
+     
+      //val webServer = new WebServer(WebServerConfig(hostname="0.0.0.0",port=7777), routes, actorSystem);
       webServer.start();
       println("Server started");
       registerActors;
-      println("Connect to http://hostname:8888/html to establish connection")
+      println("Connect to https://hostname:" + systemPort +"/html to establish connection")
     }   
+    
+     if (dipatcherChoice == 3){
+      //secure
+
+      val webServer = new WebServer(WebServerConfig(hostname="0.0.0.0",port=systemPort), routes, actorSystem);
+      webServer.start();
+      println("Server started");
+      registerActors;
+      println("Connect to http://hostname:" + systemPort + "/html to establish connection")
+    } 
   
   }
   

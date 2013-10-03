@@ -1,0 +1,4 @@
+1329 [main] INFO  o.m.socko.webserver.WebServer - Socko server 'WebServer' started on localhost:8888
+3886 [Thread-0] INFO  o.m.socko.webserver.WebServer - Socko server 'WebServer' stopped
+1015 [main] INFO  o.m.socko.webserver.WebServer - Socko server 'WebServer' started on localhost:8888
+23849760 [Thread-0] INFO  o.m.socko.webserver.WebServer - Socko server 'WebServer' stopped

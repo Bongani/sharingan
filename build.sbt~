@@ -38,6 +38,7 @@ mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
     case x if x endsWith "NOTICE.txt" => MergeStrategy.concat
     case x if x endsWith "NOTICE" => MergeStrategy.concat
     case x if x endsWith "LICENSE.txt" => MergeStrategy.concat
+    case x if x endsWith "LICENSE" => MergeStrategy.concat
     case PathList("META-INF", xs @ _*) =>
       (xs map {_.toLowerCase}) match {
         case ("manifest.mf" :: Nil) | ("index.list" :: Nil) | ("dependencies" :: Nil) =>

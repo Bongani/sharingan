@@ -5,7 +5,7 @@ assemblySettings
 
 name := "sharingan"
  
-version := "1.1"
+version := "0.1"
  
 scalaVersion := "2.10.1"
  
@@ -18,10 +18,10 @@ libraryDependencies ++= Seq("com.typesafe.akka" %% "akka-actor" % "2.2.0-RC1",
 			"com.typesafe.akka" % "akka-kernel_2.10" % "2.2.0-RC1",
 			"org.mashupbots.socko" %% "socko-webserver" % "0.3.0",
 			"net.liftweb" %% "lift-json" % "2.5-RC6",
-			"org.eligosource" %% "eventsourced-core" % "0.6-SNAPSHOT",
-			"org.eligosource" %% "eventsourced-journal-journalio" % "0.6-SNAPSHOT",
-			"org.eligosource" %% "eventsourced-journal-leveldb" % "0.6-SNAPSHOT",
-			"org.eligosource" %% "eventsourced-journal-inmem" % "0.6-SNAPSHOT")
+			"org.eligosource" %% "eventsourced-core" % "0.6.0",
+			"org.eligosource" %% "eventsourced-journal-journalio" % "0.6.0",
+			"org.eligosource" %% "eventsourced-journal-leveldb" % "0.6.0",
+			"org.eligosource" %% "eventsourced-journal-inmem" % "0.6.0")
 
 
 

@@ -113,3 +113,28 @@ run 3 /single_node_cluster/config/
 assembly
 run
 run 2 /single_node_cluster/config/
+assembly
+run
+run 1 /single_node_cluster/config/
+run 2 /single_node_cluster/config/
+assembly
+compile
+assembly
+run 1 /single_node_cluster/config/
+assembly
+compile
+assembly
+run 2 /single_node_cluster/config/
+assembly
+run
+run 3 /single_node_cluster/config/
+assembly
+run 3 /single_node_cluster/config/
+sbt
+compile
+run 3 /single_node_cluster/config/
+run
+run 3 7777 /single_node_cluster/config/
+run 3 7778 /single_node_cluster/config/
+run 3 7777 /single_node_cluster/config/
+run 3 7778 /single_node_cluster/config/

@@ -1,0 +1,76 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: 1.5.0_18 (Sun Microsystems Inc.)
+Built-By: gregw
+Build-Jdk: 1.5.0_18
+implementation-version: 6.1.18
+mode: development
+package: org.mortbay
+url: http://www.eclipse.org/jetty/jetty-parent/project/modules/jetty
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0, http://www
+ .eclipse.org/org/documents/epl-v10.php
+Import-Package: javax.net.ssl,javax.security.cert,javax.servlet;versio
+ n="2.5",javax.servlet.http;version="2.5",javax.servlet.jsp;resolution
+ :=optional,javax.servlet.resources;resolution:=optional;version="2.5"
+ ,javax.xml.parsers,org.apache.jasper.servlet;resolution:=optional,org
+ .mortbay.component;version="6.1",org.mortbay.jetty.handler.management
+ ;resolution:=optional,org.mortbay.log;version="6.1",org.mortbay.servl
+ et;version="6.1",org.mortbay.thread;version="6.1",org.mortbay.util;ve
+ rsion="6.1",org.mortbay.util.ajax;version="6.1",org.xml.sax,org.xml.s
+ ax.helpers
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bnd-LastModified: 1242634764574
+Export-Package: org.mortbay.jetty.bio;uses:="org.mortbay.log,org.mortb
+ ay.thread,org.mortbay.io.bio,org.mortbay.io,org.mortbay.jetty";versio
+ n="6.1.18",org.mortbay.servlet.jetty;uses:="javax.servlet.http,org.mo
+ rtbay.servlet,org.mortbay.jetty";version="6.1.18",org.mortbay.jetty.n
+ io;uses:="org.mortbay.log,org.mortbay.thread,org.mortbay.io,org.mortb
+ ay.jetty,org.mortbay.util.ajax,org.mortbay.io.nio";version="6.1.18",o
+ rg.mortbay.resource;uses:="org.mortbay.log,org.mortbay.util";version=
+ "6.1.18",org.mortbay.io.nio;uses:="org.mortbay.log,org.mortbay.compon
+ ent,org.mortbay.thread,org.mortbay.io,org.mortbay.jetty";version="6.1
+ .18",org.mortbay.jetty.security;uses:="org.mortbay.util,org.mortbay.c
+ omponent,javax.servlet.http,org.mortbay.jetty.bio,javax.security.cert
+ ,org.mortbay.resource,org.mortbay.log,javax.servlet,org.mortbay.io.bi
+ o,org.mortbay.jetty.servlet,org.mortbay.io,org.mortbay.jetty.handler,
+ org.mortbay.jetty.webapp,org.mortbay.jetty,javax.net.ssl";version="6.
+ 1.18",org.mortbay.jetty.deployer;uses:="org.mortbay.util,org.mortbay.
+ component,org.mortbay.resource,org.mortbay.log,org.mortbay.xml,org.mo
+ rtbay.jetty.handler,org.mortbay.jetty,org.mortbay.jetty.webapp";versi
+ on="6.1.18",org.mortbay.xml;uses:="org.mortbay.util,org.mortbay.compo
+ nent,org.xml.sax,org.mortbay.resource,org.mortbay.log,javax.xml.parse
+ rs,org.xml.sax.helpers";version="6.1.18",org.mortbay.io.bio;uses:="or
+ g.mortbay.log,org.mortbay.io";version="6.1.18",org.mortbay.jetty.serv
+ let;uses:="org.mortbay.util,javax.servlet.http,org.mortbay.component,
+ org.mortbay.jetty.nio,org.mortbay.resource,org.mortbay.io.nio,org.mor
+ tbay.jetty.security,org.mortbay.log,javax.servlet,org.mortbay.io,org.
+ mortbay.jetty.handler,org.mortbay.jetty";version="6.1.18",org.mortbay
+ .io;uses:="org.mortbay.util";version="6.1.18",org.mortbay.jetty.handl
+ er;uses:="org.mortbay.util,org.mortbay.component,javax.servlet.http,o
+ rg.mortbay.resource,org.mortbay.log,javax.servlet,org.mortbay.jetty.s
+ ervlet,org.mortbay.io,org.mortbay.jetty.webapp,org.mortbay.jetty";ver
+ sion="6.1.18",org.mortbay.jetty;uses:="org.mortbay.util,org.mortbay.c
+ omponent,javax.servlet.http,org.mortbay.jetty.bio,org.mortbay.thread,
+ org.mortbay.resource,org.mortbay.io.nio,org.mortbay.jetty.security,or
+ g.mortbay.log,javax.servlet,org.mortbay.jetty.servlet,org.mortbay.jet
+ ty.handler,org.mortbay.io,org.mortbay.jetty.webapp,org.mortbay.util.a
+ jax";version="6.1.18",org.mortbay.jetty.webapp;uses:="org.mortbay.uti
+ l,javax.servlet.http,org.mortbay.resource,org.mortbay.jetty.security,
+ org.mortbay.jetty.deployer,org.mortbay.log,javax.servlet,org.mortbay.
+ xml,org.mortbay.jetty.servlet,org.mortbay.jetty.handler,org.mortbay.j
+ etty";version="6.1.18"
+Bundle-Version: 6.1.18
+Ignore-Package: org.mortbay.jetty.bio,org.mortbay.servlet.jetty,org.mo
+ rtbay.jetty.nio,org.mortbay.resource,org.mortbay.io.nio,org.mortbay.j
+ etty.security,org.mortbay.jetty.deployer,org.mortbay.xml,org.mortbay.
+ io.bio,org.mortbay.jetty.servlet,org.mortbay.jetty.handler,org.mortba
+ y.io,org.mortbay.jetty,org.mortbay.jetty.webapp
+Bundle-Name: Jetty Server
+Bundle-Description: Jetty server core
+Bundle-DocURL: http://jetty.mortbay.org
+Originally-Created-By: 1.5.0_18 (Sun Microsystems Inc.)
+Bundle-Vendor: Mort Bay Consulting
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.mortbay.jetty.server
+Tool: Bnd-0.0.238
+

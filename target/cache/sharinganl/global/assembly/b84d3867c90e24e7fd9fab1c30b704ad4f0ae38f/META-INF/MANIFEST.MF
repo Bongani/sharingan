@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1363353440362
+Bundle-ManifestVersion: 2
+Bundle-Name: com.typesafe.akka.slf4j
+Bundle-SymbolicName: com.typesafe.akka.slf4j
+Bundle-Version: 2.1.2
+Created-By: 1.6.0_31 (Apple Inc.)
+Export-Package: akka.event.slf4j;uses:="akka.event,org.slf4j,scala.refle
+ ct,scala.runtime,scala,akka.actor";version="2.1.2"
+Import-Package: akka.actor;version="[2.1,2.2)",akka.event;version="[2.1,
+ 2.2)",org.slf4j;version="[1.7,2)",scala;version="[2.10,2.11)",scala.ref
+ lect;version="[2.10,2.11)",scala.runtime;version="[2.10,2.11)"
+Include-Resource: /Users/bjorn/Source/typesafe/akka/release-2.1/akka-slf
+ 4j/src/main/resources,/Users/bjorn/Source/typesafe/akka/release-2.1/akk
+ a-slf4j/target/resource_managed/main
+Private-Package: com.typesafe.akka.slf4j.*
+Tool: Bnd-1.50.0

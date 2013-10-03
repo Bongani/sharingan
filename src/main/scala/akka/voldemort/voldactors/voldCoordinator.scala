@@ -171,6 +171,7 @@ class voldCoordinator extends Actor with ActorLogging {
     //external messages from websocket event
     case wsEvent: WebSocketFrameEvent => {
       val vMessageStringfied = wsEvent.readText;
+      //println("Message output" + vMessageStringfied)
       val voldMessage: voldemortMessage = decodeVoldemortMessage(vMessageStringfied);
       //check if the storage exists, if not reply with error message
       val storage: DefaultStoreClient[Object, Object] = storeManager.getStorage(voldMessage.cStoreName);
