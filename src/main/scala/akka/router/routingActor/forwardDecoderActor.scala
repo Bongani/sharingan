@@ -5,7 +5,7 @@ import akka.actor.ActorLogging
 import net.liftweb.json._
 import net.liftweb.json.JsonDSL._
 import akka.routing.DefaultResizer
-import akka.routing.RoundRobinRouter
+import akka.routing.SmallestMailboxRouter
 import akka.actor.ActorRef
 import akka.actor.Props
 import akka.actor.OneForOneStrategy
@@ -40,7 +40,7 @@ class forwardDecoderActor(clientLogActor : ActorRef) extends Actor with ActorLog
     actorConfig();
     val resizer = new DefaultResizer(lowerBound = actorLower, upperBound = actorUpper);
     
-    forwardActor = context.actorOf(Props(new forwardResultActor(clientLogActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "forwardResultActor");
+    forwardActor = context.actorOf(Props(new forwardResultActor(clientLogActor)).withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "forwardResultActor");
     
   }
   

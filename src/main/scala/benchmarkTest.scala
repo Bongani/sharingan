@@ -11,9 +11,16 @@ import java.io.File
 import org.eligosource.eventsourced.core._
 import org.eligosource.eventsourced.journal.leveldb.LeveldbJournalProps
 import test.benchmarkDispatcher
+import akka.routing.SmallestMailboxRouter
+import akka.routing.DefaultResizer
+import akka.routing.FromConfig
+import scala.xml.XML
 
 
 object benchmarkTest {
+  
+  var actorLower : Int = 1;
+  var actorUpper : Int = 2;
 
   def storeManager = storage.storageManager;
   
@@ -51,7 +58,13 @@ object benchmarkTest {
     val extension: EventsourcingExtension = EventsourcingExtension(system, journal);
     
     
-    val voldActor = system.actorOf(Props[voldCoordinator], name = "voldemorCordAtor");
+    //val voldActor = system.actorOf(Props[voldCoordinator], name = "voldemorCordAtor");
+    actorConfig();
+    val resizer = new DefaultResizer(lowerBound = actorLower, upperBound = actorUpper);
+ 
+    
+    
+    val voldActor = system.actorOf(Props[voldCoordinator].withRouter(SmallestMailboxRouter(resizer = Some(resizer))), name = "voldemorCordAtor");
     
     storeManager.startupSetup(args(2));
 //actorOf(Props(new clientLogWebSocketEventFrame(messageRoutingActor)),"clientLogWebSocketActor");
@@ -69,6 +82,47 @@ object benchmarkTest {
    
     
     
+    
+  }
+  
+  def actorConfig() : Unit = {
+    var workingDirectory = new java.io.File(".").getCanonicalPath();
+    var folderPath: String = workingDirectory + "/config/Actors/";
+    var configFolder = new File(folderPath);
+    
+    if (configFolder.exists()){
+      //store actor information
+      var storageXML : scala.xml.Elem = readXMLFile(folderPath, "storage.xml");
+      //readStoreContent(storageXML);
+      
+      if (storageXML != null){
+              
+        val actorLowerBound = (storageXML \"storageCoor"\ "lowerBound").text;
+        val actorUpperBound = (storageXML \"storageCoor"\ "upperBound").text;
+        actorLower = actorLowerBound.toInt;
+        actorUpper = actorUpperBound.toInt;
+      }
+      
+      
+    } else {
+      println(" \n \n" + "Error: The folder for storage sctors could not be found. Path given: " + configFolder + " \n \n");
+      println("Will use generic settings")
+     
+    }
+  }
+  
+  
+  def readXMLFile(path: String, fileName: String): scala.xml.Elem ={
+    
+    var xmlFile = new File(path, fileName); 
+    if (xmlFile.exists()){
+      var xmlContent = XML.loadFile(xmlFile);
+      println("Read XML file for: " + fileName);
+      return xmlContent;
+    } else {
+      println("File not found for XML reading: " + fileName);
+      return null;
+    }
     
   }
 

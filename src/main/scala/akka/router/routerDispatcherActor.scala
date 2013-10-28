@@ -7,7 +7,7 @@ import net.liftweb.json._
 import net.liftweb.json.JsonDSL._
 import akka.actor.ActorRef
 import akka.routing.DefaultResizer
-import akka.routing.RoundRobinRouter
+import akka.routing.SmallestMailboxRouter
 import akka.actor.Props
 import akka.router.routingActor.forwardDecoderActor
 import akka.router.adminActors.workerManagerActor
@@ -43,8 +43,8 @@ class routerDispatcherActor(clientLogActor: ActorRef, adminActor : ActorRef) ext
     actorConfig();
     val resizer = new DefaultResizer(lowerBound = actorLower, upperBound = actorUpper);
     
-    forwardDcodeActor = context.actorOf(Props(new forwardDecoderActor(clientLogActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "forwardDecoderActor");
-    workerManagementActor = context.actorOf(Props(new workerManagerActor(adminActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "workerManagerActor");
+    forwardDcodeActor = context.actorOf(Props(new forwardDecoderActor(clientLogActor)).withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "forwardDecoderActor");
+    workerManagementActor = context.actorOf(Props(new workerManagerActor(adminActor)).withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "workerManagerActor");
     
   }
   

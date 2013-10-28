@@ -5,7 +5,7 @@ import voldemort.versioning.Version
 import voldemort.versioning.Versioned
 import akka.actor.Actor
 import akka.actor.Props
-import akka.routing.RoundRobinRouter
+import akka.routing.SmallestMailboxRouter
 import akka.routing.DefaultResizer
 import akka.routing.FromConfig
 import akka.voldemort.voldactors.actionactors.deleteActor
@@ -87,9 +87,9 @@ class voldCoordinator extends Actor with ActorLogging {
    
     actorConfig();
     val resizer = new DefaultResizer(lowerBound = actorLower, upperBound = actorUpper);
-    voldDeleteActor = context.actorOf(Props[deleteActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "deleteActor");
-    voldGetActor = context.actorOf(Props[getActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "getActor");
-    voldPutActor = context.actorOf(Props[putActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "putActor");
+    voldDeleteActor = context.actorOf(Props[deleteActor].withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "deleteActor");
+    voldGetActor = context.actorOf(Props[getActor].withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "getActor");
+    voldPutActor = context.actorOf(Props[putActor].withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "putActor");
     //voldPutActor = context.actorOf(Props[putActor].withRouter(FromConfig()), name = "voldPutActor");
     
   }

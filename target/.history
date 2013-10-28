@@ -138,3 +138,7 @@ run 3 7777 /single_node_cluster/config/
 run 3 7778 /single_node_cluster/config/
 run 3 7777 /single_node_cluster/config/
 run 3 7778 /single_node_cluster/config/
+run 3 7777 /single_node_cluster/config/
+compile
+eclipse
+run

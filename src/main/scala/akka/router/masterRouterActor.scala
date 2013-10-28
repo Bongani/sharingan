@@ -2,7 +2,7 @@ package akka.router
 
 import akka.actor.Actor
 import akka.actor.ActorLogging
-import akka.routing.RoundRobinRouter
+import akka.routing.SmallestMailboxRouter
 import akka.routing.DefaultResizer
 import akka.actor.OneForOneStrategy
 import akka.actor.SupervisorStrategy._
@@ -52,7 +52,7 @@ class masterRouterActor(extension : EventsourcingExtension, subSystemID: Int) ex
     
     //Worker actors for router Actor
     //multiple instances
-    val messageRoutingActor = context.actorOf(Props(new routeMessageActor(routingAdminActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "routeMessageActor");
+    val messageRoutingActor = context.actorOf(Props(new routeMessageActor(routingAdminActor)).withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "routeMessageActor");
     mapForActorRefRouter.put("routeMessageActor", messageRoutingActor);
     //single instance
     val clientLogID: Int =subSystemID + 2;
@@ -63,13 +63,13 @@ class masterRouterActor(extension : EventsourcingExtension, subSystemID: Int) ex
     
     mapForActorRefRouter.put("clientLogWebSocketActor", clientLogActor);
     //multiple instances
-    val routingActor = context.actorOf(Props(new routerActor(clientLogActor, messageRoutingActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "routerActor");
+    val routingActor = context.actorOf(Props(new routerActor(clientLogActor, messageRoutingActor)).withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "routerActor");
     mapForActorRefRouter.put("routerActor", routingActor);
     
     
     mapForActorRefRouter.put("adminWorkerActor", routingAdminActor);
     //multiple instances
-    val routerDispatchActor = context.actorOf(Props(new routerDispatcherActor(clientLogActor, routingAdminActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)),"routerDispatcherActor");
+    val routerDispatchActor = context.actorOf(Props(new routerDispatcherActor(clientLogActor, routingAdminActor)).withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)),"routerDispatcherActor");
     mapForActorRefRouter.put("routerDispatcherActor", routerDispatchActor);
     
   }

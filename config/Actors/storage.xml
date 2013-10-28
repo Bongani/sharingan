@@ -1,7 +1,11 @@
 <storage>
+        <storageCoor>
+		<lowerBound>1</lowerBound>
+		<upperBound>1</upperBound>
+	</storageCoor>
 	<actionActor>
-		<lowerBound>500</lowerBound>
-		<upperBound>10000</upperBound>
+		<lowerBound>1</lowerBound>
+		<upperBound>1</upperBound>
 		<timeout>5</timeout>
-	</actionActor>
+	</actionActor>         
 </storage>

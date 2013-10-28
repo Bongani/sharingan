@@ -1,9 +1,11 @@
-[0m[[0minfo[0m] [0mRunning benchmarkTest 3 7778 /single_node_cluster/config/[0m
+[0m[[0minfo[0m] [0mRunning benchmarkTest 3 7777 /single_node_cluster/config/[0m
 [0m[[0minfo[0m] [0mRead XML file for: storage.xml[0m
 [0m[[0minfo[0m] [0mRead XML file for: cluster.xml[0m
 [0m[[0minfo[0m] [0mRead XML file for: stores.xml[0m
 [0m[[0minfo[0m] [0mCould not connect to server: No available bootstrap servers found![0m
 [0m[[0minfo[0m] [0mRead XML file for: routing.xml[0m
 [0m[[0minfo[0m] [0mRead XML file for: messaging.xml[0m
+[0m[[0minfo[0m] [0mRead XML file for: routing.xml[0m
+[0m[[0minfo[0m] [0mRead XML file for: routing.xml[0m
 [0m[[0minfo[0m] [0mServer started[0m
-[0m[[0minfo[0m] [0mConnect to http://hostname:7778/html to establish connection[0m
+[0m[[0minfo[0m] [0mConnect to http://hostname:7777/html to establish connection[0m
