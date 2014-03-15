@@ -2,7 +2,7 @@ package akka.messaging
 
 import akka.actor.ActorLogging
 import akka.actor.Actor
-import akka.routing.SmallestMailboxRouter
+import akka.routing.RoundRobinRouter
 import akka.routing.DefaultResizer
 import akka.actor.OneForOneStrategy
 import akka.actor.SupervisorStrategy._
@@ -49,15 +49,15 @@ class masterMessagingActor(extension : EventsourcingExtension, subSystemID: Int)
     mapForActorRef.put("topicAdminActor", topicAdminstatorActor);
     
     //multiple instances
-    val subsciptManager = context.actorOf(Props(new subscriptionManagerActor(topicAdminstatorActor)).withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "subscriptionActor");
+    val subsciptManager = context.actorOf(Props(new subscriptionManagerActor(topicAdminstatorActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "subscriptionActor");
     mapForActorRef.put("subscriptionActor", subsciptManager);    
     
     //multiple instances
-    val broadcastActor = context.actorOf(Props(new broadcasterManagerActor(topicAdminstatorActor)).withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "broadcasterManagerActor");
+    val broadcastActor = context.actorOf(Props(new broadcasterManagerActor(topicAdminstatorActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "broadcasterManagerActor");
     mapForActorRef.put("broadcasterManagerActor", broadcastActor);    
     
     //multiple instances
-    val topicManagementActor = context.actorOf(Props(new topicManagerActor(topicAdminstatorActor)).withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "topicManagerActor");
+    val topicManagementActor = context.actorOf(Props(new topicManagerActor(topicAdminstatorActor)).withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "topicManagerActor");
     mapForActorRef.put("topicManagerActor", topicManagementActor);
     
   }

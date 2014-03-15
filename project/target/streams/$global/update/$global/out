@@ -64,6 +64,21 @@
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.eed3si9n#sbt-assembly;0.9.1[0m
 [0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: com.eed3si9n#sbt-assembly;0.9.1[0m
 [0m[[0mdebug[0m] [0m	found com.eed3si9n#sbt-assembly;0.9.1 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.typesafe.sbt#sbt-atmos;0.3.2 [compile->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving com.typesafe.sbt#sbt-atmos;0.3.2 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.typesafe.sbt#sbt-atmos;0.3.2 {compile=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.typesafe.sbt#sbt-atmos;0.3.2[0m
+[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: com.typesafe.sbt#sbt-atmos;0.3.2[0m
+[0m[[0mdebug[0m] [0m	found com.typesafe.sbt#sbt-atmos;0.3.2 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->default(compile)][0m
+[0m[[0minfo[0m] [0mResolving org.aspectj#aspectjtools;1.7.3 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.aspectj#aspectjtools;1.7.3 {compile=[default(compile)]}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.aspectj#aspectjtools;1.7.3[0m
+[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.aspectj#aspectjtools;1.7.3[0m
+[0m[[0mdebug[0m] [0m	found org.aspectj#aspectjtools;1.7.3 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->master][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'runtime'[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#sharingan-build;0.1-SNAPSHOT [runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#sharingan-build;0.1-SNAPSHOT [compile][0m
@@ -91,6 +106,11 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbteclipse#sbteclipse-core;2.3.0->org.scalaz#scalaz-effect_2.10;7.0.2 [compile->master][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.typesafe.akka#akka-sbt-plugin;2.2.1 [compile->default(compile)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.eed3si9n#sbt-assembly;0.9.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.typesafe.sbt#sbt-atmos;0.3.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->master][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'test'[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#sharingan-build;0.1-SNAPSHOT [test][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#sharingan-build;0.1-SNAPSHOT [runtime][0m
@@ -119,11 +139,16 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbteclipse#sbteclipse-core;2.3.0->org.scalaz#scalaz-effect_2.10;7.0.2 [compile->master][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.typesafe.akka#akka-sbt-plugin;2.2.1 [compile->default(compile)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.eed3si9n#sbt-assembly;0.9.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.typesafe.sbt#sbt-atmos;0.3.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->master][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'provided'[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#sharingan-build;0.1-SNAPSHOT [provided][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [provided->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.10.2 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@17e1475[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@557abf[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-library;2.10.2[0m
 [0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.scala-lang#scala-library;2.10.2[0m
 [0m[[0mdebug[0m] [0m	found org.scala-lang#scala-library;2.10.2 in sbt-chain[0m
@@ -707,6 +732,11 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbteclipse#sbteclipse-core;2.3.0->org.scalaz#scalaz-effect_2.10;7.0.2 [compile->master][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.typesafe.akka#akka-sbt-plugin;2.2.1 [compile->default(compile)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.eed3si9n#sbt-assembly;0.9.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.typesafe.sbt#sbt-atmos;0.3.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->master][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#sharingan-build;0.1-SNAPSHOT [optional][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#sharingan-build;0.1-SNAPSHOT [provided][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [provided->default(compile)][0m
@@ -1068,6 +1098,11 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbteclipse#sbteclipse-core;2.3.0->org.scalaz#scalaz-effect_2.10;7.0.2 [compile->master][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.typesafe.akka#akka-sbt-plugin;2.2.1 [compile->default(compile)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.eed3si9n#sbt-assembly;0.9.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.typesafe.sbt#sbt-atmos;0.3.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->master][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#sharingan-build;0.1-SNAPSHOT [optional][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'test-internal'[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#sharingan-build;0.1-SNAPSHOT [test-internal][0m
@@ -1104,6 +1139,11 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbteclipse#sbteclipse-core;2.3.0->org.scalaz#scalaz-effect_2.10;7.0.2 [compile->master][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.typesafe.akka#akka-sbt-plugin;2.2.1 [compile->default(compile)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.eed3si9n#sbt-assembly;0.9.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->com.typesafe.sbt#sbt-atmos;0.3.2 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.typesafe.sbt#sbt-atmos;0.3.2->org.aspectj#aspectjtools;1.7.3 [compile->master][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#sharingan-build;0.1-SNAPSHOT [optional][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#sharingan-build;0.1-SNAPSHOT [provided][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#sharingan-build;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.2 [provided->default(compile)][0m
@@ -1493,10 +1533,12 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.typesafe.sbteclipse#sbteclipse-plugin;2.3.0!sbteclipse-plugin.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.typesafe.akka#akka-sbt-plugin;2.2.1!akka-sbt-plugin.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.eed3si9n#sbt-assembly;0.9.1!sbt-assembly.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.typesafe.sbt#sbt-atmos;0.3.2!sbt-atmos.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.typesafe.sbteclipse#sbteclipse-core;2.3.0!sbteclipse-core.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scalaz#scalaz-core_2.10;7.0.2!scalaz-core_2.10.jar(bundle)[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scalaz#scalaz-effect_2.10;7.0.2!scalaz-effect_2.10.jar(bundle)[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-library;2.10.1!scala-library.jar[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.aspectj#aspectjtools;1.7.3!aspectjtools.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-library;2.10.2!scala-library.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-sbt#sbt;0.13.0!sbt.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-sbt#main;0.13.0!main.jar[0m
@@ -1544,7 +1586,7 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-sbt#apply-macro;0.13.0!apply-macro.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#jline;2.10.2!jline.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.fusesource.jansi#jansi;1.4!jansi.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 5089ms :: artifacts dl 253ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 4224ms :: artifacts dl 145ms[0m
 [0m[[0mdebug[0m] [0m	report for default#sharingan-build;0.1-SNAPSHOT compile produced in /home/bongani/Code/Network/sharingan/project/target/resolution-cache/reports/default-sharingan-build-compile.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#sharingan-build;0.1-SNAPSHOT runtime produced in /home/bongani/Code/Network/sharingan/project/target/resolution-cache/reports/default-sharingan-build-runtime.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#sharingan-build;0.1-SNAPSHOT test produced in /home/bongani/Code/Network/sharingan/project/target/resolution-cache/reports/default-sharingan-build-test.xml[0m
@@ -1558,5 +1600,5 @@
 [0m[[0mdebug[0m] [0m	report for default#sharingan-build;0.1-SNAPSHOT docs produced in /home/bongani/Code/Network/sharingan/project/target/resolution-cache/reports/default-sharingan-build-docs.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#sharingan-build;0.1-SNAPSHOT pom produced in /home/bongani/Code/Network/sharingan/project/target/resolution-cache/reports/default-sharingan-build-pom.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#sharingan-build;0.1-SNAPSHOT scala-tool produced in /home/bongani/Code/Network/sharingan/project/target/resolution-cache/reports/default-sharingan-build-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (5089ms resolve - 253ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (4224ms resolve - 145ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

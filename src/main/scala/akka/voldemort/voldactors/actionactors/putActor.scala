@@ -4,11 +4,11 @@ import akka.actor.ActorLogging
 import akka.actor.Actor
 import akka.voldemort.voldactors.put
 import akka.voldemort.voldactors.putVersion
-import akka.persistence.{ Persistent, PersistenceFailure, Processor }
-import akka.persistence.Recover
+//import akka.persistence.{ Persistent, PersistenceFailure, Processor }
+//import akka.persistence.Recover
 
 
-class putActor extends Processor with ActorLogging{
+class putActor extends Actor with ActorLogging{
   
   def receive = {
     case message: put => {
@@ -18,7 +18,7 @@ class putActor extends Processor with ActorLogging{
       message.clientStore.put(message.key, message.versioned);
     }
     
-    case Persistent(payload, sequenceNr) ⇒ {
+    /*case Persistent(payload, sequenceNr) ⇒ {
       // message successfully written to journal
       val message:put = payload.asInstanceOf[put];
       message.clientStore.put(message.key, message.value);
@@ -27,7 +27,7 @@ class putActor extends Processor with ActorLogging{
       // message failed to be written to journal
       val message:put = payload.asInstanceOf[put];
       message.clientStore.put(message.key, message.value);
-    }  
+    } */ 
     
     
     case _ => log.info("putActor recieved an unknown message");
@@ -35,8 +35,8 @@ class putActor extends Processor with ActorLogging{
   
   override def preStart() {
     log.info("ReStarting putActor (putActor under voldCoordinator) instance hashcode # {}", this.hashCode());
-    self ! Recover()
-    log.info("Recovering putActor (putActor under voldCoordinator) instance hashcode # {}", this.hashCode());
+    //self ! Recover()
+    //log.info("Recovering putActor (putActor under voldCoordinator) instance hashcode # {}", this.hashCode());
   }
   
   override def postStop() {

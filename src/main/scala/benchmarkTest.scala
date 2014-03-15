@@ -11,7 +11,7 @@ import java.io.File
 import org.eligosource.eventsourced.core._
 import org.eligosource.eventsourced.journal.leveldb.LeveldbJournalProps
 import test.benchmarkDispatcher
-import akka.routing.SmallestMailboxRouter
+import akka.routing.RoundRobinRouter
 import akka.routing.DefaultResizer
 import akka.routing.FromConfig
 import scala.xml.XML
@@ -64,7 +64,7 @@ object benchmarkTest {
  
     
     
-    val voldActor = system.actorOf(Props[voldCoordinator].withRouter(SmallestMailboxRouter(resizer = Some(resizer))), name = "voldemorCordAtor");
+    val voldActor = system.actorOf(Props[voldCoordinator].withRouter(RoundRobinRouter(resizer = Some(resizer))), name = "voldemorCordAtor");
     
     storeManager.startupSetup(args(2));
 //actorOf(Props(new clientLogWebSocketEventFrame(messageRoutingActor)),"clientLogWebSocketActor");
@@ -76,7 +76,7 @@ object benchmarkTest {
     val routingWorkerMasterActor = system.actorOf(Props (new masterRouterActor(extension, id)), name = "masterRouterWorkerActor");
       
     val webServerActor = system.actorOf(Props(new dispatcher(selection, port, system, voldActor, messagingMasterActor, routingWorkerMasterActor)), name = "dispatcherActor");
-      
+    
     }
     
    

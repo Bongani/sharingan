@@ -5,6 +5,7 @@ import akka.actor.ActorLogging
 import akka.voldemort.voldactors.get
 import akka.voldemort.voldactors.getVersioned
 import voldemort.versioning.Versioned
+import java.io.IOException
 
 
 /*trait getInterface{
@@ -37,6 +38,7 @@ class getActor extends getInterface {
 class getActor extends Actor with ActorLogging{
   
   def receive = {
+    case message: String => throw new IOException
     case message: get => {
       val value: Versioned[Object] = message.clientStore.get(message.key);
       sender ! value;      

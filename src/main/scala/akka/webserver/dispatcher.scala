@@ -28,8 +28,6 @@ import akka.router.routingActor.routerActor
 import akka.router.routingActor.clientLogWebSocketEventFrame
 import akka.router.routingActor.routeMessageActor
 import akka.messaging.topicManagementWorkActor
-//import akka.messaging.messagingActorMap
-//import akka.router.routerActorMap
 import akka.util.Timeout
 import scala.concurrent.duration._
 import akka.pattern.ask
@@ -39,6 +37,7 @@ import scala.concurrent.TimeoutException
 import akka.dispatch.Futures
 import akka.dispatch.OnComplete
 import scala.concurrent.ExecutionContext.Implicits.global
+import test.actorTest
 
 //dispatcher actors internal messages
 sealed trait dispatcherEvents
@@ -64,6 +63,7 @@ class dispatcher(dipatcherChoice : Int, systemPort: Int, actorSystem: ActorSyste
   //Worker actors for dispatcher Actor  
   var routerDispatchActor: ActorRef = null;//actorSystem.actorOf(Props(new routerDispatcherActor(clientLogActor, routingAdminActor)),"routerDispatcherActor");
   
+  var helloActor: ActorRef = actorSystem.actorOf(Props[actorTest]);
   
   
   val routes = Routes({
@@ -71,8 +71,15 @@ class dispatcher(dipatcherChoice : Int, systemPort: Int, actorSystem: ActorSyste
       case HttpRequest(httpRequest) => httpRequest match {
       case GET(Path("/html")) => {
         // Return HTML page to establish web socket
-        httpRequest.response.write("Hello from Socko (" + new Date().toString + ")")
+        //httpRequest.response.write("Hello from Socko (" + new Date().toString + ")")
+        helloActor ! httpRequest
       }
+      case GET(Path("/htmltest2")) => {
+        // Return HTML page to establish web socket
+        //httpRequest.response.write("Hello from Socko (" + new Date().toString + ")")
+        helloActor ! httpRequest
+      }
+      
       case Path("/favicon.ico") => {
         // If favicon.ico, just return a 404 because we don't have that file
         httpRequest.response.write(HttpResponseStatus.NOT_FOUND)
@@ -127,7 +134,7 @@ class dispatcher(dipatcherChoice : Int, systemPort: Int, actorSystem: ActorSyste
       }
       
       //for workerManagerActor
-      case Path("/worker") => {
+      case Path("/service") => {
         routerDispatchActor ! wsFrame;
       }
       

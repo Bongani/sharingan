@@ -5,7 +5,7 @@ import voldemort.versioning.Version
 import voldemort.versioning.Versioned
 import akka.actor.Actor
 import akka.actor.Props
-import akka.routing.SmallestMailboxRouter
+import akka.routing.RoundRobinRouter
 import akka.routing.DefaultResizer
 import akka.routing.FromConfig
 import akka.voldemort.voldactors.actionactors.deleteActor
@@ -35,6 +35,7 @@ import akka.actor.OneForOneStrategy
 import akka.actor.SupervisorStrategy._
 import java.io.File
 import scala.xml.XML
+import java.io.IOException
 
 
 //voldemort actors internal messages
@@ -87,9 +88,9 @@ class voldCoordinator extends Actor with ActorLogging {
    
     actorConfig();
     val resizer = new DefaultResizer(lowerBound = actorLower, upperBound = actorUpper);
-    voldDeleteActor = context.actorOf(Props[deleteActor].withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "deleteActor");
-    voldGetActor = context.actorOf(Props[getActor].withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "getActor");
-    voldPutActor = context.actorOf(Props[putActor].withRouter(SmallestMailboxRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "putActor");
+    voldDeleteActor = context.actorOf(Props[deleteActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "deleteActor");
+    voldGetActor = context.actorOf(Props[getActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "getActor");
+    voldPutActor = context.actorOf(Props[putActor].withRouter(RoundRobinRouter(resizer = Some(resizer), supervisorStrategy = supervisorEscalator)), name = "putActor");
     //voldPutActor = context.actorOf(Props[putActor].withRouter(FromConfig()), name = "voldPutActor");
     
   }
@@ -128,6 +129,7 @@ class voldCoordinator extends Actor with ActorLogging {
     case voldMessage: voldemortDirectMessage => {
       val operation = voldMessage.op
       operation match {
+        case "fail" => voldGetActor ! "fail";
         case "put" => voldPutActor ! new put(voldMessage.k, voldMessage.v, voldMessage.cStore);
         case "putver" => voldPutActor ! new putVersion(voldMessage.k, voldMessage.versionedValue, voldMessage.cStore);
         case "delete" => voldDeleteActor ! new delete(voldMessage.k, voldMessage.cStore);
@@ -192,6 +194,7 @@ class voldCoordinator extends Actor with ActorLogging {
       
       val operation = voldMessage.op;
       operation match {
+        
         case "put" => voldPutActor ! new put(voldMessage.k, voldMessage.v, storage);
         //case "putver" => voldPutActor ! new putVersion(voldMessage.k, voldMessage.versionedValue, voldMessage.cStore);
         case "delete" => voldDeleteActor ! new delete(voldMessage.k, storage);

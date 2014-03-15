@@ -142,3 +142,27 @@ run 3 7777 /single_node_cluster/config/
 compile
 eclipse
 run
+compile
+run 3 7777 /single_node_cluster/config/
+run
+run 3
+run 3 7777 /single_node_cluster/config/
+compile
+assembly
+compile
+assembly
+run 3
+run
+run 3 8888 /single_node_cluster/config/
+run 2 8888 /single_node_cluster/config/
+run 1 8888 /single_node_cluster/config/
+compile
+run 3 8888 /single_node_cluster/config/
+run
+run 2 8888 /single_node_cluster/config/
+run 1 8888 /single_node_cluster/config/
+run
+atmos:run 3 8888 /single_node_cluster/config/
+run
+run 3 7777 /single_node_cluster/config/
+atmos:run 3 7777 /single_node_cluster/config/
